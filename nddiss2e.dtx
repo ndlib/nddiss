@@ -1,0 +1,2443 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2004-2005 by Sameer Vijay
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.2 of this license or (at your option) any later
+% version. The latest version of this license is in
+%
+%    http://www.latex-project.org/lppl.txt
+%
+%
+% \fi
+%
+%
+%  \CheckSum{1411}
+%  \CharacterTable
+%   {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%    Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%    Digits        \0\1\2\3\4\5\6\7\8\9
+%    Exclamation   \!     Double quote  \"     Hash (number) \#
+%    Dollar        \$     Percent       \%     Ampersand     \&
+%    Acute accent  \'     Left paren    \(     Right paren   \)
+%    Asterisk      \*     Plus          \+     Comma         \,
+%    Minus         \-     Point         \.     Solidus       \/
+%    Colon         \:     Semicolon     \;     Less than     \<
+%    Equals        \=     Greater than  \>     Question mark \?
+%    Commercial at \@     Left bracket  \[     Backslash     \\
+%    Right bracket \]     Circumflex    \^     Underscore    \_
+%    Grave accent  \`     Left brace    \{     Vertical bar  \|
+%    Right brace   \}     Tilde         \~}
+%
+% \changes{v0.98}{2004/04/15}{Initial {\em beta} version}
+% \renewcommand{\generalname}{Release}
+% \changes{v1.0}{2004/06/15}{First release}
+% \renewcommand{\generalname}{General}
+% \changes{v1.1}{2005/04/14}{Minor changes and clean-up}
+% \changes{v2.0}{2005/05/14}{Some bugfixes, cleaned some of documentation}
+% \changes{v2.1}{2005/06/14}{More bugfixes, changes in documentation}
+% \renewcommand{\generalname}{Release}
+% \changes{v3.0}{2005/07/27}{Major revamp and clean-up of the code, added
+% \texttt{numrefs} and \texttt{textrefs} to allow different kinds of citation
+% styles, added some more macros and modified others,
+% changed the titlepage a bit, completed source documentation}
+% \changes{v3.2013$\beta$}{2013/1/14}{Initial release of updates in order to comply with 
+%	the Graduate School's current formatting regulations and to take advantage 
+% of some LaTeX package updates. Should be functional, and has been approved
+% by the Dissertation/Thesis editors, but has not undergone wide-scale testing. - Megan Patnott}
+% \changes{v3.2013}{2013/4/20}{Some bug fixes, minor changes in documentation, and addition of support for parts. - MP}
+% \renewcommand{\generalname}{Update}
+%
+% \iffalse (Don't show this in the doc).
+%    \begin{macrocode}
+%<*driver>
+\ProvidesFile{nddiss2e.dtx}
+\documentclass{ltxdoc}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+\DeclareRobustCommand{\nddiss}{%
+         \textsf{{\scshape nd}diss}\kern-0.03em%
+         2$_\mathsf{\textstyle\varepsilon}$}
+\providecommand{\dissfileversion}{3.2013}
+\providecommand{\dissfiledate}{2013/04/16}
+\DisableCrossrefs
+\CodelineNumbered
+\RecordChanges
+\begin{document}
+    \DocInput{nddiss2e.dtx}
+\end{document}
+%</driver>
+%    \end{macrocode}
+% \fi
+%
+% \title{The \nddiss\/ class\thanks{Version~\dissfileversion,%
+%        dated~\dissfiledate.}}
+%
+% \author{Sameer Vijay\thanks{Inspiration from an
+% earlier \textsf{NDThesis} class by D. A. Peterson; Updated Spring 2013 by Megan Patnott.}\\
+% }
+% \date{\dissfiledate}
+%
+% \maketitle
+%
+% \begin{abstract}
+% This \nddiss\space class is based on the standard \LaTeXe\/ \textsf{book}
+% class and is an extensive rewrite of the earlier \textsf{NDthesis} class
+% file, incorporating changes for \LaTeXe\space  and pdf\LaTeX\space as well
+% as many other improvements.  This class conforms with the requirements of the
+% Graduate School guidelines as of Spring 2013 for the layout of the Ph.D.
+% dissertations and Master's theses.  In reading this documentation you will
+% find that we assume that the
+% reader has working knowledge of \LaTeXe\/.
+% \end{abstract}
+%
+% \tableofcontents
+%
+% \section{Introduction}
+% \label{sec:intro}
+% This document describes the \LaTeXe\space document class \nddiss,
+% suitable\footnote{In Sameer's opinion, but with no guarantee that you or other users
+% will agree. Sameer shall not be liable for any consequence, good or bad,
+% of anyone's use of this software.} for producing dissertations and
+% theses according to the Spring 2013 guidelines of the Graduate School at the
+% University of Notre Dame. The latest version of this class and
+% related documentation should be
+% available at \url{http://www.gsu.nd.edu} or at
+% \url{http://graduateschool.nd.edu}.
+%
+% \subsection{Disclaimer}
+% \label{sec:disclaimer}
+% It could be thought of as suspicious if we begin with a disclaimer, but it is
+% important for you to keep in mind that only \emph{you} are responsible for the 
+% correct formatting of your dissertation/thesis even though use of this class 
+% simplifies that task considerably. There are certain formatting things which 
+% need to be done manually and are described later in Section \ref{sec:author}.
+% As such, this class and its associated documentation \emph{must not} be assumed 
+% to be a replacement of the formatting guide from the Graduate School and this or 
+% \url{dteditor@nd.edu} should be consulted, in case of doubt. The Graduate School
+% also supplies an example in their Microsoft Word materials, which is more likely
+% to be up to date than either the \LaTeX\space materials or the official 
+% formatting guide. As of Spring 2013, the official formatting guide is out dated.
+%
+% In short, no one but you (the user) accepts any responsibility for works
+% that do not get approved by the Graduate School. Use of the
+% \nddiss\space class file implicitly states acceptance of this policy. Having
+% said that, a document produced by using this class (as described in the
+% following sections) has a pretty good likelihood of being accepted as it is.
+%
+% \subsection{Dependencies and Limitations}
+% \label{sec:deps}
+% This classfile depends on many other packages to be present in either
+% the |TEXMF| tree (system or local) or the \LaTeX\space search path. This is 
+% defined by shell variable \verb+$TEXINPUTS+, which is probably only helpful
+% to you if you are a Linux user. All of the required packages are available
+% through MiKTeX and TeXLive, and can be downloaded in the usual fashion 
+% through those programs. A list of the essential packages is mentioned in 
+% section \ref{sec:features}.
+%
+% Although Megan has tested it with \LaTeX\space
+% [2009/09/24], it should be backwards compatible with \LaTeX\space
+% [1995/12/01] and higher as well. It is not possible for us to list the version 
+% of each package used within the class file and you might get errors if the package in
+% your |TEXMF| tree is outdated. We do note that the 2013 update makes use of an upate
+% made to the \textsf{hyperref} and \textsf{natbib} packages in about 2010. If the version of \textsf{hyperref}
+% and \textsf{natbib} in your |TEXMF| tree is older than this, you will get many errors. 
+% Depending on your system, it may be possible to update only this package or you may 
+% have to update everything.
+%
+% The classfile is limited in the sense that it will produce an acceptable
+% document with the packages that we have tried and included by default. There
+% are numerous packages you may want to use for your work, but they may have
+% to be modified accordingly. 
+% Things lacking include support for the \textsf{subfigure} 
+% and \textsf{subcaption} package and proper formatting of the captions in such an environment. 
+% Formatting of the captions could be much easier with the 
+% \textsf{caption}\footnote{\textsf{caption} package by Axel Sommerfeldt v3.0b[2004/05/16] 
+% and higher} in general, and is a thing-to-do for future versions. Permitting use of the
+% \textsf{subfigure} and \textsf{subcaption} packages would also be a good thing to do
+% if an update is ever made for reaosns other than resolving conflicts caused by changing
+% Graduate School regulations. If you want to use a \textsf{subfigure} environment and don't
+% need the caption capabilities of the \textsf{subcaption} package, adding the following
+% code to your preamble may allow you to do this and still have your captions formatted
+% according to the Graduate School's rules.
+% \begin{verbatim}
+%	\usepackage{subcaption}
+% \makeatletter
+% \renewcommand\LT@makecaption[3]{%
+%   \LT@mcol\LT@cols c{\hbox to\z@{\hss\parbox[t]\LTcapwidth{%
+%   \vskip\abovetableskip%
+%   \centering\normalspacing
+%   #1{#2 }\\[\single@skip]
+%   {#3}\par
+%   \endgraf\vskip\belowtableskip}%
+%   \hss}}}
+% \makeatother
+% \end{verbatim}
+%
+% \section{Usage}
+%
+% The \nddiss\space document class can be used only with \LaTeXe\space native mode or
+% later, by typing |\documentclass|\oarg{options}|{nddiss2e}| at the
+% beginning of your \LaTeX\space source file. The available options for
+% the use of the class are discussed in section \ref{subsec:options} below.
+% These have been limited to a small number in order to obtain documents
+% with similar formatting under \LaTeXe\space using this class, although the
+% \nddiss\space class is based on the \textsf{book} class,
+% which has many other options.
+%
+% \subsection{Options}
+% \label{subsec:options}
+%
+% By default, all documents produced using this class
+% are formatted in |letterpaper| size and |onesided|,
+% |doublespaced| mode, as per
+% the requirements of the Graduate School. If you wish to override these
+% restrictions, appropriate changes to the class file would be needed. 
+% In theory, the class file's specifications should override your system's defaults.
+% If, however, you are getting A4 paper, try adding |\pdfpagewidth{8.5in}| and
+% |\pdfpageheight{11in}| immediately after the |\documentclass| call in your file.
+%
+% The most important of the options is |draft|, |review| or
+% |final|. Exactly one of these \emph{must} be used, otherwise you will surely 
+% get errors.
+%
+% \DescribeMacro{draft}
+% Using the |draft| option enables the \textit{draft} mode of the
+% |book| class, thus making the processing of the document faster. The most 
+% visible change that results from using this option is that only the
+% placement boxes of included figures are displayed. An appropriate header is 
+% included to indicate that the prepared document is a draft document. The 
+% purpose of the |draft| option is to obtain a fast and preliminary
+% document showing the labels for citations, tables, figures etc. and a black
+% solid rule highlighting the horizontal overflows. Such a document would be
+% the one you would prepare for revising your text during writing stages. The
+% \nddiss class checks for this option if you try to change the font, but
+% otherwise just passes this option down to the |book| class and
+% any loaded packages, several of which do something with it.
+%
+% \DescribeMacro{review}
+% The |review| option makes it possible to prepare a document that is
+% one step closer to the final version. Almost all the formatting of the final
+% version is present, along with the labels and keys as in the |draft|
+% option. A document prepared with the |review| option would be the one to
+% personally check for proper formatting and possibly giving to your advisor if 
+% (s)he wished to suggest corrections.
+%
+% \DescribeMacro{final}
+% The |final| style option produces the document for the production of archival
+% copies of the dissertation for submission to the Graduate School. It is also the
+% style option that you should use when you submit it to the Graduate School for
+% formatting checks. The \nddiss class itself just passes this option down to the 
+% |book| class and any loaded packages, several of which do something with it.
+%
+% \DescribeMacro{twoadvisors}
+% If you have two advisors for your project/research, selecting the |twoadvisors| 
+% option produces an appropriately formatted title page. The |\secondadvisor| 
+% macro command (discussed in Section \ref{subsec:titlepage}) is used to specify 
+% the name of the second advisor.
+%
+% \DescribeMacro{numrefs}
+% \DescribeMacro{textrefs}
+% Exactly one of these options -- |numrefs| or |textrefs|,
+% should be specified. |numrefs| results in a
+% numbered citation sytle with \textsf{natbib} and the ``nddiss2e'' or
+% ``nddiss2enoarticletitles'' citation style
+% file\footnote{|nddiss2e.bst| is a slight modificiation of |abbrvnat.bst|
+% in the \textsf{natbib} package; |nddiss2enoarticletitles.bst| is 
+% essentially the same as |nddiss2e|, but does not display the titles of
+% journal articles, as this is the standard in some fields}.
+% Using |textrefs| changes the citation style to be similar to
+% ``author-date'' style with the same files. If none of these options is
+% specified, the default style of numbered citations (ie.\/ same as if
+% |numrefs| was used) is used.
+%
+% \DescribeMacro{sort}
+% \DescribeMacro{compress}
+% \DescribeMacro{sort\&compress}
+% At most one of these options should be selected. The |sort| option will cause
+% both numerical and ``author-date'' style references to be sorted in the order
+% that they appear in the bibliography when multiple references are cited. The
+% |compress| option compresses numerical citations, e.g. it turns [1,2,3] into
+% [1-3], and does nothing to ``author-date'' style references. The
+% |sort&compress| option first sorts and then compresses numerical references, and
+% only sorts ``author-date'' style references.
+%
+% Since the same set of packages and
+% style files result in differing citation formats, it is \emph{strongly}
+% suggested that you
+% refer to the documentation |natnotes.dvi| in your |TEXMF| tree,
+% to be aware of the
+% various ways in which you can make a citation in your text.
+%
+% \DescribeMacro{10pt}
+% \DescribeMacro{11pt}
+% \DescribeMacro{12pt}
+% The choice of the fontsize is only applicable with the |draft| option
+% used. By default, the document will be prepared in the 10pt size for the
+% |draft| style option. For the |review| and the |final| style options,
+% the document is prepared in the 12pt font size and choosing any other font
+% size option will be ignored.
+%
+% \DescribeMacro{noinfo}
+% Using the |noinfo| option disables the information page produced
+% when the |review| or |final| style options are used. It is
+% recommended that you do not disable the ``info'' page unless it is the final
+% most copy/copies for submission to the Graduate School (in which case you
+% should disable it).
+%
+% \DescribeMacro{twoside}
+% Using the |twoside| option causes the class file to prepare a document meant
+% to be printed double-sided. Do NOT turn in your document this way to the
+% Graduate School! This option is strictly for if you want to prepare a two-sided
+% document for your own use. The only difference from the one-sided document
+% is in the page layout.
+%
+% \DescribeMacro{nocenter}
+% Using this option allows non-centered chapter titles. Do NOT turn in your
+% document this way to the Graduate School!
+%
+% \DescribeMacro{openbib}
+%	Using this option formats your bibliography in the following manner: \\
+% \qquad Author \\
+% \qquad \qquad Article/book title \\
+% \qquad \qquad Other information \\
+% \qquad \qquad Website, if applicable \\
+% Usually you would not need to use this option since the default layout of the
+% |bibliography| is acceptable. 
+%
+% Thus, |\documentclass[draft,12pt]{nddiss2e}| would produce a document in
+% \textsf{draft} format in 12pt font size and \\
+% |\documentclass[final,twoadvisors,noinfo]{nddiss2e}|
+% would produce a document (with modified title page) for final submission
+% to the Graduate School.
+%
+% \section{Features}
+% \label{sec:features}
+% A number of packages are required by default and must be present in your
+% \TeX\space search path (if you use a package manager such as MiKTeX or
+% TeXLive, it will take care of this for you). As far as possible, these have 
+% been tested for proper formatting style with the \nddiss\/ class file. The list 
+% includes
+% \textsf{ifthen},
+% \textsf{exscale},
+% \textsf{ifpdf},
+% \textsf{xspace},
+% \textsf{longtable},
+% \textsf{indentfirst},
+% \textsf{tabularx},
+% \textsf{showkeys},
+% \textsf{enumerate},
+% \textsf{latexsym}.
+% \textsf{epsfig},
+% \textsf{color},
+% \textsf{graphicx},
+% \textsf{url},
+% \textsf{setspace}\footnote{v6.7[2000/12/01] or above},
+% \textsf{amsmath},
+% \textsf{amssymb},
+% \textsf{float},
+% \textsf{lscape},
+% \textsf{rotating},
+% \textsf{booktabs}, and
+% \textsf{natbib}\footnote{v8.31[2009/07/16] or above}.
+% Sameer urges you to read the documentation of these packages available in
+% the |TEXMF| tree, if you think you might use their features
+% or want to tweak some advanced options. Of these packages,
+% \textsf{ifpdf}, 
+% \textsf{longtable}, 
+% \textsf{natbib}, 
+% \textsf{float},
+% \textsf{booktabs},
+% \textsf{rotating},
+% \textsf{url}, and
+% \textsf{setspace}
+% are not part of the \LaTeX\space required distribution, so you may need
+% to download them. They are all available through both MiKTeX and TeXLive;
+% note that \textsf{ifpdf} is part of the 
+% \textsf{oberdiek} bundle, which is what you need to download to get
+% that package if it is not already installed on your system.
+%
+% Other packages may or may not be appropriate for use with the
+% \nddiss\space class when producing copies to be submitted to the
+% Graduate School. Please be careful when using packages that change the
+% default fonts, or the layout(s).
+%
+% In general, the official guidelines of the Graduate School are
+% followed to the maximum extent possible. This includes proper
+% formatting of the title page and the abstract page (from the
+% \textsf{ndthesis} package), numbering of the pages in the \textit{
+% frontmatter}, generation of properly formatted table of contents, list
+% of figures etc., as well as bibliography at the end. As per the guide,
+% number of different fonts and font sizes used in the thesis is kept to
+% a minimum. The contents, all lists and the bibliography are
+% single-spaced but the inter-line spacing for the rest of the document
+% is double.
+%
+% \subsection{Generating PDF document}
+% \label{subsec:pdfdoc}
+%
+% The \nddiss\space class also allows production of pdf documents with
+% pdf\LaTeX\space. As of Spring 2013, this is the preferred method of 
+% compilation. In this case, the \textsf{hyperref}\footnote{Needs to have
+% been updated since 2010. Exact oldest verison number allowable unknown.} 
+% and \textsf{pdflscape}
+% packages are also required. The \textsf{hyperref} package ensures
+% that the generated pdf document contains internal as well as external
+% links for citations and bookmarks. A document produced by this method
+% also contains embedded fonts (\textit{press quality} pdf) and is suitable
+% for electronic submission to the library and for microfilm archiving.
+% Although the most appropriate options for \textsf{hyperref} are
+% passed on, for advanced features refer to its documentation. The
+% \textsf{pdflscape} package flips pages with landscape orientation in the
+% pdf file for easier reading, but the location of the page numbers does not change.
+% Neither of these packages is part of the required \LaTeX\space distribution,
+% so you may need to download them. The \textsf{pdflscape} package is part of
+% the \textsf{oberdiek} bundle.
+%
+% Figures must be in pdf, jpeg, png, or gif format, not encapsualted
+% postscript (eps). An easy way to convert your \textit{eps} files to \textit{pdf}
+%	files is to use the utility |epstopdf| or |eps2pdf|, which should be
+% available on your unix-like distribution already (should you have one). It is also
+% possible to convert your eps files to pdfs using an online conversion tool.
+% Searching for ``eps to pdf'' brought up several free options in Fall 2012.
+%
+% \section{Arrangement of contents}
+%
+% A dissertation or a thesis document must contain the following parts,
+% in the order listed. Only those explicitly marked as optional may be
+% omitted. Again, Sameer wishes to point out that the official guide must be
+% referred and its guidelines override the order listed here.
+%
+% \begin{enumerate}
+% \item Title Page
+% \item Copyright page
+% \item Abstract \emph{(optional for Master's thesis)}
+% \item Dedication \emph{(optional)}
+% \item Table of Contents
+% \item List of Figures
+% \item List of Tables
+% \item List of Symbols \emph{(optional)}
+% \item Preface \emph{(optional)}
+% \item Acknowledgments \emph{(optional)}
+% \item Text
+% \item Appendix (or Appendices) \emph{(optional)}
+% \item Bibliography (or References, or Works cited)
+% \end{enumerate}
+%
+% The macros and environments described below ease the formatting of these
+% parts.
+%
+% \subsection{Title page}
+% \label{subsec:titlepage}
+%
+% The title page is generated by the standard \LaTeX\space macro 
+% |\maketitle| with no arguments. This macro has been modified for 
+% providing a title page format required for dissertations/theses.
+%
+% Prior to invoking it in your document, you should declare:
+% \begin{itemize}
+% 	\item \DescribeMacro{\title\{\}} The title of the document, using the
+% 				|\title| macro. Note: title must be in ALL caps, e.g.
+% 				|\title{THIS IS A TITLE \||\  IN TWO LINES}|. You may use
+% 				linebreaks within the title, and the title may be up to four
+%					lines long. The spacing for titles of five or more lines
+%         may be off.
+% 	\item \DescribeMacro{\author\{\}} Your name (full and exactly as
+% 				registered with the Graduate School), using the
+% 				|\author| macro, e.g. |\author{Gary Graham Gordon-Graeme}|).
+% 	\item \DescribeMacro{\work\{\}} Whether the document is a 
+% 				\emph{Thesis} or a \emph{Dissertation} as the argument of the
+%					|\work| macro, e.g. |\work{Dissertation}|).
+% 	\item \DescribeMacro{\degaward\{\}} The degree you're aiming for (in
+% 				full) with the |\degaward| macro, e.g. 
+%					|\degaward{Doctor of Philosophy}| or \\
+%					|\degaward{Master of Science\\in\\Engineering}|.
+% 	\item \DescribeMacro{\advisor\{\}} The name of your advisor as argument to
+% 				the |\advisor| macro.
+% 	\item \DescribeMacro{\secondadvisor\{\}} The name of your second advisor, 
+% 				if any, with the |\secondadvisor| macro\footnote{this macro is necessary
+% 				when the\textsf{twoadvisors} option is used while invoking \nddiss\space
+%					class}.
+% 	\item \DescribeMacro{\department\{\}} The name of the department in the
+% 				argument of the |\department| macro, e.g.
+%					|\department{Gnulogical Engineering}|).
+% 	\item \DescribeMacro{\degdate\{\}} The month and year of the defense of the
+% 				thesis with the |\degdate| e.g. |\degdate{June 2004}|). If you forget to
+% 				declare this, the current month/year combination will be automatically used.
+% \end{itemize}
+%
+% \DescribeMacro{\maketitle}
+% After defining the above macro arguments, use |\maketitle| to generate
+% a title page, which includes your entries.  All the above macros are
+% required and if missing, they may result in errors in the generation
+% of the title page.
+%
+% \subsection{Copyright page}
+% \DescribeMacro{\makecopyright}
+% \DescribeMacro{\makepublicdomain}
+% The |\makecopyright| macro should be invoked after |\maketitle| to
+% produce a copyright page. Alternatively, you can use
+% |\makepublicdomain| to produce a page with the message ``This document
+% is in the public domain.'' Note that the absence of the copyright page
+% does \emph{not} place your dissertaion in the public domain, you must
+% declare it as such explicitely.
+%
+% \DescribeMacro{\copyrightholder\{\}}
+% \DescribeMacro{\copyrightyear\{\}}
+% Prior to calling |\makecopyright|, you may specify a different name
+% for the copyright holder (the default is the name given through the
+% |\author| macro) and for the copyright year (the default being the
+% current year). You should do this with the |\copyrightholder|\marg{name}
+% and |\copyrightyear|\marg{year} macros.
+%
+% \subsection{Abstract page(s)} 
+% \DescribeEnv{abstract}
+% The \textsf{abstract} environment has been modified from the default
+% in the \textsf{report} class to comply with the requirements
+% of the Graduate School. The abstract text should be placed between
+% |\begin{abstract}| and |\end{abstract}|.
+% If the abstract is longer than one page, the environment will place 
+% the author's name is placed in the top-right header.
+%
+% \DescribeMacro{\abstractname\{\}}
+% You may use |\abstractname|\marg{text} to change the abstract caption
+% to |text|.
+% Default name: |Abstract|.
+%
+% \subsection{Dedication}
+% \DescribeEnv{dedication}
+% The format of dedication is essentially free, but you may want to use
+% the \textsf{dedication} environment for this purpose. This environment
+% will center the text of your dedication vertically on the page. The
+% dedication is optional.
+% \DescribeMacro{\dedicationame\{\}}
+% |\dedicationname|\marg{text} may be used to change the title for the
+% dedication page. Default name: |\mbox{}| i.e.\/ an empty title. If a
+% different title is desired, note that the Graduate School requires that
+% it be in all caps, and that ensuring that this is so is your responsibility.
+%
+% \subsection{Table of contents and Lists of Figures and Tables}
+% \DescribeMacro{\tableofcontents}
+% \DescribeMacro{\listoffigures}
+% \DescribeMacro{\listoftables}
+% Use the macros |\tableofcontents|,|\listoffigures| and |\listoftables|
+% in this order, to produce the required table of contents and list of
+% figures and tables. Note: the ``list of figures'' should precede the
+% ``list of tables'' as per the Graduate School guide, so make sure
+% you call the commands in the correct order!
+%
+% \DescribeMacro{\contentsname\{\}}
+% \DescribeMacro{\listfigurename\{\}}
+% \DescribeMacro{\listtablename\{\}}
+% The macros |\contentsname|, |\listfigurename| and |\listtablename| may
+% be used to change the caption for Table of Contents, List of Figures
+% and List of Tables, respectively. By default, they are named as |CONTENTS|,
+% |FIGURES| and |TABLES|. If different titles are desired, note that the 
+% Graduate School requires that these be in all caps, and that ensuring that 
+% this is so is your responsibility.
+%
+% \subsection{List of symbols}
+% \DescribeEnv{symbols} 
+% The \textsf{symbols} environment is useful in
+% formatting the list of symbols/abbreviations used in your work. It
+% takes an optional argument specifying the desired format, e.g.
+% |\begin{symbols}[cl]| for first column centered and the next column
+% aligned left. By default, the first column will be right aligned and
+% the second column will be left aligned. You may use any of the standard
+% |tabular| column alignment options.
+% \DescribeMacro{\symbolsname\{\}} As earlier, the
+% caption for the list of symbols can be changed by using the
+% |\symbolsname| macro. Default name: |SYMBOLS|. Also as earlier, this 
+% title must be capitalized, and it is your responsibility to do this.
+%
+% \DescribeMacro{\sym\{\}\{\}}
+% Another macro |\sym|\marg{symbol}\marg{definition} makes the task of
+% entering the symbols and their meanings in the \textsf{symbols}
+% environment easier. |\sym| takes two arguments - first, a math
+% ``object'' and second, assumed to be the plain text describing the
+% symbol. Any plain text in the first argument needs to be set with
+% |\mathrm{..}| and any math symbol in the second needs to placed in
+% |$..$|.  Example: |\sym{\beta_\mathrm{norm}}{Definition for $\beta$}|
+%
+% \subsection{Preface}
+% \DescribeEnv{preface}
+% \DescribeMacro{\prefacename\{\}}
+% An environment \textsf{preface} is provided for formatting the preface to the
+% document.  The name of this \emph{chapter} may be changed by |\prefacename|
+% macro; as usual, it must be in all caps, and doing this is your responsibility. 
+% Default name: |PREFACE|.
+%
+% \subsection{Acknowledgments}
+% \DescribeEnv{acknowledgments}
+% \DescribeMacro{\acknowledgename\{\}}
+% The environment \textsf{acknowledgments} is used to format the
+% acknowledgment \emph{chapter}. As above |\acknowledgename| macro may be used
+% to change the title name; as usual, it must be in all caps, and doing this 
+% is your responsibility. Default name: |ACKNOWLEDGMENTS|.
+%
+% \subsection{Text} 
+% \DescribeMacro{\mainmatter}
+% Use the macro |\mainmatter| at the beginning of the text sections i.e.
+% all text matter should follow this macro as in the {\sffamily book}
+% class. The text is formatted in |\normalspacing| i.e. double-spacing.
+% The pages are numbered in |plain| pagestyle such that the page numbers
+% are centered in the bottom. The |chapter| titles can be multi-line,
+% and if so are formatted doubly spaced.
+%
+% \DescribeMacro{\unnumchapter\{\}}
+% Use the macro |\unnumchapter| to create to create unnumbered chapters that 
+% appear in the TOC. Don't forget that chapter names should be in all caps!
+%
+% \subsection{Appendix}
+% \DescribeMacro{\appendix}
+% As in the \textsf{book} class, use the |\appendix| to mark the
+% end of the last chapter in the main section and the start of the
+% appendices. To begin an appendix, using a |\chapter|\marg{title}
+% macro. Appendices will be automatically ``numbered'' alphabetically.
+%
+% \subsection{Backmatter}
+% \DescribeMacro{\backmatter}
+% This macro separates the bibliography, index
+% and glossary from the main matter and any appendices.
+%
+% \subsection{Bibliography} \DescribeMacro{\bibliography}
+% You may use the |\bibliography|\marg{bibfile} macro to generate the
+% bibliography with \BibTeX\/. In order to use the
+% \BibTeX\/ path for generating the bibliography, you needs to have
+% all the bibliographic data in \BibTeX\/  files. You should
+% refer to \BibTeX\/ manual for details about making a |.bib| file
+% and format for the entries.
+%
+% \DescribeMacro{\bibname\{\}} The default name for this \emph{chapter} is
+% |BIBLIOGRAPHY|. You may change it by using the macro command
+% |\bibname|\marg{newbibname}. It must be in all caps, and it is your
+% responsibility to do this.
+%
+% \DescribeEnv{thebibliography}
+% Alternatively, you can also make your own bibliography by using
+% {\sffamily thebibliography} environment. In this case, you would have
+% to write the reference entries in the right format in your |.tex| source
+% file itself. If you are using the |textrefs| option, you'll need to 
+% consult the \textsf{natbib} manual to ensure that you enter your entries in
+% the format required by the package.
+%
+% For citing references in the text, the package \textsf{natbib} is
+% included with options: \texttt{numbers,sort\&compress} (|numrefs| option) or
+% \texttt{authoryear,sort} (|textrefs| option). The package \textsf{natbib} is a
+% fantastic package that has numerous macros for \emph{citing} in different ways.
+% Sameer recommends reading its documentation. 
+%
+% \textbf{Warning:} The packages \textsf{cite} and \textsf{citation} are
+% NOT compatible
+% with the \textsf{natbib} package, and they must not be used.
+%
+% \section{Note for the authors}
+% \label{sec:author}
+% As noted earlier, the dissertation author must make sure that the
+% following conditions are met in order to generate a dissertation
+% acceptable by the Graduate School:
+%
+% \begin{itemize}
+% 	\item List of Figures should be \emph{before} List of Tables, i.e. the
+% 				macro command |\listoffigures| comes before |\listoftables| in the
+% 				frontmatter.
+% 	\item Chapter titles need to be written in ALL CAPS.
+% 	\item Table caption must be \emph{above} the table, but the figure
+% 				caption should be \emph{below} it.
+% 				In case of the \textsf{table} environment, this can be achieved by
+% 				putting |\caption| before you include the table (e.g. in a \textsf{
+% 				tabular} environment). In the \textsf{figure} environment, |\caption|
+% 				goes after the |\includegraphics| macro command.
+% 	\item Table captions need to be in ALL CAPS as well.
+% 	\item Bibliography is the last section/chapter of the thesis.\footnote{Except
+%				 	if you are using \emph{chapter-wise} bibliography}
+% \end{itemize}
+%
+% \subsection{Chapter-wise bibliography}
+% It is now possible to obtain bibliography as a section in each chapter
+% (as is common in some departments esp.\/ humanities) with some minor code
+% implementation in the |.tex| files. To do this you have to load the
+% package \textsf{chapterbib} (without any options)
+% in the preamble of your main tex file and
+% redefine some commands as below -
+% \begin{verbatim}
+% %% Main source file %%
+% \documentclass[...]{nddiss2e}
+% \usepackage{chapterbib}
+% \renewcommand{\bibname}{Cited works}
+% \renewcommand{\bibsection}{\section{\bibname}}
+% ...
+% \begin{document}
+% \include{chptr1}
+% ...
+% \include{appndx}
+% \end{document}
+% \end{verbatim}
+%
+% In such a case, you must separate the chapters or sections in
+% which you want individual bibliographies in different files and \emph{include}
+% them in the main file as above. Each such |\include|d file must contain
+% its own |\bibliographystyle{nddiss2e}| and |\bibliography{...}| command at
+% an appropriate position. There should not be any bibliographic commands in
+% the main source file.
+%
+% After compiling the main tex file once (with |latex| or
+% |pdflatex|)\footnote{This creates |.aux| files which are needed by |bibtex|},
+% you would have to run |bibtex| on each of the separate files to obtain a |.bbl|
+% for each file. The remaining steps are the same as for a normal |.tex| file.
+%
+% You can find more details of this in % the \textsf{natbib} manual (|natbib.pdf|) 
+% in the |TEXMF| tree.
+%
+% \subsection{Tips and suggestions}
+% \label{subsec:tips}
+% \begin{itemize}
+%		\item It is \emph{strongly} recommended that you compile your document with
+%					pdf\LaTeX. Compiling to dvi or ps first may result in ``fuzzy'' fonts
+%					when viewing the document on your screen. Additionally, the benefits
+%					of |hyperref| and |pdflscape| are only available if you compile using
+%         pdf\LaTeX.
+% 	\item Use the |\toprule|, |\midrule| and |\bottomrule| macro commands (from the
+% 				\textsf{booktabs} package) in the tables for generating the appropriate 
+%					horizontal rules. Use of vertical rules to separate columns in tables, is 
+%					in general, bad style and should be avoided as much as possible.
+% 	\item Use the \textsf{longtable} environment for handling very long
+% 				tabular materials. Again, use the vertical rules only if very necessary.
+% \begin{verbatim}
+% \begin{longtable}{lc}
+% \caption[]{LONG TABLE CAPTION \label{tab:longtable} }
+% \toprule
+% Heading 1 & Heading 2 \\
+% \midrule
+% \endfirsthead
+% \caption[]{ \emph{Continued} } \\
+% \midrule
+% Heading 1 & Heading 2 \\
+% \midrule
+% \endhead
+% \endfoot
+% \bottomrule
+% \endlastfoot
+% % Now the tabular material %
+% Long & Table etc. \\
+% \end{longtable}
+% \end{verbatim}
+% 	\item If a figure/table is very wide and will not fit normally,
+% 				use the \textsf{landscape} environment (from the included 
+% 				\textsf{lscape} package) to format them in \emph{landscape} 
+%					mode. They will automatically appear on a separate page. If you 
+%					use pdf\LaTeX\/ to compile your document, then the included 
+%					\textsf{pdflscape} package will flip this page on the screen
+%         for easier reading.
+% 				The \textsf{sidewaystable} environment (from the included 
+%					\textsf{rotating} package) is incompatible with the current
+% 				class and must be avoided. 
+% 	\item Usually the width of the figure/table captions is 90\% of the textwidth
+% 				(i.e. |0.9\textwidth|), but if needed can be changed as per the following:
+% 				\begin{itemize}
+% 					\item Use a \textsf{minipage} environment of appropriate width and enclose
+% 								your tabular or figure float inside it, or
+% 					\item set the |\capwidth| inside the \textsf{table} or the \textsf{figure}
+% 								environment, and |\LTcapwidth| \emph{outside} the \textsf{
+% 								longtable} environment, e.g.,\\[\baselineskip]
+% \begin{minipage}{0.5\textwidth}
+% \begin{verbatim}
+% \begin{table}[H]
+% \setlength{\capwidth}{0.8\textwidth}
+% \centering
+% \caption{TABLE CAP\label{tab:this}}
+% \begin{tabular}{lc}
+% ...
+% \end{tabular}
+% \end{table}
+% \end{verbatim}
+% \end{minipage}
+% \begin{minipage}{0.5\textwidth}
+% \begin{verbatim}
+% \setlength{\LTcapwidth}{6in}
+% \begin{longtable}{lccc}
+% ...
+% \end{\longtable}
+% \end{verbatim}
+% \end{minipage}
+% 				\end{itemize}
+% 	\item Use \textsf{tabularx} environment for the actual formatting 
+% 				of the tables (within the \textsf{table} environment). It differs
+% 				slightly from \textsf{tabular} environment and you should refer to
+% 				their documentation in the |TEXMF| tree for more information.
+% 	\item If you've used a \textsf{longtable} environment in your document,
+% 				it might be necessary to compile the document multiple times so as to 
+%					get proper alignment of columns. This is documented in the 
+%					\textsf{longtable} manual.
+% 	\item If you wish to use |\footnotes| in the \textsf{longtable} environment,
+% 				please read its documentation. There are some handicaps present.
+% 	\item A new macro command |\subsubsection| (self-explanatory) has been defined.
+% 				It is numbered as |3.2.1.4| in the TOC\footnote{Megan thinks that
+%					this is a standard command in Spring 2013, but is leaving
+%         Sameer's original note here in case she is wrong}.
+% 	\item To cite a website in your bibliography\footnote{More info at
+% 				\url{http://www.tex.ac.uk/cgi-bin/texfaq2html?label=citeURL}}, use the
+% 				following format in your |.bib| file:
+%  \begin{verbatim}
+%      @Misc{fairley2000,
+%      author =       "N. Fairley",
+%      title =        "Casa{XPS} {VAMAS} processing software",
+%      howpublished = "Website",
+%      note =         "\url{http://www.casaxps.com}",
+%      }
+%  \end{verbatim} This when processed with the |nddiss2e.bst| citation style file
+% 				gives:\newline
+% 				111. N. Fairley. CasaXPS VAMAS processing software. Website.
+% 				\url{http://www.casaxps.com}.\newline
+% \end{itemize}
+%
+% \subsection{You found errors?}
+% If you find some errors in formatting of your document, most likely these are
+% NOT due to the \nddiss\/ class, but due to either wrongly used
+% commands/macros or conflicting commands/macros in a package that you might
+% have used ie.\/ a mistake from your side. Please verify that before
+% contacting anyone regarding the class file.
+%
+% Read the manuals for the packages that you might have used and find out if
+% they have macro commands that modify the page-layout, spacing etc.\/ or if
+% they conflict with already defined commands (e.g.\/ packages
+% \textsf{natbib} and
+% \textsf{cite} redefine the same command |\cite| in different ways). Sameer
+% would suggest that you \emph{read the manuals anyway}! It is a good practice.
+%
+% In the possible scenario that you
+% have found a significant error, please try to find out the source of the
+% error and, even better, a possible alternative, and please
+% report it to the Graduate School's reviewer(s). It would also be great, if
+% you try to find a solution for the problem and inform them of that as well.
+% Please also let them know if you find this documentation confusing or misleading
+% or if any mistakes are present.
+%
+% Your doing so will ensure that the reviwer(s) are aware of the problem and
+% its possible solutions and they can give better answers to the people who
+% might encounter similar problems. It will also help making the future
+% versions of the class file better.
+%
+% \section{Example}
+% Below is a basic |.tex| sample.
+% A file called |template.tex|\footnote{Most likely present in the same
+% directory as |nddiss2e.cls| e.g.\/ in |TEXMF/tex/latex/nddiss2e/|}
+% is generated from |nddiss2e.ins| which might serve as a guide for
+% your document. The |example| directory contains a mock thesis modified
+% from the \textsf{ndthesis} class file and should also be helpful.
+% \begin{verbatim}
+% \documentclass[numrefs,final]{nddiss2e}
+%
+% \begin{document}
+%
+% \frontmatter
+%
+% \title{}
+% \author{}
+% \work{Dissertation}
+% \degaward{Doctor of Philosophy}
+% \advisor{}
+% \department{}
+% \maketitle
+% \makepublicdomain
+%
+% \begin{abstract}
+% Abstract here
+% \end{abstract}
+% \renewcommand{\dedicationname}{\mbox{}}% Empty dedication title
+% \begin{dedication}
+% For Someone
+% \end{dedication}
+%
+% \tableofcontents
+% \listoffigures
+% \listoftables
+%
+% \begin{preface}
+% Preface here
+% \end{preface}
+% \begin{acknowledge}
+% Thanks to everyone
+% \end{acknowledge}
+% \begin{symbols}
+% \sym{a}{definition of a}
+% \end{symbol}
+%
+% \mainmatter
+%
+% \chapter{One} % Chapter 1
+% All the text ...
+%
+% \appendix
+% \chapter{Additional data} % Appendix A
+%
+% \backmatter
+% \bibliographystyle{nddiss2e}
+% \bibliography{bibdatabase}
+%
+% \end{document}
+% \end{verbatim}
+%
+%
+%
+% \StopEventually{%
+%   \footnotesize
+%   \PrintChanges
+%   }
+%
+% \clearpage
+% \section{The Implementation}
+% Following is our attempt at documenting the source of the
+% \nddiss\space class file for the \TeX\space hackers.
+%
+% \small\mbox{}\\
+% \iffalse (Don't show this in the doc).
+%<*class>
+% \fi
+% At the start, we define the base version of \LaTeXe\space needed and 
+% the label information for the \nddiss\space class.
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\ProvidesClass{nddiss2e}
+%    \end{macrocode}
+% \iffalse
+%</class>
+% \fi
+% \iffalse (Don't show this in the doc).
+%    \begin{macrocode}
+%<template>\ProvidesFile{template.tex}
+%    \end{macrocode}
+% \fi
+%    \begin{macrocode}
+    [2013/04/16 v3.2013^^J%
+%    \end{macrocode}
+% \iffalse
+%<*class>
+% \fi
+%    \begin{macrocode}
+     Notre Dame Dissertation document class by Sameer Vijay and updated by Megan Patnott^^J]
+%
+%    \end{macrocode}
+% \begin{macro}{\dissfileversion}
+% \begin{macro}{\dissfiledate}
+% The |\dissfileversion| and |\dissfiledate| macros contain the version and the date
+% of the release.
+%    \begin{macrocode}
+\providecommand{\dissfileversion}{3.2013}
+\providecommand{\dissfiledate}{2013/04/16}
+%
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \iffalse
+%</class>
+% \fi
+% \iffalse (Don't show this in the doc).
+%    \begin{macrocode}
+%<template>     Template file for NDdiss2e class by Sameer Vijay and updated by Megan Patnott^^J]
+%    \end{macrocode}
+% \fi
+% \iffalse
+%<*class>
+% \fi
+% New boolean variables for the options used in \nddiss\ class are
+% set here with default values.
+%    \begin{macrocode}
+\newif\ifdiss@draft             \diss@drafttrue
+\newif\ifdiss@review            \diss@reviewfalse
+\newif\ifdiss@final             \diss@finalfalse
+\newif\ifinfo@page              \info@pagetrue
+\newif\ifadvisors@two           \advisors@twofalse
+\newif\ifdiss@dedication        \diss@dedicationfalse
+\newif\ifnum@refs               \num@refstrue
+\newif\ifcentered@chaptitle     \centered@chaptitletrue
+%
+%    \end{macrocode}
+% \begin{macro}{draft}
+% \begin{macro}{review}
+% \begin{macro}{final}
+% Exactly one of these options must be present in order to get a proper document. These
+% options set appropriate boolean variables (flags) and pass some common
+% options to the parent {\sffamily book} class.
+%    \begin{macrocode}
+\DeclareOption{draft}{
+    \setlength\overfullrule{5pt}
+    \typeout{DRAFT MODE}\typeout{}\info@pagefalse%
+    \diss@drafttrue\diss@reviewfalse\diss@finalfalse
+    \PassOptionsToClass{letterpaper,oneside,draft}{book} }
+%
+\DeclareOption{review}{
+    \typeout{REVIEW MODE}\typeout{}\info@pagetrue%
+    \diss@draftfalse\diss@reviewtrue\diss@finalfalse
+    \PassOptionsToClass{12pt,letterpaper,oneside,final}{book} }
+%
+\DeclareOption{final}{
+    \setlength\overfullrule{0pt}
+    \typeout{FINAL MODE}\typeout{}\info@pagetrue%
+    \diss@draftfalse\diss@reviewfalse\diss@finaltrue
+    \PassOptionsToClass{12pt,letterpaper,oneside,final}{book} }
+%
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \begin{macro}{numrefs}
+% \begin{macro}{textrefs}
+% The options |numrefs| or |textrefs| select the appropriate citation style i.e.\/
+% ``numbered'' or ``textual'', respectively. By
+% choosing |textrefs|, one can get ``author-date'' style of citation in the
+% text. The default is |numrefs|.
+%    \begin{macrocode}
+\DeclareOption{numrefs}{
+  \typeout{NUMBERED REFERENCES}\num@refstrue}
+\DeclareOption{textrefs}{
+  \typeout{TEXTUAL REFERENCES}\num@refsfalse}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% The option |nocenter| allows non-centered chapter titles.
+%    \begin{macrocode}
+\DeclareOption{nocenter}{\centered@chaptitlefalse}
+%
+%    \end{macrocode}
+% The |openbib| option is useful
+% in creating indented bibliography.
+% Usually you would not need to use this option since the default layout of the
+% |bibliography| is very much acceptable.
+%    \begin{macrocode}
+\DeclareOption{openbib}{%
+   \PassOptionsToPackage{openbib}{natbib}
+}
+%
+%    \end{macrocode}
+% The |sort| option is passed to natbib, and causes multiple citations to be
+% listed in the sequence they appear in the bibliography.
+%    \begin{macrocode}
+\DeclareOption{sort}{%
+	\PassOptionsToPackage{sort}{natbib}
+}
+%
+%    \end{macrocode}
+% The |compress| option is passed to natbib, and causes numerical citations to
+% be compressed so that, e.g. 1,2,3 becomes 1-3. Does not also sort.
+%    \begin{macrocode}
+\DeclareOption{compress}{%
+	\PassOptionsToPackage{compress}{natbib}
+}
+%
+%    \end{macrocode}
+% The |sort&compress| option sorts numerical citations, and then compresses them.
+%    \begin{macrocode}
+\DeclareOption{sort&compress}{%
+	\PassOptionsToPackage{sort&compress}{natbib}
+}
+%
+%    \end{macrocode}
+% The other options are declared in the following lines.
+% \begin{macro}{twoadvisors}
+% The |twoadvisors|
+% option sets the flag for modifying the layout of the title page.
+%    \begin{macrocode}
+\DeclareOption{twoadvisors}{\typeout{TWO ADVISORS}\typeout{}%
+    \advisors@twotrue}
+%
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{10pt}
+% \begin{macro}{11pt}
+% \begin{macro}{12pt}
+% The options |10pt|, |11pt| or |12pt| are passed on to the {\sffamily book}
+% class if appropriate, depending on whether the |\diss@draft| flag is set true.
+%    \begin{macrocode}
+\DeclareOption{10pt}{%
+ \ifdiss@draft%
+  \PassOptionsToClass{10pt}{book}%
+ \else%
+  \OptionNotUsed%
+  \ClassWarningNoLine{nddiss2e}%
+    {Font size 10pt not allowed; using 12pt}%
+ \fi%
+}
+\DeclareOption{11pt}{%
+ \ifdiss@draft%
+  \PassOptionsToClass{11pt}{book}%
+ \else%
+  \OptionNotUsed%
+  \ClassWarningNoLine{nddiss2e}%
+    {Font size 11pt not allowed; using 12pt}%
+ \fi
+}
+\DeclareOption{12pt}{%
+   \PassOptionsToClass{12pt}{book}%
+}
+%
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%    \begin{macrocode}
+\DeclareOption{noinfo}{\info@pagefalse}
+%
+%    \end{macrocode}
+% The |twoside| option is for when you want to prepare a two-sided
+% document for your own use. The only difference from the one-sided document
+% is in the page layout. This option is passed on to the parent {\sffamily
+% book} class.
+%    \begin{macrocode}
+\DeclareOption{twoside}{\typeout{TWO SIDED DOCUMENT}%
+  \PassOptionsToClass{twoside}{book} }%
+%
+%    \end{macrocode}
+% All options other than those defined above are ignored and
+% a warning is printed
+% on the screen during compile-time. After processing all the options, the
+% \textsf{book} class is loaded with the specified options.
+%    \begin{macrocode}
+\DeclareOption*{\ClassWarning{nddiss2e}%
+    {UnknownOption `\CurrentOption'} }%
+\ProcessOptions\relax
+\LoadClass{book}
+%
+%    \end{macrocode}
+% At this stage, the packages \textsf{ifthen}, \textsf{exscale},
+% \textsf{ifpdf}, \textsf{longtable}, \textsf{xspace}, \textsf{
+% indentfirst}, \textsf{tabularx}, \textsf{enumerate} and \textsf{
+% latexsym} are loaded. It is important to load these in a specific order so as
+% not to cause conflicts in definitions of certain macros.
+%    \begin{macrocode}
+\RequirePackage{ifthen,exscale}
+\RequirePackage{ifpdf}
+\RequirePackage{longtable}
+\RequirePackage{xspace}
+\RequirePackage{indentfirst}
+\RequirePackage{tabularx}
+\RequirePackage{enumerate}
+\RequirePackage{latexsym}
+%
+%    \end{macrocode}
+% If the |\diss@final| is set false (when using |draft| or |review| option) then
+% the {\sffamily showkeys} package is also loaded.
+%    \begin{macrocode}
+\ifdiss@final\relax\else\RequirePackage{showkeys}\fi
+%
+%    \end{macrocode}
+% Depending in whether you are using pdf\LaTeX\space or plain \LaTeX\space,
+% \textsf{epsfig}, \textsf{color} and \textsf{graphicx} are loaded
+% with respective options.
+%    \begin{macrocode}
+\ifpdf
+  \RequirePackage[pdftex]{epsfig}
+  \RequirePackage[pdftex]{color}
+  \RequirePackage[pdftex]{graphicx}
+  \AtBeginDocument{
+  \pdfadjustspacing=1
+  }
+\else
+  \RequirePackage[dvips]{epsfig}
+  \RequirePackage[dvips]{color}
+  \RequirePackage[dvips]{graphicx}
+\fi
+%
+%    \end{macrocode}
+% Now the \textsf{natbib} package is loaded
+% with its options, appropriate to |numrefs| or |textrefs| class option. If |numrefs| is
+% specified, then \textsf{natbib} is read-in with its options for
+% ``numbered'' references and sorted \& compressed (eg. |[3-6,8-10]|).
+% In this case, the default delimiter is square brackets and the
+% default seperator is a comma. For the |textrefs| option, the
+% \textsf{natbib} package is read-in so as to sort the references in an
+% ``author-date'' style of citations.
+% The default delimiter and seperator, in this case, are round brackets and
+% colon, respectively.
+%
+%    \begin{macrocode}
+\ifnum@refs
+  \RequirePackage[numbers]{natbib}
+\else
+  \RequirePackage[authoryear]{natbib}
+\fi
+%    \end{macrocode}
+% Additionally, the packages \textsf{amsmath}, \textsf{amssymb},
+% \textsf{float}, \textsf{lscape}, \textsf{booktabs}, \textsf{
+% rotating}, \textsf{url} and \textsf{setspace} are loaded when (pdf)\LaTeX\space
+% processes |\begin{document}|. Again, the order of these packages is
+% important. Additionaly when using pdf\LaTeX\space, the package
+% \textsf{hyperref} (for internal/external links in the document)
+% is also loaded. The options for this package have been tested to produce
+% a document which can be printed on laser printers without any problems
+% because of colored link boxes.
+% Megan added required package pdflscape, which is part of the oberdiek bundle in MiKTeX and TeXLive.
+% Using this package will flip landscape pages on the screen so that it's easier to read.
+%    \begin{macrocode}
+\AtBeginDocument{
+\RequirePackage{amsmath,amssymb}
+\RequirePackage{float}
+\RequirePackage{lscape}
+\RequirePackage{booktabs}
+\RequirePackage{rotating}
+\RequirePackage{url}
+\RequirePackage[doublespacing]{setspace}[2000/12/01]
+\ifpdf
+	\RequirePackage{pdflscape}
+  \RequirePackage[pdftex,
+  					plainpages=false,
+  					pdfpagelabels,
+            bookmarks=true,%
+            bookmarksnumbered=true,%
+            linktocpage=true,%
+            breaklinks=true,%
+            bookmarkstype=toc,%
+            colorlinks=false,%
+            pdfpagemode=UseOutlines]{hyperref}
+\fi
+}
+%
+%    \end{macrocode}
+% Set the |\pagestyle| for the document to |plain| here
+% and define default spacing.
+%    \begin{macrocode}
+\AtBeginDocument{
+\pagestyle{plain}
+\normalspacing
+\typeout{Pagestyle and spacing normal}
+}
+%
+%    \end{macrocode}
+% Here, define some spacing macros for page layout and doublespacing.
+%    \begin{macrocode}
+\newcommand{\normalspacing}{\doublespacing}
+\newcommand\single@baselinestretch{1.0}
+\newcommand\double@baselinestretch{1.66}
+\newlength{\single@skip}
+\setlength{\single@skip}{\single@baselinestretch em}
+\newlength{\double@skip}
+\setlength{\double@skip}{\double@baselinestretch em}
+\setlength{\footnotesep}{\double@skip}
+%
+%    \end{macrocode}
+% Define new lengths for some variables for a proper layout of normal pages,
+% pages with text and figures and pages with only floats. Note that although
+% the geometry package is usually easier, when Megan tried to switch to that
+% she discovered that something ends up overwriting it and, although the
+% the showframe option showed that the margins were setting correctly, the text
+% didn't look like they were.  So these length values are set to what geometry
+% said they should be to get a 1.5 in left margin and 1 in margins on all other
+% sides (we'll use vspace commands later to get the 2 in top margin on pages
+% where that's needed).
+%    \begin{macrocode}
+\setlength{\hoffset}{0pt}
+\setlength{\voffset}{0pt}
+\setlength{\topmargin}{-32pt}
+\setlength{\headsep}{20pt}
+\setlength{\marginparwidth}{47pt}
+\setlength{\marginparsep}{7pt}
+\setlength{\textheight}{648pt}
+\setlength{\textwidth}{432pt}
+\setlength{\oddsidemargin}{36pt}
+\setlength{\evensidemargin}{36pt}
+\setlength{\footskip}{30pt}
+%
+\setlength{\floatsep}{30pt}
+\setlength{\intextsep}{50pt}
+%
+%    \end{macrocode}
+%    \begin{macrocode}
+\newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}%
+    \cleardoublepage}}
+%
+%    \end{macrocode}
+% \begin{macro}{\nddiss} Define the macro |\nddiss| that is the logo
+% used in the titlepage and the stamp in the dissertation document.
+%    \begin{macrocode}
+\DeclareRobustCommand{\nddiss}{%
+        \textsf{{\scshape nd}diss}\kern-0.03em%
+        2$_\mathsf{\textstyle\varepsilon}$}
+%
+%    \end{macrocode}
+% \begin{macro}{\work}
+% \begin{macro}{\degaward}
+% \begin{macro}{\advisor}
+% \begin{macro}{\secondadvisor}
+% \begin{macro}{\department}
+% \begin{macro}{\degdate}
+% \iffalse (does not appear in documentation)
+% In 2005 the Graduate School wanted us to list our degrees after our names.
+% In 2013 they no longer want this, so Megan removed the macro.
+% Here's the code for it, in case they change their minds again:
+% \begin{macro}{\degprior} (goes with the other \begin{macro}s above)
+% \newcommand{\degprior}[1]{\def\@degprior{#1}} (goes with other newcommands below)
+% \fi
+% Here define new macros for use in the dissertation title page.
+%    \begin{macrocode}
+\renewcommand{\title}[1]{\def\@title{#1}}
+\newcommand{\work}[1]{\def\@work{#1}}
+\newcommand{\degaward}[1]{\def\@degaward{#1}}
+\newcommand{\advisor}[1]{\def\@advisor{#1}}
+\ifadvisors@two
+    \newcommand{\secondadvisor}[1]{\def\@secondadvisor{#1}}
+\fi
+\newcommand{\department}[1]{\def\@department{#1}}
+\newcommand{\degdate}[1]{\def\@degdate{#1}}
+  \degdate{\ifcase\month\or
+    January\or February\or March\or April\or May\or June\or
+    July\or August\or September\or October\or November\or December\fi
+    \space\number\year}
+%
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% As a default, these macros have an empty arguement. Only the |\degdate| macro
+% takes on the current month-year combination in the absence of any assignation.
+%^^A Removed 9-18-12:   \degprior{}
+%    \begin{macrocode}
+% Defaults are empty except the \degdate
+  \title{}
+  \author{}
+  \work{}
+  \degaward{}
+  \advisor{}
+  \ifadvisors@two \secondadvisor{} \fi
+  \department{}
+%
+%    \end{macrocode}
+% \begin{macro}{\@infopage}
+% Define |\@infopage| macro that will create a page which contains
+% important information about the document and the version of \nddiss\space
+% used etc.\ for the end-user and the proofreader along with a standard
+% disclaimer and
+% details of where to find documentation for the \nddiss\space class
+% file. This information can be suppressed by specifying the ``|noinfo|'' 
+% option while invoking the \nddiss\space class.
+%    \begin{macrocode}
+\DeclareRobustCommand{\@infopage}{
+  \thispagestyle{empty}
+  \null\vspace*{\single@skip}
+  \begin{center}
+  	  This \@work\space \\ entitled \\ \@title \\
+        typeset with \nddiss\ v%
+      \dissfileversion\ (\dissfiledate) %
+      on \today\space for\\
+  \@author\\
+  \end{center}
+
+   \normalfont\normalsize\singlespacing
+
+   \noindent This \LaTeXe\space classfile conforms to the
+   University of Notre Dame style guidelines as of Fall 
+   2012. However it is still possible to generate a
+   non-conformant document if the instructions in the class
+   file documentation are not followed!
+
+   \begin{center}
+   \begin{minipage}{0.75\textwidth}
+   \noindent Be sure to refer to the published Graduate
+   School guidelines at \url{http://graduateschool.nd.edu}
+   as well. Those guidelines override everything mentioned
+   about formatting in the documentation for
+   this \nddiss\space class file.
+   \end{minipage}
+   \end{center}
+
+   \noindent It is YOUR responsibility to ensure that the Chapter titles
+   and Table caption titles are put in CAPS LETTERS. This classfile does
+   {\em NOT\space} do that! \\
+
+  \noindent\itshape This page can be disabled by
+  specifying the ``{\upshape\ttfamily noinfo}'' option to the class invocation.
+  \upshape
+(i.e.,{\ttfamily{\textbackslash}documentclass[\ldots,noinfo]\{nddiss2e\}}
+)
+  \begin{center}
+    {\bfseries\large\singlespacing This page is \slshape NOT
+    \upshape part of the dissertation/thesis. It should be disabled before
+   	making final, formal submission, but should be included in the version
+   	submitted for format check.}
+  \end{center}
+    \normalsize\normalfont
+    \nddiss\ documentation can be found at these locations:
+  \begin{center}
+    \url{http://www.gsu.nd.edu}\\
+    \url{http://graduateschool.nd.edu}
+  \end{center}
+
+\vfill
+\normalfont\normalsize\normalspacing\eject}
+%
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\maketitle}
+% Redefine the macro |\maketitle| to produce the information page as well as
+% the actual title page of the dissertation.
+%    \begin{macrocode}
+\renewcommand{\maketitle}{
+  \ifinfo@page\@infopage\else\relax\fi%
+  \clearemptydoublepage
+  \normalfont\normalsize\normalspacing
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{titlepage}
+% The structuring begins with checking the proper macros for
+% obtaining correct formatting for the title page. If any of those are
+% not defined, an error is issued and processing stopped. Most of the code for
+% this was taken from the earlier {\sffamily ndthesis} class and hence, the
+% documentation is also picked from there.
+%    \begin{macrocode}
+  \begin{titlepage}%
+\ifthenelse{\equal{\@work}{}}{\ClassError{nddiss2e}%
+  {The \protect\work\space macro is undefined.\MessageBreak
+        The title page may be incorrectly formatted.}%
+  {Specify \protect\work\space as Dissertation or Thesis}}{\relax}
+\ifthenelse{\equal{\@degaward}{}}{\ClassError{nddiss2e}%
+  {The \protect\degaward\space macro is undefined.\MessageBreak
+        The title page may be incorrectly formatted.}%
+  {Specify \protect\degaward\space. It defines the awarded degree%
+         (Ph.D., M.S., etc.)}}{\relax}
+\ifthenelse{\equal{\@advisor}{}}{\ClassError{nddiss2e}%
+  {The \protect\advisor\space macro is undefined.\MessageBreak
+        The title page may be incorrectly formatted.}%
+  {Spepcify \protect\advisor\space It is who signs your walking papers!}}{\relax}
+\ifthenelse{\equal{\@department}{}}{\ClassError{nddiss2e}%
+  {The \protect\department\space macro is undefined.\MessageBreak
+        The title page may be incorrectly formatted.}%
+  {Specify which \protect\department\space is awarding your degree?}}{\relax}
+\ifadvisors@two
+  \ifthenelse{\equal{\@secondadvisor}{}}{\ClassError{nddiss2e}%
+  {The \protect\secondadvisor\space macro is undefined.\MessageBreak
+            The title page may be incorrectly formatted.}%
+  {Use \protect\secondadvisor\space for your second advisor}}{\relax}
+\fi
+%
+%    \end{macrocode}
+% \end{macro}
+% Now set up some skip registers to
+% hold the inter-data spacing.  The initial values will create a two-inch top margin
+% for the title page, provided the title is only one line long. |\skip1| is the primary
+% internal spacing command; |\skip2| is the spacing between the student's name and the
+% line for the first adviser to sign if there are two advisers and |\skip3| is the
+% spacing between the student's name and the line for the adviser to sign if there is
+% only one adviser; |\skip4| controls the top margin.  We'll account for titles longer
+% than one line in a bit \ldots
+%    \begin{macrocode}
+\skip1=2.1\double@skip
+\skip2=1.7\double@skip
+\skip3=2.7\double@skip
+\skip4=36pt
+%
+%    \end{macrocode} 
+% If the author has two advisors, we need to do a little tweaking to the
+% internal spacing.
+%    \begin{macrocode}
+ \ifadvisors@two 
+ 		\skip1=1.6\double@skip 
+ \else\relax 
+ \fi
+%    \end{macrocode}
+% The 2012 formatting guidelines require the title to be 2'' from the top of page.
+% If it's more than one line long, we need to adjust the internal spacing:
+%    \begin{macrocode}
+ \setbox0=\vbox{\@title}
+ \ifdim \ht0 > 3\double@skip
+ 		\advance \skip1 -.75\double@skip
+ \else
+	 \ifdim \ht0 > 2\double@skip
+	 		\advance\skip1 -.5\double@skip
+	 \else
+	 		\ifdim \ht0 > \double@skip
+	   		\advance\skip1 -.25\double@skip
+	  	\fi
+	 \fi
+ \fi
+%    \end{macrocode} 
+% Our default assumes a one-line \textsf{degree} field such as
+% \begin{center}
+% Doctor of Philosophy
+% \end{center}
+% but we check to see if it is two or three lines long.
+% If so, we need to remove those extra lines from the internal spacing.
+%    \begin{macrocode}
+ \setbox1=\vbox{\@degaward}
+ \ifdim \ht1 > 2\double@skip
+	\advance\skip1 -.5\double@skip
+ \else 
+   \ifdim \ht1 > \double@skip
+   	\advance \skip1 -.25\double@skip
+   \else
+   	\relax
+   \fi 
+ \fi
+%    \end{macrocode}
+% If we have two advisers, a three or four line title, and a 
+% three line degree field or two advisers, a four line title, and
+% a two line degree field, then we need to remove some spacing between
+% the name and the first adviser and from the top margin,
+% and give that space to the internal spacing.
+%    \begin{macrocode}
+	\ifadvisors@two
+		\ifdim \ht0 > 3\double@skip
+			\ifdim \ht1 > \double@skip
+				\advance \skip4 -.675\double@skip
+				\advance \skip2 -.4\double@skip
+				\advance \skip1 .25\double@skip
+			\else \relax
+			\fi
+		\else
+			\ifdim \ht0 > 2\double@skip
+				\ifdim \ht1 > 2\double@skip
+					\advance \skip2 -.4\double@skip
+					\advance \skip1 .1\double@skip
+				\else \relax
+				\fi
+			\else \relax
+			\fi
+		\fi
+	\else \relax
+	\fi
+%    \end{macrocode}
+% Finally we start putting the text in place \ldots centered, of course.
+%    \begin{macrocode}
+  \null\vspace*{\skip4}
+  \begin{center}%
+    \@title \par%
+    \vskip\skip1%
+%
+%    \end{macrocode}
+% Now skip the required vertical space, declare that this is for the
+% University of Notre Dame, and list what degree has been earned.
+%    \begin{macrocode}
+    A \@work \par%
+    \vskip\skip1%
+      Submitted to the Graduate School \\
+          of the University of Notre Dame \\
+          in Partial Fulfillment of the Requirements \\
+          for the Degree of \par
+        \vskip\skip1%
+        \@degaward%
+        \vskip\skip1%
+        by \\% 
+%
+%    \end{macrocode}
+% Now format the author's name.
+%    \begin{macrocode}
+    \@author
+%
+%    \end{macrocode}
+% Now skip the proper space and place the signature line for the advisor
+% with his/her name typeset below it.  This is accomplished by essentially
+% centering a box that is twice as long as the required length of the
+% signature line and placing the line in only the right-hand side.
+%    \begin{macrocode}
+     \ifadvisors@two
+        \vskip\skip2
+        \hspace*{2.75in}\underline{\hspace{2.75in}}\\%
+        \hspace*{2.75in}\@advisor, Co-Director\\
+     \else
+        \vskip\skip3
+        \hspace*{2.75in}\underline{\hspace{2.75in}}\\%
+        \hspace*{2.75in}\@advisor, Director\\
+     \fi%
+%
+%    \end{macrocode}
+% If there is a second advisor, place that line here now.
+%    \begin{macrocode}
+\ifadvisors@two %
+      \vskip\double@skip%
+        \hspace*{2.75in}\underline{\hspace{2.75in}}\\%
+        \hspace*{2.75in}\@secondadvisor, Co-Director\\
+\fi
+%
+%    \end{macrocode}
+% We end with the department and date; the internal spacing is chosen so 
+% that these are at the page bottom.
+%    \begin{macrocode}
+  \vskip\skip1%
+  Graduate Program in \@department \\%
+  Notre Dame, Indiana \\
+  \@degdate
+  \end{center}
+  \end{titlepage}%
+}
+%
+%    \end{macrocode}
+% \begin{environment}{copyrightpage} 
+% The environment |copyrightpage| defines
+% the defaults for proper formatting the copyright page (if opted).
+%    \begin{macrocode}
+\newenvironment{copyrightpage}{%
+  \clearemptydoublepage
+  \typeout{Copyright page}
+  \pagestyle{empty}
+  \null\vfil
+  \begin{center}\normalspacing}%
+{ \end{center}\vfil\null \clearpage }
+%
+%    \end{macrocode}
+% \end{environment}
+% \begin{macro}{\copyrightholder}
+% \begin{macro}{\copyrightyear}
+% Define a few macros for defining the copyright holder and the year
+% desired. By default, they are taken as the current year and the |author|
+% of the dissertation.
+%    \begin{macrocode}
+\newcommand{\@copyrightyear}{\year}
+\newcommand{\@copyrightholder}{\@author}
+\newcommand{\copyrightyear}[1]{\renewcommand{\@copyrightyear}{#1}}
+\newcommand{\copyrightholder}[1]{\renewcommand{\@copyrightholder}{#1}}
+%
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \begin{macro}{\makecopyright} 
+% Finally, the |\makecopyright| macro creates the
+% copyright page as per defined in the |copyrightpage| environment.
+%    \begin{macrocode}
+\newcommand{\makecopyright}{%
+  \ifdiss@final
+    \begin{copyrightpage}
+    \normalfont\normalsize
+    \copyright\space Copyright by \\
+    \@copyrightholder \\
+    \@copyrightyear\\
+    All Rights Reserved \\[10mm]
+    \end{copyrightpage}
+  \fi
+}%
+%
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\makepublicdomain} 
+% Or, if chosen, |\makepublicdomain| macro
+% creates a copyright page (using earlier |copyrightpage| environment) that
+% puts the document in public domain.
+%    \begin{macrocode}
+\newcommand{\makepublicdomain}{%
+  \ifdiss@final
+    \begin{copyrightpage}
+       This document is in the public domain.
+    \end{copyrightpage}
+  \fi
+}%
+%
+%    \end{macrocode}
+% \end{macro}
+% Define some new name macros and redefine other name macros as below. These
+% are the names of the respective sections in your dissertation document. If
+% there's a need to change any name, you must use a similar command in the
+% preamble of your document.
+%    \begin{macrocode}
+\providecommand{\abstractname}{Abstract}
+\providecommand{\dedicationname}{\mbox{}}
+\providecommand{\prefacename}{PREFACE}
+\providecommand{\acknowledgename}{ACKNOWLEDGMENTS}
+\providecommand{\symbolsname}{SYMBOLS}
+\renewcommand{\tablename}{TABLE}
+\renewcommand{\figurename}{Figure}
+\renewcommand{\partname}{PART}
+\renewcommand{\chaptername}{CHAPTER}
+\renewcommand{\appendixname}{APPENDIX}
+\renewcommand{\contentsname}{CONTENTS}
+\renewcommand{\listfigurename}{FIGURES}
+\renewcommand{\listtablename}{TABLES}
+\renewcommand{\bibname}{BIBLIOGRAPHY}
+\renewcommand{\indexname}{INDEX}
+%
+%    \end{macrocode}
+% \begin{environment}{abstract} 
+% This environment is adapted
+% from the \textsf{report} class since 
+% the \textsf{book} class does not have one. Additionally, we add
+% a |\pdfbookmark| for the abstract in the pdf document.
+%    \begin{macrocode}
+\newenvironment{abstract}{%
+  \ifpdf
+     \pdfbookmark[0]{\abstractname}{abstract}%abstract.0
+  \fi
+  \typeout{Abstract page(s)}
+  \renewcommand{\@oddfoot}{\@empty}
+  \renewcommand{\@evenfoot}{\@empty}
+%    \end{macrocode}
+% If the abstract extends to a second page,
+% place the author's name in top right corner of that page.  Make
+% sure it's upright, as required by the University and that this appears
+% at $0.75''$ from the top.
+%    \begin{macrocode}
+  \let\@evenhead\@oddhead
+  \renewcommand{\@oddhead}{\hfil{\upshape\@author}}
+  \titlepage
+  \null
+  \begin{center}
+  \vspace*{36pt}
+  {\normalsize\mdseries \normalspacing
+     \@title \\[3.5ex]
+     \normalsize\abstractname \\ by \\ \@author\space}%
+   \@endparpenalty \@M
+   \end{center}\par}%
+{\par\vfil\null\endtitlepage}
+%
+%    \end{macrocode}
+% \end{environment}
+% \begin{environment}{dedication} 
+% The \textsf{dedication} environment is similar to
+% the \textsf{abstract} environment. This page is numbered 2 and the
+% subsequent pages are numbered accordingly. A pdfbookmark is
+% not created because of a reported issue that Adobe products have with
+% pdfbookmarks containing an |\mbox|.
+%    \begin{macrocode}
+\newenvironment{dedication}{%
+  \global\diss@dedicationtrue
+  \typeout{Dedication page}
+  \chapter*{\dedicationname}%
+  \thispagestyle{plain}
+  \setcounter{page}{2}
+  \null\centering}
+{\par\null\clearpage}%
+%
+%    \end{macrocode}
+% \end{environment}
+% \begin{macro}{\tableofcontents} The |\tableofcontents| macro is redefined to
+% begin at page 2 if the dedication environment does not exist. It is
+% single-spaced.
+%    \begin{macrocode}
+\renewcommand\tableofcontents{%
+  \ifdiss@dedication\relax\else\setcounter{page}{2}\fi
+  \chapter*{\contentsname}%
+  \ifpdf
+      \pdfbookmark[0]{\contentsname}{contents}%contents.0
+  \fi
+  \singlespacing
+  \@starttoc{toc}%
+  \normalspacing
+  }
+%
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\listoffigures}
+% \begin{macro}{\listoftables}
+% These macros are modified to add the
+% |\listfigurename| and |\listoftables|
+% to the Table of Contents. Both of these are also single spaced. The
+% inter-entry spacing is changed by adding a |\vskip| after each entry. This is
+% done in the |figure| and |table| environments later.
+%    \begin{macrocode}
+\renewcommand\listoffigures{%
+    \chapter*{\listfigurename}%
+    \addcontentsline{toc}{chapter}{\listfigurename}%
+    \typeout{List of figures - \listfigurename}
+    \singlespacing
+    \@starttoc{lof}%
+    \normalspacing
+}
+%
+\renewcommand\listoftables{%
+    \chapter*{\listtablename}%
+    \addcontentsline{toc}{chapter}{\listtablename}%
+    \typeout{List of tables - \listtablename}
+    \singlespacing
+    \@starttoc{lot}%
+    \normalspacing
+}
+%
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \begin{environment}{preface}
+% \begin{environment}{acknowledgement}
+% These environments are similar to the \textsf{dedication} environment. They are
+% defined as |\chapter*{}| so they are not numbered and not added to Table of
+% Contents and so, add that manually by using |\addcontentsline|.
+%    \begin{macrocode}
+\newenvironment{preface}{%
+  \typeout{Preface page}
+  \chapter*{\prefacename}
+  \addcontentsline{toc}{chapter}{\prefacename}%
+}%
+{\par\null\clearpage}%
+%
+\newenvironment{acknowledge}{%
+  \typeout{Acknowledgment page}
+  \chapter*{\acknowledgename}
+  \addcontentsline{toc}{chapter}{\acknowledgename}%
+}%
+{\par\null\clearpage}%
+%
+%    \end{macrocode}
+% \end{environment}
+% \end{environment}
+% \begin{macro}{\unnumchapter}
+% Allows the user to create unnumbered chapters that appear in the TOC.
+%    \begin{macrocode}
+\newcommand\unnumchapter[1]{%
+  \chapter*{#1}%
+  \addcontentsline{toc}{chapter}{#1}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{environment}{symbols}
+% \begin{macro}{\sym}
+% Define \textsf{symbols} environment which lays out it as a |\chapter*| and
+% adds |\symbolsname| to the TOC. The environment is actually a horizontally
+% centered \textsf{longtable} environment. To aid entry of a \emph{symbol} and
+% its definition, |\sym| macro command is also defined.
+%    \begin{macrocode}
+\newcommand{\sym}[2]{\ensuremath{#1} & #2 \\}
+\newenvironment{symbols}[1][rl]{%
+  \typeout{Symbols page}
+  \chapter*{\symbolsname}%
+  \addcontentsline{toc}{chapter}{\symbolsname}%
+  \begin{center}\begin{longtable}{#1}}%
+{\end{longtable}\end{center}\par\null}
+%
+%    \end{macrocode}
+% \end{macro}
+% \end{environment}
+% Modify chapter definition in |\@chapter| to put the word
+% ``Chapter''  (|\@chapapp|) in the Table of Contents.
+% That is, now the TOC will contain
+% ``Chapter 1:  First chapter''  rather than
+% ``1.  First chapter.''
+% The rest of the format code is essentially the same as
+% that in the \textsf{book} class.
+%    \begin{macrocode}
+\def\@chapter[#1]#2{
+  \ifnum \c@secnumdepth >\m@ne
+  \if@mainmatter
+    \refstepcounter{chapter}%
+    \typeout{\@chapapp\space\thechapter.}%
+    \addcontentsline{toc}{chapter}%
+      {{\@chapapp\ \thechapter: #1}}%
+    \else
+      \addcontentsline{toc}{chapter}{#1}%
+    \fi
+  \else
+     \addcontentsline{toc}{chapter}{#1}%
+  \fi
+  \chaptermark{#1}%
+  \addtocontents{lof}{\protect\addvspace{10\p@}}%
+  \addtocontents{lot}{\protect\addvspace{10\p@}}%
+  \@makechapterhead{#2}%
+  \@afterheading }%
+%
+%    \end{macrocode}
+% Modify part definition in |\@part| and |\@spart| to keep the font 
+% size for part headings |\normalsize| and |\mdseries|. It is otherwise
+% the same as in the \textsf{book} class.
+%    \begin{macrocode}
+\def\@part[#1]#2{%
+	\ifnum \c@secnumdepth >-2\relax
+		\refstepcounter{part}%
+		\addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+	\else
+		\addcontentsline{toc}{part}{#1}%
+	\fi
+	\markboth{}{}%
+	{\centering
+	 \interlinepenalty \@M
+	 \normalfont
+	 \ifnum \c@secnumdepth >-2\relax
+		 \normalsize\mdseries \partname\nobreakspace\thepart
+		 \par
+		 \vskip 20\p@
+	 \fi
+	 \normalsize\mdseries #2\par}%
+	\@endpart}
+\def\@spart#1{%
+    {\centering
+     \interlinepenalty \@M
+     \normalfont
+     \normalsize\mdseries #1\par}%
+    \@endpart}
+%
+%    \end{macrocode}
+% Now format section headings to conform to the official guidelines.
+% \begin{macro}{\@makechapterhead}
+% First, modify the chapter heading label to be normalsize'd
+% and centered. Instead of the bold-faced heading label,
+% also make it |\mdseries|.
+% If we are in the |\mainmatter|, we add ``CHAPTER''
+% and chapter number before actually putting the chapter name otherwise only the
+% ``chapter name'' is put. Note that chapter/section headings must all be
+% double-spaced.
+%    \begin{macrocode}
+\renewcommand{\@makechapterhead}[1]{%
+  \vspace*{30pt}%
+  {\parindent \z@ \raggedright
+    \ifnum \c@secnumdepth >\m@ne
+      \normalfont\normalsize%
+      \if@mainmatter
+        \ifcentered@chaptitle\center\else\relax\fi%
+        \@chapapp{} \thechapter\par\nobreak
+      \fi
+    \fi
+    \interlinepenalty\@M
+    \ifcentered@chaptitle\center\else\relax\fi%
+    \mdseries{#1}\par\nobreak
+    \vskip 30\p@
+  }}
+%
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\@makeschapterhead}
+% Make the TOC, LOF, LOT and other |\chapter*| headings in normal size,
+% and |\mdseries| by modifying the macro |\@makeschapterhead|. Although these
+% heading labels usually fit in a single-line, we copy the formatting for
+% the chapter heading label (single-spacing) and make the spacing double again
+% for the text.
+%    \begin{macrocode}
+\renewcommand{\@makeschapterhead}[1]{%
+  \vspace*{30pt}%
+  {\parindent \z@ \raggedright
+     \normalfont\normalsize%
+     \interlinepenalty\@M
+     \ifcentered@chaptitle\center\else\relax\fi
+     \mdseries{#1}\par\nobreak
+     \vskip 30\p@
+  }}
+%
+%    \end{macrocode}
+% \end{macro}
+% Now, set the section labels to |\mdseries| rather than bold-faced. We also
+% make sure that these are set in normal spacing, font and size.
+% This is done for each
+% of |\section|, |\subsection|, |\subsubsection|, |\subsubsubsection|,
+% |\paragraph| and |\subparagraph|.
+%    \begin{macrocode}
+\renewcommand\section{\suppressfloats[t]%
+    \@startsection {section}{1}{\z@}%
+    {-4.2ex \@plus -1ex \@minus -.2ex}%
+    {1.8ex \@plus.2ex}%
+    {\normalfont\normalsize\mdseries} }
+\renewcommand\subsection{\suppressfloats[t]%
+    \@startsection{subsection}{2}{\z@}%
+    {-3.9ex\@plus -1ex \@minus -.2ex}%
+    {1.2ex \@plus .2ex}%
+    {\normalfont\normalsize\mdseries} }
+\renewcommand\subsubsection{\suppressfloats[t]%
+    \@startsection{subsubsection}{3}{\z@}%
+    {-3.9ex\@plus -1ex \@minus -.2ex}%
+    {1.2ex \@plus .2ex}%
+    {\normalfont\normalsize\mdseries} }
+\renewcommand\paragraph{%
+    \@startsection{paragraph}{4}{\z@}%
+    {3.9ex \@plus1ex \@minus.2ex}%
+    {-1em}%
+    {\normalfont\normalsize\mdseries} }
+\renewcommand\subparagraph{%
+    \@startsection{subparagraph}{5}{\parindent}%
+    {3.9ex \@plus1ex \@minus .2ex}%
+    {-1em}%
+    {\normalfont\normalsize\mdseries} }
+%
+%    \end{macrocode}
+% \begin{macro}{\l@part}
+% Modify the macro |\l@part| that formats part titles in the
+% contents-like files (|.toc|, |.lof| and |.lot|) by adding a |\@dottedtocline|
+% macro. The indent width is set to 1.5em - to line up a continued line with
+% the section number below it. We also leave less space between each part
+% and the last section entry than the default and don't change the font.
+%    \begin{macrocode}
+\renewcommand*\l@part[2]{%
+  \ifnum \c@tocdepth >-2\relax
+    \addpenalty{-\@highpenalty}%
+    \setlength\@tempdima{1.5em}%
+    \begingroup
+      {\leavevmode
+			 \@dottedtocline{1}{0pt}{\@tempdima}{#1}{#2}
+      }\par
+       \nobreak
+         \global\@nobreaktrue
+         \everypar{\global\@nobreakfalse\everypar{}}%
+    \endgroup
+  \fi}
+%
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\l@chapter}
+% Modify the macro |\l@chapter| that formats chapter titles in the
+% contents-like files (|.toc|, |.lof| and |.lot|) by adding a |\@dottedtocline|
+% macro. The indent width is set to 1.5em - to line up a continued line with
+% the section number below it. We also leave less space between each chapter
+% and the last section entry than the default.
+%    \begin{macrocode}
+\renewcommand*{\l@chapter}[2]{%
+  \addpenalty{-\@highpenalty}%
+  \setlength\@tempdima{1.5em}%
+  \begingroup \leavevmode
+  \@dottedtocline{1}{0pt}{\@tempdima}{#1}{#2}
+  \par
+  \penalty\@highpenalty
+  \endgroup
+}
+%
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\thesubsubsection}
+% We increase the number of section-depth by 1 and force subsubsection entry in the TOC
+% by increasing the |\tocdepth|. In addition, the label number of
+% |\subsubsection| is defined to be similar to that for |\subsection| i.\/e.\/
+% all arabic numerals.
+%    \begin{macrocode}
+\addtocounter{secnumdepth}{1}
+\addtocounter{tocdepth}{1}
+\renewcommand{\thesubsubsection}{%
+   \thesubsection.\arabic{subsubsection}}
+%
+%    \end{macrocode}
+% \end{macro}
+% \begin{environment}{quote}
+% Redefine the |quote| environment to be single-spaced instead of being same
+% as the rest of the text.
+%    \begin{macrocode}
+\renewenvironment{quote}
+               {\list{}{\rightmargin\leftmargin}%
+                 \singlespacing
+               \item\relax}
+               {\endlist}
+%
+%    \end{macrocode}
+% \end{environment}
+% \begin{environment}{itemize}
+% Redefine the |itemize| environment so that each item is
+% single-spaced, but with a line of space between each item.
+%    \begin{macrocode}
+\let\realitemize\itemize
+\let\endrealitemize\enditemize
+\renewenvironment{itemize}
+					{\realitemize
+						\singlespacing}
+					{\endrealitemize
+						\doublespacing}
+%    \end{macrocode}
+% \end{environment}{itemize}
+% \begin{environment}{enumerate}
+% Redefine the |enumerate| environment so that each item is
+% single-spaced, but with a line of space between each item.
+% Note we need the optional argument in order to be compatible
+% with the |enumerate| package
+%    \begin{macrocode}
+\let\realenumerate\enumerate
+\let\endrealenumerate\endenumerate
+\renewenvironment{enumerate}[1][1.]
+					{\realenumerate[#1]
+						\singlespacing}
+					{\endrealenumerate
+						\doublespacing}
+%    \end{macrocode}
+% \end{environment}{enumerate}
+% \begin{environment}{description}
+% Redefine the |description| environment so that each item is
+% single-spaced, but with a line of space between each item.
+%    \begin{macrocode}
+\let\realdescription\description
+\let\endrealdescription\enddescription
+\renewenvironment{description}
+					{\realdescription
+						\singlespacing}
+					{\endrealdescription
+						\doublespacing}
+%    \end{macrocode}
+% \end{environment}{description}
+% Set some lengths that are used in the |table| and the |figure|
+% environments. Note that we set the caption width (|\capwidth|)
+% to be 90\% of the |\textwidth|.
+%    \begin{macrocode}
+\setlength\abovecaptionskip{20\p@}
+\newlength\capwidth
+\setlength{\capwidth}{0.90\textwidth}
+\newlength\abovetableskip
+\newlength\belowtableskip
+\newlength\abovefigureskip
+\newlength\belowfigureskip
+\setlength\abovetableskip\belowcaptionskip
+\setlength\belowtableskip\abovecaptionskip
+\setlength\abovefigureskip\abovecaptionskip
+\setlength\belowfigureskip\belowcaptionskip
+%
+%    \end{macrocode}
+% \begin{environment}{figure}
+% For the |figure| environment, first some skip lengths are set, then
+% use |\@makefigurecaption| to
+% format the captions instead of the default |\@makecaption|, since the
+% layout is different for |figure| and the |table| environment. Further
+% add a |\vskip| to each entry in |.lof| file so that the
+% inter-caption spacing seems double-spaced.
+%    \begin{macrocode}
+\renewenvironment{figure}{%
+   \setlength{\abovecaptionskip}{\abovefigureskip}
+   \setlength{\belowcaptionskip}{\belowfigureskip}
+   \let\@makecaption\@makefigurecaption
+   \@float{figure}}%
+   {%
+   \addtocontents{lof}{ {\vskip 0.4em} }%
+   \end@float%
+}
+%
+%    \end{macrocode}
+% \end{environment}
+% \begin{macro}{\@makefigurecaption}
+% The |\@makefigurecaption| is defined to format the caption in a parbox with
+% width equal to |\capwidth| and is formatted in
+% single-spacing. The interline-spacing is then changed to double after
+% the caption.
+%    \begin{macrocode}
+\long\def\@makefigurecaption#1#2{%
+  \vskip\abovecaptionskip
+  \begin{center}
+  \parbox{\capwidth}{
+    \centering\singlespacing
+    {#1}. {#2}%\par
+  \vskip\belowcaptionskip\normalspacing }%
+  \end{center}
+}%
+%
+%    \end{macrocode}
+% \end{macro}
+% \begin{environment}{table}
+% After setting the above and below skip lengths,
+% the |table| environment is set to be
+% single spaced. However, to obtain double-spacing between the entries,
+% redefine the |\arraystretch| to be equivalent to the
+% |\double@baselinestretch|. This way, while there are double-spaced entries,
+% the entry itself is single-spaced. Similar to that in
+% |\@makefigurecaption|, a |\vskip| is added to each entry in the |.lot| file.
+%    \begin{macrocode}
+\renewenvironment{table}{%
+   \setlength{\abovecaptionskip}{\abovetableskip}
+   \setlength{\belowcaptionskip}{\belowtableskip}
+   \singlespacing
+   \renewcommand{\arraystretch}{\double@baselinestretch}
+   \let\@makecaption\@maketablecaption
+   \@float{table}}%
+   {%
+   \addtocontents{lot}{ {\vskip 0.4em} }%
+   \end@float%
+}
+%
+%    \end{macrocode}
+% \end{environment}
+% \begin{macro}{\@maketablecaption}
+% The |\@maketablecaption| is defined similarly to |\@makefigurecaption|
+% to have the table label and caption in
+% separate lines and with normal-spacing (double-spaced).
+%    \begin{macrocode}
+\long\def\@maketablecaption#1#2{
+  \vskip\abovecaptionskip
+  \begin{center}
+    \parbox{\capwidth}{
+    \centering\normalspacing
+    {#1}\\[\single@skip]
+    {#2}%\par
+  \vskip\belowcaptionskip }%
+  \end{center}
+}
+%
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\longtable}
+% Similar to the |table| environment,
+% the |longtable| environment is made singly-spaced but the |\arraystretch| is
+% made equal to double the |baselinestretch|.
+%    \begin{macrocode}
+\renewcommand\longtable{%
+   \singlespacing
+   \renewcommand{\arraystretch}{\double@baselinestretch}
+   \begingroup
+   \@ifnextchar[\LT@array{\LT@array[x]}}
+%
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\endlongtable}
+% This bit is taken from |longtable.sty|. In order to obtain double-spacing
+% in the list of tables, a |\vskip| of 0.4em is added to |.lot| file.
+%    \begin{macrocode}
+\renewcommand\endlongtable{%
+  \crcr
+  \noalign{%
+    \let\LT@entry\LT@entry@chop
+    \xdef\LT@save@row{\LT@save@row}}%
+  \LT@echunk
+  \LT@start
+  \unvbox\z@
+  \LT@get@widths
+  \if@filesw
+    {\let\LT@entry\LT@entry@write\immediate\write\@auxout{%
+      \gdef\expandafter\noexpand
+        \csname LT@\romannumeral\c@LT@tables\endcsname
+          {\LT@save@row}}}%
+  \fi
+  \ifx\LT@save@row\LT@@save@row
+  \else
+    \LT@warn{Column \@width s have changed\MessageBreak
+             in table \thetable}%
+    \LT@final@warn
+  \fi
+  \endgraf\penalty -\LT@end@pen
+  \addtocontents{lot}{ {\vskip 0.4em} }%
+  \endgroup
+  \global\@mparbottom\z@
+  \pagegoal\vsize
+  \endgraf\penalty\z@\addvspace\LTpost
+  \ifvoid\footins\else\insert\footins{}\fi
+}
+%
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\LT@makecaption}
+% For the |longtable| environment, the |\LTcapwidth| is set equal to
+% |\capwidth|. In order to obtain consistent table captions, the command
+% |\LT@makecaption| is modified in a similar manner as |\maketablecaption|.
+%    \begin{macrocode}
+\setlength{\LTcapwidth}{\capwidth}
+\renewcommand\LT@makecaption[3]{%
+  \LT@mcol\LT@cols c{\hbox to\z@{\hss\parbox[t]\LTcapwidth{%
+  \vskip\abovetableskip%
+    \centering\normalspacing
+    #1{#2 }\\[\single@skip]
+    {#3}\par
+  \endgraf\vskip\belowtableskip}%
+  \hss}}}
+%
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\timenow}
+% This macro is used in making the |\draftheader| and |\reviewheader| below. It
+% outputs time in |HH:MM| format.
+%    \begin{macrocode}
+\newcommand\timenow{%
+  \@tempcnta=\time \divide\@tempcnta by 60 \number\@tempcnta:\multiply
+  \@tempcnta by 60 \@tempcntb=\time \advance\@tempcntb by -\@tempcnta
+  \ifnum\@tempcntb <10 0\number\@tempcntb\else\number\@tempcntb\fi}
+%
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\diss@header}
+% This header is used in the dissertation document when the |draft| or |review|
+% option is used. These headers serve as a note for the date and time of the
+% document compilation.
+%    \begin{macrocode}
+\newcommand{\diss@header}{%
+    \ifdiss@review Review \else Draft \fi document [\today\/ at \timenow\/]
+    }%
+%
+%    \end{macrocode}
+% \end{macro}
+% The header prepared above is put in the document by modifiying the \emph{plain} 
+% and \emph{empty} pagestyles except when the |final| option is chosen.
+%    \begin{macrocode}
+\ifdiss@final
+    \renewcommand{\ps@plain}{
+        \renewcommand{\@oddhead}{\@empty}
+        \renewcommand{\@oddfoot}{\hfil\thepage\hfil}
+        \let\@evenhead\@oddhead
+        \let\@evenfoot\@oddfoot
+    }%
+\else
+    \renewcommand{\ps@plain}{
+        \renewcommand{\@oddhead}{\framebox[\textwidth]{
+           \centering\footnotesize\tt\diss@header}}%
+        \renewcommand{\@oddfoot}{\hfil\textrm{\thepage}\hfil}
+        \let\@evenhead\@oddhead
+        \let\@evenfoot\@oddfoot
+    }%
+    \renewcommand{\ps@empty}{
+        \renewcommand{\@oddhead}{\framebox[\textwidth]{
+           \centering\footnotesize\tt\diss@header}}%
+        \renewcommand{\@oddfoot}{\@empty}
+        \let\@evenhead\@oddhead
+        \let\@evenfoot\@oddfoot
+    }%
+\fi
+%
+%    \end{macrocode}
+% \begin{macro}{\bibsection}
+% By redefining |\bibsection| macro, add the |\bibname| to the table of
+% contents and as a chapter heading for the bibliography.
+%    \begin{macrocode}
+\renewcommand{\bibsection}{
+  \chapter*{\bibname}%
+  \addcontentsline{toc}{chapter}{\bibname}%
+}%
+%
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\bibfont}
+% Changed the |\bibfont| macro to obtain single-spacing within each
+% bibliographic entry. Between different entries, it is still |\normalspacing|.
+% In addition, when the |numrefs| option is selected, the |\@biblabel| is redefined
+% to number the bibliographic entries as |1. xxxx| instead of the default
+% |[1] xxxx|.
+%    \begin{macrocode}
+\renewcommand{\bibfont}{\singlespacing}
+\ifnum@refs
+  \renewcommand{\@biblabel}[1]{\hfill#1.\hfill}
+\fi
+%
+%    \end{macrocode}
+% \end{macro}
+% Lastly, after the bibliography in the final document,
+% add a framed box which contains a blurb about
+% the typesetting program and \nddiss\space version used for preparing the
+% dissertation document.
+%    \begin{macrocode}
+\ifdiss@final
+\AtEndDocument{
+    \vfill
+    \centering\singlespacing
+    \framebox[0.85\textwidth]{
+    \begin{minipage}{0.80\textwidth}\footnotesize%
+    \centering \itshape This document was prepared \& typeset with
+    \upshape\ifpdf pdf\LaTeX\else\LaTeXe\fi\itshape , and
+    formatted with \upshape\nddiss\xspace\itshape classfile
+    (v\dissfileversion [\dissfiledate]) provided by Sameer Vijay and
+    updated by Megan Patnott.
+    \end{minipage} }
+    \clearpage}
+\else\relax\fi
+%
+% \endinput
+% End of file `nddiss2e.cls'.
+%    \end{macrocode}
+%%
+% \iffalse
+%</class>
+% \fi
+%
+% \iffalse
+%<*template>
+\documentclass[draft]{nddiss2e}
+                     % One of the options draft, review, final must be chosen.
+                     % One of the options textrefs or numrefs should be chosen
+                     % to specify if you want numerical or ``author-date''
+                     % style citations.
+                     % Other available options are:
+                     % 10pt/11pt/12pt (available with draft only)
+                     % twoadvisors
+                     % noinfo (should be used when you compile the final time
+                     %         for formal submission)
+                     % sort (sorts multiple citations in the order that they're
+                     %       listed in the bibliography)
+                     % compress (compresses numerical citations, e.g. [1,2,3]
+                     %           becomes [1-3]; has no effect when used with
+                     %           the textrefs option)
+                     % sort&compress (sorts and compresses numerical citations;
+                     %           is identical to sort when used with textrefs)
+\begin{document}
+
+\frontmatter         % All the items before Chapter 1 go in ``frontmatter''
+
+\title{ }            % TITLE OF WORK. It must be in all caps, and ensuring this is your
+										 % responsiblity.
+\author{ }           % Author's name
+\work{ }             % ``Dissertation'' or ``Thesis''
+\degaward{ }         % Degree you're aiming for. Should be one of the following options:
+										 % ``Doctor of Philosophy'' (do NOT include ``in Subject'')
+										 % ``Master of Science // in // Subject''
+\advisor{ }          % Advisor's name
+ % \secondadvisor{ } % Second advisor, if used option ``twoadvisors''
+\department{ }       % Name of the department
+
+\maketitle           % The title page is created now
+
+ % You must use either the \makecopyright option or the \makepublicdomain option.
+ % \copyrightholder{ } % If you're not the copyright holder
+ % \copyrightyear{ }   % If the copyright is not for the current year
+ % \makecopyright      % If not making your work public domain
+                       % uncomment out \makecopyright
+ % \makepublicdomain   % Uncomment this to make your work public domain
+
+ % Including an abstract is optional for a master's thesis, and required for a
+ % doctoral dissertation.
+ % \begin{abstract}
+ % \end{abstract}
+ %                         % Either place the text between begin/end, or
+ % \include{abstract}  % put it in a file to be included
+
+ % Including a dedication is optional.
+ % \renewcommand{\dedicationname}{\mbox{}} % Replace \mbox{} if you want
+                                           % something else. It must be in
+                                           % all caps, and doing so is your
+                                           % responsibility.
+ % \begin{dedication}
+ % \end{dedication}
+ %                       % Use one of the two choices to add dedication text
+ % \include{dedication}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+ % Including a list of symbols is optional.
+ %% \renewcommand{\symbolsname}{newsymname} % Replace ``newsymname'' with
+                                            % the name you want, and uncomment
+                                            % The name must be in all caps,
+                                            % and ensuring this is your
+                                            % responsibility
+ % \begin{symbols}
+ % \end{symbols}
+ %                       % Use one of the two choices to add symbols text
+ % \include{symbols}
+
+ % Including a preface is optional.
+ %% \renewcommand{\prefacename}{ } % If you want another Preface name, add
+                                   % something else, and uncomment.
+                                   % The name must be in all caps, and
+                                   % ensuring this is your responsibility.
+ % \begin{preface}
+ % \end{preface}
+ %                       % Use one of the two choices to add preface text
+ % \include{preface}
+
+ % Including an acknowledgements section may or may not be optional. It's hard to
+ % tell from the information available in Spring 2013.
+ %% \renewcommand{\acknowledgename}{ } % If you want another Acknowledgement name
+                                       % add something else, and uncomment
+                                       % The name must be in all caps, and
+                                       % ensuring this is your responsiblity.
+ % \begin{acknowledge}
+ % \end{acknowledge}
+ %                       % Use one of the two choices to add acknowledge text
+ % \include{acknowledgement}
+
+\mainmatter
+ % Place the text body here.
+ % \include{chapter-one}
+ % Begin each chapter with \chapter{TITLE}. Chapter titles must be in all caps
+ % and ensuring that they are is your responsibility.
+
+% Appendices are optional.
+\appendix
+
+ % If you have appendices, add them here.
+ % Begin each one with \chapter{TITLE} as before- the \appendix command takes
+ % care of renaming chapter headings and creates a new page in the Table of
+ % Contents for them.
+ % \include{appendix-one}
+
+\backmatter              % Place for bibliography and index
+
+% If you are using BibTeX to manage your citations:
+% Use the ``nddiss2e'' bibliography style, unless your field does not
+% include the titles of journal articles in bibliography entires.
+% If you do not want the titles of journal articles to appear, use the 
+% ``nddiss2enoarticletitles'' bibliography style.
+
+\bibliographystyle{nddiss2e}
+ \bibliography{ }           % input the bib-database file name
+ 
+% If you are not using BibTeX to manage your citations, use
+% \begin{thebibliography}{number}
+% \end{thebilbiography}
+% as usual. Note that if you choose this route, formatting the bibliography
+% is your responsibility.
+
+\end{document}
+
+%</template>
+% \fi
+%%
+% \Finale
+\endinput
+%% End of file : nddiss2e.dtx
