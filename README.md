@@ -16,8 +16,8 @@ This class file can be used by students with their
 own TeX installation, and as such does not need to be
 installed in a central file location. One can install it
 in a local TEXMF tree on a Unix home dir, Windows MikTeX
-installation, or a TexLive installation. It must be in a 
-path searchable by LaTeX. Alternatively, one can simply put 
+installation, or a TexLive installation. It must be in a
+path searchable by LaTeX. Alternatively, one can simply put
 the class file in the same folder/directory as one's dissertation.
 
 # Generating the Class File
