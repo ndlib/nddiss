@@ -346,7 +346,6 @@
 % or want to tweak some advanced options. Of these packages,
 % \textsf{ifpdf}, 
 % \textsf{longtable}, 
-% \textsf{natbib}, 
 % \textsf{float},
 % \textsf{booktabs},
 % \textsf{rotating},
@@ -1116,12 +1115,6 @@
 \RequirePackage{latexsym}
 %
 %    \end{macrocode}
-% If the |\diss@final| is set false (when using |draft| or |review| option) then
-% the {\sffamily showkeys} package is also loaded.
-%    \begin{macrocode}
-\ifdiss@final\relax\else\RequirePackage{showkeys}\fi
-%
-%    \end{macrocode}
 % Depending in whether you are using pdf\LaTeX\space or plain \LaTeX\space,
 % \textsf{epsfig}, \textsf{color} and \textsf{graphicx} are loaded
 % with respective options.
@@ -1157,6 +1150,12 @@
 \else
   \RequirePackage[authoryear]{natbib}
 \fi
+%    \end{macrocode}
+% If the |\diss@final| is set false (when using |draft| or |review| option) then
+% the {\sffamily showkeys} package is also loaded.
+%    \begin{macrocode}
+\ifdiss@final\relax\else\RequirePackage{showkeys}\fi
+%
 %    \end{macrocode}
 % Additionally, the packages \textsf{amsmath}, \textsf{amssymb},
 % \textsf{float}, \textsf{lscape}, \textsf{booktabs}, \textsf{
