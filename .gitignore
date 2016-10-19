@@ -1,0 +1,15 @@
+AdvDistribution.zip
+AdvDistribution/*
+StandDistribution.zip
+StandDistribution/*
+*.aux
+*.dvi
+*.glo
+*.gls
+*.ilg
+*.log
+*.out
+*.pdf
+*.toc
+template.tex
+nddiss2e.cls
