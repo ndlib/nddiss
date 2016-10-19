@@ -1,26 +1,23 @@
 
 
-target:=nddiss2e
 
 .PHONY: clean
 
-all: ${target}.pdf
+all: nddiss2e.cls nddiss2e.pdf
 
 clean:
-	rm -rf ${target}.aux ${target}.glo ${target}.gls ${target}.idx ${target}.ilg ${target}.ind ${target}.out ${target}.toc
+	rm -rf $(addprefix nddiss2e.,aux glo gls idx ilg ind out toc)
 
 real-clean: clean
-	rm -rf ${target}.cls ${target}.dvi ${target}.log ${target}.pdf
+	rm -rf $(addprefix nddiss2e.,cls dvi log pdf)
 
-${target}.pdf: ${target}.dtx
-	latex ${target}.ins
+nddiss2e.pdf: nddiss2e.dtx
 	latex $<
 	latex $<
-	makeindex -s gglo.ist -o ${target}.gls ${target}.glo
+	makeindex -s gglo.ist -o nddiss2e.gls nddiss2e.glo
 	latex $<
 	pdflatex $<
 
-${target}.cls: ${target}.dtx
-	latex $<
+nddiss2e.cls template.tex: nddiss2e.ins
 	latex $<
 
