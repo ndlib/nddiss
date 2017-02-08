@@ -1,13 +1,16 @@
 nddiss
 ======
 
-This is a LaTeX package providing a document class for formatting doctoral
+`nddiss` is a LaTeX package providing a document class for formatting doctoral
 dissertations submitted to the University of Notre Dame's Graduate School.
 
 The original version, created by Sameer Vijay, follows the Spring 2004 formatting guidelines.
 Later, Megan Patnott updated it to follow the Spring 2013 guidelines.
 
-Please send any improvements/suggestions to Shari Hill Sweet, shill2@nd.edu
+Please send any improvements, suggestions or bug reports to
+
+ * Shari Hill Sweet, shill2@nd.edu
+ * Don Brower, dbrower@nd.edu
 
 
 # Installation
@@ -81,4 +84,10 @@ the usage and output of the various parameters.
 The files are the same as in the `sample_ndthesis.tar.gz` distribution by Jeff Squyeres
 and D. A. Peterson, but modified for the nddiss2e class.
 
-Thanks to D. A. Peterson and others.
+Thanks to D. A. Peterson and others._
+
+# License
+
+This file may be distributed and/or modified under the conditions of the LaTeX
+Project Public License, either version 1.2 of this license or (at your option)
+any later version. The latest version of this license can be found at [http://www.latex-project.org/lppl.txt][].
