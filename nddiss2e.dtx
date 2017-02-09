@@ -43,7 +43,7 @@
 % styles, added some more macros and modified others,
 % changed the titlepage a bit, completed source documentation}
 % \changes{v3.2013$\beta$}{2013/1/14}{Initial release of updates in order to comply with
-%	the Graduate School's current formatting regulations and to take advantage
+% the Graduate School's current formatting regulations and to take advantage
 % of some LaTeX package updates. Should be functional, and has been approved
 % by the Dissertation/Thesis editors, but has not undergone wide-scale testing. - Megan Patnott}
 % \changes{v3.2013}{2013/4/20}{Some bug fixes, minor changes in documentation, and addition of support for parts. - MP}
@@ -75,86 +75,56 @@
 % \title{The \nddiss\/ class\thanks{Version~\dissfileversion,%
 %        dated~\dissfiledate.}}
 %
-% \author{Sameer Vijay\thanks{Inspiration from an
-% earlier \textsf{NDThesis} class by D. A. Peterson; Updated Spring 2013 by Megan Patnott.}\\
-% }
 % \date{\dissfiledate}
 %
 % \maketitle
 %
 % \begin{abstract}
-% This \nddiss\space class is based on the standard \LaTeXe\/ \textsf{book}
-% class and is an extensive rewrite of the earlier \textsf{NDthesis} class
-% file, incorporating changes for \LaTeXe\space  and pdf\LaTeX\space as well
-% as many other improvements.  This class conforms with the requirements of the
-% Graduate School guidelines as of Spring 2013 for the layout of the Ph.D.
-% dissertations and Master's theses.  In reading this documentation you will
-% find that we assume that the
-% reader has working knowledge of \LaTeXe\/.
+% The \nddiss\space class can be used to typeset dissertations submitted
+% to the University of Notre Dame's Graduate School. This class conforms with
+% the Graduate School guidelines as of Spring 2013 for the layout of the Ph.D.
+% dissertations and Master's theses.
 % \end{abstract}
 %
 % \tableofcontents
 %
 % \section{Introduction}
 % \label{sec:intro}
-% This document describes the \LaTeXe\space document class \nddiss,
-% suitable\footnote{In Sameer's opinion, but with no guarantee that you or other users
-% will agree. Sameer shall not be liable for any consequence, good or bad,
-% of anyone's use of this software.} for producing dissertations and
-% theses according to the Spring 2013 guidelines of the Graduate School at the
-% University of Notre Dame. The latest version of this class and
-% related documentation should be
-% available at \url{http://www.gsu.nd.edu} or at
-% \url{http://graduateschool.nd.edu}.
+% The \LaTeXe\space document class \nddiss\ is suitable for producing dissertations
+% and theses conforming to the Spring 2013
+% guidelines of the Graduate School at the University of Notre Dame.
+% The package is extends the standard \LaTeX\/ \textsf{book} class.
+%
+% The latest version of this class and related documentation can be found
+% in a few places:
+% \begin{itemize}
+%   \item On CTAN: \url{https://ctan.org/pkg/nddiss}
+%   \item On GitHub: \url{https://github.com/ndlib/nddiss}
+%   \item On the University of Notre Dame's Graduate School website: \url{http://graduateschool.nd.edu/}
+% \end{itemize}
 %
 % \subsection{Disclaimer}
 % \label{sec:disclaimer}
-% It could be thought of as suspicious if we begin with a disclaimer, but it is
-% important for you to keep in mind that only \emph{you} are responsible for the 
-% correct formatting of your dissertation/thesis even though use of this class 
-% simplifies that task considerably. There are certain formatting things which 
-% need to be done manually and are described later in Section \ref{sec:author}.
-% As such, this class and its associated documentation \emph{must not} be assumed 
-% to be a replacement of the formatting guide from the Graduate School and this or 
-% \url{dteditor@nd.edu} should be consulted, in case of doubt. The Graduate School
-% also supplies an example in their Microsoft Word materials, which is more likely
-% to be up to date than either the \LaTeX\space materials or the official 
-% formatting guide. As of Spring 2013, the official formatting guide is out dated.
-%
-% In short, no one but you (the user) accepts any responsibility for works
-% that do not get approved by the Graduate School. Use of the
-% \nddiss\space class file implicitly states acceptance of this policy. Having
-% said that, a document produced by using this class (as described in the
-% following sections) has a pretty good likelihood of being accepted as it is.
+% While this class does as much formatting as it can, there are a few formatting items that
+% you, the user, must do manually (see Section \ref{sec:author}).
+% Please keep in mind that only \emph{you} are responsible for the
+% correct formatting of your dissertation/thesis.
+% Should you have questions, please consult the official formatting guide or email \url{dteditor@nd.edu}.
 %
 % \subsection{Dependencies and Limitations}
 % \label{sec:deps}
-% This classfile depends on many other packages to be present in either
-% the |TEXMF| tree (system or local) or the \LaTeX\space search path. This is 
-% defined by shell variable \verb+$TEXINPUTS+, which is probably only helpful
-% to you if you are a Linux user. All of the required packages are available
-% through MiKTeX and TeXLive, and can be downloaded in the usual fashion 
-% through those programs. A list of the essential packages is mentioned in 
-% section \ref{sec:features}.
+% This classfile depends on many other packages to be installed.
+% All of these required packages are available through MiKTeX and TeXLive, and
+% chances are good they are already installed by your TeX distribution.
+% Refer to section \ref{sec:features} for a list of the essential packages.
 %
-% Although Megan has tested it with \LaTeX\space
-% [2009/09/24], it should be backwards compatible with \LaTeX\space
-% [1995/12/01] and higher as well. It is not possible for us to list the version 
-% of each package used within the class file and you might get errors if the package in
-% your |TEXMF| tree is outdated. We do note that the 2013 update makes use of an upate
-% made to the \textsf{hyperref} and \textsf{natbib} packages in about 2010. If the version of \textsf{hyperref}
-% and \textsf{natbib} in your |TEXMF| tree is older than this, you will get many errors. 
-% Depending on your system, it may be possible to update only this package or you may 
-% have to update everything.
-%
-% The classfile is limited in the sense that it will produce an acceptable
-% document with the packages that we have tried and included by default. There
-% are numerous packages you may want to use for your work, but they may have
-% to be modified accordingly. 
-% Things lacking include support for the \textsf{subfigure} 
-% and \textsf{subcaption} package and proper formatting of the captions in such an environment. 
-% Formatting of the captions could be much easier with the 
-% \textsf{caption}\footnote{\textsf{caption} package by Axel Sommerfeldt v3.0b[2004/05/16] 
+% The document class has only been tested with a small subset of available packages.
+% There are numerous packages you may want to use for your work, but they may have
+% to be modified accordingly.
+% Things lacking include support for the \textsf{subfigure}
+% and \textsf{subcaption} package and proper formatting of the captions in such an environment.
+% Formatting of the captions could be much easier with the
+% \textsf{caption}\footnote{\textsf{caption} package by Axel Sommerfeldt v3.0b[2004/05/16]
 % and higher} in general, and is a thing-to-do for future versions. Permitting use of the
 % \textsf{subfigure} and \textsf{subcaption} packages would also be a good thing to do
 % if an update is ever made for reaosns other than resolving conflicts caused by changing
@@ -176,82 +146,148 @@
 % \makeatother
 % \end{verbatim}
 %
+% \subsection{History}
+%
+% The \nddiss\ package is an extensive rewrite by Sameer Vijay of an earlier \textsf{NDthesis} class
+% for formatting dissertations.
+% Megan Patnott updated \nddiss\ to the 2013 Graduate School Formatting guidelines.
+% The \textsf{NDThesis} class was by D. A. Peterson.
+%
+% \section{Quick Start}
+%
+% This section provides a template you can use to get started.
+% The distribution comes with a more detailed file, |template.tex|, that is similar, but more detailed.
+%
+% \begin{verbatim}
+% \documentclass[numrefs,final]{nddiss2e}
+%
+% \begin{document}
+%
+% \frontmatter
+%
+% \title{TITLE IN ALL CAPS}
+% \author{Your Name}
+% \work{Dissertation}
+% \degaward{Doctor of Philosophy}
+% \advisor{}
+% \department{}
+% \maketitle
+% \makepublicdomain % There is also a copyright option
+%
+% \begin{abstract}
+% Abstract here
+% \end{abstract}
+%
+% % dedication is optional
+% \begin{dedication}
+% For Someone
+% \end{dedication}
+%
+% \tableofcontents
+% \listoffigures
+% \listoftables
+%
+% % list of symbols is optional
+% \begin{symbols}
+% \sym{a}{definition of a}
+% \end{symbol}
+%
+% % preface is optional
+% \begin{preface}
+% Preface here
+% \end{preface}
+%
+% \begin{acknowledge}
+% Thanks to everyone
+% \end{acknowledge}
+%
+% \mainmatter
+%
+% \chapter{A NEW DAWN} % Chapter 1
+% All the text ...
+%
+% \appendix
+% \chapter{ADDITIONAL DATA} % Appendix A
+%
+% \backmatter
+% \bibliographystyle{nddiss2e}
+% \bibliography{bibdatabase}
+%
+% \end{document}
+% \end{verbatim}
+%
+%
 % \section{Usage}
 %
-% The \nddiss\space document class can be used only with \LaTeXe\space native mode or
-% later, by typing |\documentclass|\oarg{options}|{nddiss2e}| at the
-% beginning of your \LaTeX\space source file. The available options for
-% the use of the class are discussed in section \ref{subsec:options} below.
-% These have been limited to a small number in order to obtain documents
-% with similar formatting under \LaTeXe\space using this class, although the
-% \nddiss\space class is based on the \textsf{book} class,
-% which has many other options.
+% Invoke the \nddiss\space document class by adding |\documentclass|\oarg{options}|{nddiss2e}|
+% at the beginning of your \LaTeX\space source file.
+% For most people the options |\documentclass[draft]{nddiss2e}| is good enough for the initial revisions.
+% If you want your figures to display, use |\documentclass[review]{nddiss2e}|.
+%
+% Use the option |\documentclass[final]{nddiss2e}| for your formatting check submission,
+% and |\documentclass[final,noinfo]{nddiss2e}| for the final submitted version.
+%
+% If you have two advisors, add the option |twoadvisors| here, and then use |\secondadvisor{}|
+% later on the title page to give the name of the second advisor.
+%
+% By default, all documents produced using this class
+% are formatted as one-sided, doublespaced, letter-sized pages, per the Graduate School requirements.
+% In theory, the class file's specifications should override your system's defaults.
+% If, however, you are getting A4 paper, try adding |\pdfpagewidth{8.5in}| and
+% |\pdfpageheight{11in}| immediately after the |\documentclass| in your file.
 %
 % \subsection{Options}
 % \label{subsec:options}
 %
-% By default, all documents produced using this class
-% are formatted in |letterpaper| size and |onesided|,
-% |doublespaced| mode, as per
-% the requirements of the Graduate School. If you wish to override these
-% restrictions, appropriate changes to the class file would be needed. 
-% In theory, the class file's specifications should override your system's defaults.
-% If, however, you are getting A4 paper, try adding |\pdfpagewidth{8.5in}| and
-% |\pdfpageheight{11in}| immediately after the |\documentclass| call in your file.
-%
-% The most important of the options is |draft|, |review| or
-% |final|. Exactly one of these \emph{must} be used, otherwise you will surely
-% get errors.
-%
 % \DescribeMacro{draft}
-% Using the |draft| option enables the \textit{draft} mode of the
-% |book| class, thus making the processing of the document faster. The most 
-% visible change that results from using this option is that only the
-% placement boxes of included figures are displayed. An appropriate header is 
-% included to indicate that the prepared document is a draft document. The 
-% purpose of the |draft| option is to obtain a fast and preliminary
-% document showing the labels for citations, tables, figures etc. and a black
-% solid rule highlighting the horizontal overflows. Such a document would be
-% the one you would prepare for revising your text during writing stages. The
-% \nddiss class checks for this option if you try to change the font, but
-% otherwise just passes this option down to the |book| class and
-% any loaded packages, several of which do something with it.
-%
 % \DescribeMacro{review}
-% The |review| option makes it possible to prepare a document that is
-% one step closer to the final version. Almost all the formatting of the final
-% version is present, along with the labels and keys as in the |draft|
-% option. A document prepared with the |review| option would be the one to
-% personally check for proper formatting and possibly giving to your advisor if 
-% (s)he wished to suggest corrections.
-%
 % \DescribeMacro{final}
-% The |final| style option produces the document for the production of archival
-% copies of the dissertation for submission to the Graduate School. It is also the
-% style option that you should use when you submit it to the Graduate School for
-% formatting checks. The \nddiss class itself just passes this option down to the 
-% |book| class and any loaded packages, several of which do something with it.
+% Exactly \emph{one} of these options must be used.
+% The |draft| and |review| options enable faster processing of the document and
+% also include annotations to help write and edit it.
+%
+% The |draft| option enables a fast processing and preliminary document
+% showing the labels for citations, tables, figures etc. and a black solid rule
+% highlighting the horizontal overflows. Additionally, figures are replaced
+% with placement boxes showing where the included figure would be placed. Such
+% a document would be the one you would prepare for revising your text during
+% writing stages.
+%
+% The |review| option makes it possible to prepare a document that is
+% one step closer to the final version.
+% Almost all the formatting of the final version is present,
+% but the labels and keys as in the |draft| option are also displayed.
+% A document prepared with the |review| option would be the one to
+% personally check for proper formatting and possibly giving to your advisor if
+% she wished to suggest corrections.
+%
+% The |final| option produces the document to be submitted to the Graduate School for
+% formatting checks and as the final version.
 %
 % \DescribeMacro{twoadvisors}
-% If you have two advisors for your project/research, selecting the |twoadvisors| 
-% option produces an appropriately formatted title page. The |\secondadvisor| 
-% macro command (discussed in Section \ref{subsec:titlepage}) is used to specify 
-% the name of the second advisor.
+% The |twoadvisors| option will produce a title page with space for two advisors.
+% Use the |\secondadvisor| macro command
+% (discussed in Section \ref{subsec:titlepage}) on the title page to give the
+% name of the second advisor.
+%
+% \DescribeMacro{noinfo}
+% The |noinfo| option disables the information page produced
+% when the |review| or |final| style options are used. It is
+% recommended that you only use this option when making the final
+% submission to the Graduate School.
 %
 % \DescribeMacro{numrefs}
 % \DescribeMacro{textrefs}
-% Exactly one of these options -- |numrefs| or |textrefs|,
-% should be specified. |numrefs| results in a
-% numbered citation sytle with \textsf{natbib} and the ``nddiss2e'' or
-% ``nddiss2enoarticletitles'' citation style
+% These options determine how citations are displayed in the text.
+% The default style is |numrefs|.
+% The |numrefs| option produces a numbered citation sytle by using \textsf{natbib}
+% and the ``nddiss2e'' or ``nddiss2enoarticletitles'' citation style
 % file\footnote{|nddiss2e.bst| is a slight modificiation of |abbrvnat.bst|
-% in the \textsf{natbib} package; |nddiss2enoarticletitles.bst| is 
+% in the \textsf{natbib} package; |nddiss2enoarticletitles.bst| is
 % essentially the same as |nddiss2e|, but does not display the titles of
 % journal articles, as this is the standard in some fields}.
-% Using |textrefs| changes the citation style to be similar to
-% ``author-date'' style with the same files. If none of these options is
-% specified, the default style of numbered citations (ie.\/ same as if
-% |numrefs| was used) is used.
+% The |textrefs| option changes the citation style to be similar to
+% ``author-date'' style with the same files.
 %
 % \DescribeMacro{sort}
 % \DescribeMacro{compress}
@@ -274,32 +310,25 @@
 % \DescribeMacro{10pt}
 % \DescribeMacro{11pt}
 % \DescribeMacro{12pt}
-% The choice of the fontsize is only applicable with the |draft| option
-% used. By default, the document will be prepared in the 10pt size for the
-% |draft| style option. For the |review| and the |final| style options,
-% the document is prepared in the 12pt font size and choosing any other font
-% size option will be ignored.
-%
-% \DescribeMacro{noinfo}
-% Using the |noinfo| option disables the information page produced
-% when the |review| or |final| style options are used. It is
-% recommended that you do not disable the ``info'' page unless it is the final
-% most copy/copies for submission to the Graduate School (in which case you
-% should disable it).
+% These options adjust the font size of the body text.
+% The choice is only applicable when the |draft| option is used, and defaults
+% to |10pt|.
+% When |review| or |final| is used, this option is ignored and |12pt| is used.
 %
 % \DescribeMacro{twoside}
-% Using the |twoside| option causes the class file to prepare a document meant
-% to be printed double-sided. Do NOT turn in your document this way to the
-% Graduate School! This option is strictly for if you want to prepare a two-sided
-% document for your own use. The only difference from the one-sided document
-% is in the page layout.
+% The |twoside| option causes the class file to prepare a document meant
+% to be printed double-sided.
+% This option is strictly for if you want to prepare a two-sided document for
+% your own use. The only difference from the one-sided document is in the page
+% layout.
+% Do NOT use this option when preparing to submit it to the Graduate School.
 %
 % \DescribeMacro{nocenter}
-% Using this option allows non-centered chapter titles. Do NOT turn in your
-% document this way to the Graduate School!
+% The |nocenter| option allows non-centered chapter titles.
+% Do NOT turn in your document this way to the Graduate School!
 %
 % \DescribeMacro{openbib}
-%	Using this option formats your bibliography in the following manner: \\
+% The |openbib| option formats your bibliography in the following manner: \\
 % \qquad Author \\
 % \qquad \qquad Article/book title \\
 % \qquad \qquad Other information \\
@@ -307,14 +336,417 @@
 % Usually you would not need to use this option since the default layout of the
 % |bibliography| is acceptable.
 %
-% Thus, |\documentclass[draft,12pt]{nddiss2e}| would produce a document in
-% \textsf{draft} format in 12pt font size and \\
-% |\documentclass[final,twoadvisors,noinfo]{nddiss2e}|
-% would produce a document (with modified title page) for final submission
-% to the Graduate School.
+% \section{Arrangement of contents}
+%
+% A dissertation or a thesis document contains the following parts,
+% in the order listed. Only those marked as optional may be omitted.
+%
+% \begin{enumerate}
+% \item Title Page
+% \item Copyright page
+% \item Abstract \emph{(optional for Master's thesis)}
+% \item Dedication \emph{(optional)}
+% \item Table of Contents
+% \item List of Figures
+% \item List of Tables
+% \item List of Symbols \emph{(optional)}
+% \item Preface \emph{(optional)}
+% \item Acknowledgments \emph{(optional)}
+% \item Text
+% \item Appendix (or Appendices) \emph{(optional)}
+% \item Bibliography (or References, or Works cited)
+% \end{enumerate}
+%
+% The macros and environments described below ease the formatting of these
+% parts.
+%
+% \subsection{Title page}
+% \label{subsec:titlepage}
+%
+% \DescribeMacro{\maketitle}
+% The title page is generated by |\maketitle| with no arguments.
+% This macro has been modified for providing a title page in the correct format.
+%
+% You can set information to display on the title page by using the following
+% commands before invoking |\maketitle|.
+% \begin{itemize}
+%   \item \DescribeMacro{\title\{\}} The title of the document, using the
+%         |\title| macro. The title must be in ALL caps, e.g.
+%         |\title{THIS IS A TITLE \||\  IN TWO LINES}|. You may use
+%         linebreaks within the title, and the title may be up to four
+%         lines long.
+%   \item \DescribeMacro{\author\{\}} Give your name in full and exactly as
+%         registered with the Graduate School, using the
+%         |\author| macro, e.g. |\author{Gary Graham Gordon-Graeme}|).
+%   \item \DescribeMacro{\work\{\}} Whether the document is a
+%         \emph{Thesis} or a \emph{Dissertation} as the argument of the
+%          |\work| macro, e.g. |\work{Dissertation}|).
+%   \item \DescribeMacro{\degaward\{\}} Specify the degree you're aiming for
+%         with the |\degaward| macro. Should be one of
+%          |\degaward{Doctor of Philosophy}| (without the ``in \emph{subject}'' or
+%          |\degaward{Master of Science\\in\\Engineering}|.
+%   \item \DescribeMacro{\advisor\{\}} Give the name of your advisor with
+%         the |\advisor| macro.
+%   \item \DescribeMacro{\secondadvisor\{\}} Give the name of your second advisor,
+%         if any, with the |\secondadvisor| macro. You also need to pass in the
+%         |twoadvisors| option in the |\documentclass| declaration.
+%   \item \DescribeMacro{\department\{\}} Give the name of your department with the
+%         |\department| macro, e.g. |\department{Gnulogical Engineering}|).
+%   \item \DescribeMacro{\degdate\{\}} The month and year of the defense of the
+%         thesis with the |\degdate| e.g. |\degdate{June 2004}|). If you forget to
+%         declare this, the current month/year will be used.
+% \end{itemize}
+%
+% \subsection{Copyright page}
+% \DescribeMacro{\makecopyright}
+% \DescribeMacro{\copyrightholder\{\}}
+% \DescribeMacro{\copyrightyear\{\}}
+% The |\makecopyright| macro should be invoked after |\maketitle| to
+% produce a copyright page.
+% Prior to calling |\makecopyright|, you may specify a different name
+% for the copyright holder (the default is the name given through the
+% |\author| macro) and for the copyright year (the default being the
+% current year). Do this with the |\copyrightholder|\marg{name}
+% and |\copyrightyear|\marg{year} macros.
+%
+% \DescribeMacro{\makepublicdomain}
+% Alternatively, you can use
+% |\makepublicdomain| to produce a page with the message ``This document
+% is in the public domain.'' Note that the absence of the copyright page
+% does \emph{not} place your dissertaion in the public domain, you must
+% declare it as such explicitly.
+%
+% \subsection{Abstract page(s)}
+% \DescribeEnv{abstract}
+% The abstract text should be placed between
+% |\begin{abstract}| and |\end{abstract}|.
+% If the abstract is longer than one page, the environment will place
+% the author's name in the top-right header.
+%
+% \DescribeMacro{\abstractname\{\}}
+% You may use |\abstractname|\marg{text} to change the abstract caption
+% to |text|.
+% Default name: |Abstract|.
+% You probably don't need to change it.
+%
+% \subsection{Dedication}
+% \DescribeEnv{dedication}
+% The dedication is optional.
+% If you want one, use the \textsf{dedication} envrionment.
+% The format of dedication is essentially free.
+% This environment will center the text of your dedication vertically on the page.
+%
+% \DescribeMacro{\dedicationame\{\}}
+% You may use |\dedicationname|\marg{text} to change the title for the
+% dedication page. Default name: |\mbox{}| i.e.\/ an empty title.
+% You probably don't need to change it. If you do, make sure it is ALL CAPS.
+%
+% \subsection{Table of contents and Lists of Figures and Tables}
+% \DescribeMacro{\tableofcontents}
+% \DescribeMacro{\listoffigures}
+% \DescribeMacro{\listoftables}
+% Use the macros |\tableofcontents|,|\listoffigures| and |\listoftables|,
+% \emph{in this order}, to produce the required table of contents and lists of
+% figures and tables.
+%
+% \DescribeMacro{\contentsname\{\}}
+% \DescribeMacro{\listfigurename\{\}}
+% \DescribeMacro{\listtablename\{\}}
+% You may use |\contentsname|, |\listfigurename| and |\listtablename|
+% to change the titles for these sections.
+% By default they are |CONTENTS|, |FIGURES|, and |TABLES|.
+% You probably don't need to change them.
+% If you do, make sure the replacements are ALL CAPS.
+%
+% \subsection{List of symbols}
+% \DescribeEnv{symbols}
+% The list of symbols is optional.
+% Use the \textsf{symbols} envrionment to format a list of
+% symbols/abbreviations used in your work.
+% The envrionment takes an optional argument specifying the desired format, e.g.
+% |\begin{symbols}[cl]| for first column centered and the next column
+% aligned left. By default, the first column will be right aligned and
+% the second column will be left aligned. You may use any of the standard
+% |tabular| column alignment options.
+%
+% \DescribeMacro{\sym\{\}\{\}}
+% The command |\sym|\marg{symbol}\marg{definition} may make the task of
+% entering the symbols and their meanings in the \textsf{symbols}
+% environment easier. |\sym| takes two arguments: the first, a math
+% ``object'' and the second, the plain text describing the
+% symbol. Since the first argument is in math mode, any plain text
+% needs to be wrapped with |\mathrm{..}|
+% Likewise, any math symbol in the second argument needs to placed in
+% |$..$|.  Example: |\sym{\beta_\mathrm{norm}}{Definition for $\beta$}|
+%
+% \DescribeMacro{\symbolsname\{\}}
+% You may use |\symbolsname{}| to change the title of the symbols section.
+% Default name: |SYMBOLS|.
+% You probably don't need to change it. If you do, make sure the replacement is ALL CAPS.
+%
+% \subsection{Preface}
+% \DescribeEnv{preface}
+% The \textsf{preface} environment is provided for formatting the preface to your work.
+%
+% \DescribeMacro{\prefacename\{\}}
+% You may use |\prefacename| to change the name of this section.
+% Default name: |PREFACE|.
+% You probably don't need to change it. If you do, make sure the replacement is ALL CAPS.
+%
+% \subsection{Acknowledgments}
+% \DescribeEnv{acknowledgments}
+% The environment \textsf{acknowledgments} is used to format the
+% acknowledgment \emph{chapter}.
+%
+%
+% \DescribeMacro{\acknowledgename\{\}}
+% You may use |\acknowledgename| to change the name of this section.
+% Default name: |ACKNOWLEDGMENTS|.
+% You probably don't need to change it. If you do, make sure the replacement is ALL CAPS.
+%
+% \subsection{Text}
+% \DescribeMacro{\mainmatter}
+% Use the macro |\mainmatter| to mark the beginning of your text.
+% You can then use |\part|, |\chapter|, |\section|, |\subsection|, and |\subsubsection|
+% commands, as you would with the \textsf{book} class.
+% Text is formatted in |\normalspacing| i.e. double-spacing.
+% The pages are numbered in |plain| pagestyle such that the page numbers
+% are centered in the bottom. The |chapter| titles can be multi-line,
+% and if so are formatted doubly spaced.
+%
+% Chapter names should be in ALL CAPS.
+%
+% \DescribeMacro{\unnumchapter\{\}}
+% Use the macro |\unnumchapter| to create to create unnumbered chapters that
+% appear in the Table of Contents.
+%
+% \subsection{Appendix}
+% \DescribeMacro{\appendix}
+% Use the command |\appendix| after the last normal chapter to signal
+% that all following chapters are to be appendices.
+% This use is the same as in the \textsf{book} class.
+% To begin an appendix, use the |\chapter|\marg{title} macro.
+%
+% \subsection{Backmatter}
+% \DescribeMacro{\backmatter}
+% The |\backmatter| macro separates the bibliography, index
+% and glossary from the main matter and any appendices.
+%
+% \subsection{Bibliography} \DescribeMacro{\bibliography}
+% If you are using \BibTeX\/ (and why would you not want to use \BibTeX?),
+% use the |\bibliography|\marg{bibfile} macro to generate the
+% bibliography. You should refer to \BibTeX\/ manual for details about making a |.bib| file
+% and format for the entries.
+%
+% For citing references in the text, the package \textsf{natbib} is
+% included with either the settings \texttt{numbers,sort\&compress} (|numrefs| option) or
+% \texttt{authoryear,sort} (|textrefs| option). The package \textsf{natbib} is a
+% fantastic package that has numerous macros for \emph{citing} in different ways.
+%
+% \textbf{Warning:} The packages \textsf{cite} and \textsf{citation} are
+% NOT compatible
+% with the \textsf{natbib} package, and will cause errors if used.
+%
+% \DescribeEnv{thebibliography}
+% If you are not using \BibTeX\/ make your own bibliography by using the
+% \textsf{thebibliography} environment. In this case, you would have
+% to write the reference entries in the right format in your |.tex| source
+% file itself. If you are using the |textrefs| option, you'll need to
+% consult the \textsf{natbib} manual to ensure that you enter your entries in
+% the format required by the package.
+%
+% \DescribeMacro{\bibname\{\}}
+% You may use |\bibname|\marg{newbibname} to change the name of this section.
+% Default name: |BIBLIOGRAPHY|.
+% If you do change it, make sure the replacement is in ALL CAPS.
+%
+% \subsection{Chapter-wise bibliography}
+% By default the bibliography appears at the end of your work and contains
+% all the references from the entire entity.
+% If you need to have a separate bibliography for each chapter,
+% you can do it in the following way.
+% First, load the package \textsf{chapterbib} without any options
+% in the preamble of your main source file and
+% redefine the commands |\bibname| and |\bibsection| as shown below.
+% \begin{verbatim}
+% %% Main source file %%
+% \documentclass[...]{nddiss2e}
+% \usepackage{chapterbib}
+% \renewcommand{\bibname}{Cited works}
+% \renewcommand{\bibsection}{\section{\bibname}}
+% ...
+% \begin{document}
+% \include{chptr1}
+% ...
+% \include{appndx}
+% \end{document}
+% \end{verbatim}
+%
+% To process the bibliography for each chapter individually, the chapters or sections
+% must be separated into different files and \emph{include}
+% them in the main file, as shown above. Each such |\include|d file must contain
+% its own |\bibliographystyle{nddiss2e}| and |\bibliography{...}| command at
+% an appropriate position. There should not be any bibliographic commands in
+% the main source file.
+%
+% After compiling the main tex file once (with |latex| or
+% |pdflatex|), the |.aux| files needed by |bibtex| will have been created
+% and you can then run |bibtex| on each of the separate source files to obtain a |.bbl|
+% for each file. The remaining steps are the same as for a normal |.tex| file.
+%
+% You can find more details of this in the \textsf{natbib} manual.
+%
+% \section{Note for the authors}
+% \label{sec:author}
+% The dissertation author must make sure that the
+% following conditions are met in order to generate a dissertation
+% acceptable by the Graduate School:
+%
+% \begin{itemize}
+%   \item The List of Figures must be \emph{before} the List of Tables, i.e. the
+%         macro command |\listoffigures| comes before |\listoftables| in the
+%         frontmatter.
+%   \item Chapter titles need to be written in ALL CAPS.
+%   \item Table captions must be \emph{above} the corresponding table,
+%         In case of the \textsf{table} environment, this can be achieved by
+%         putting |\caption| before you include the table (e.g. in a \textsf{
+%         tabular} environment).
+%   \item Table captions need to be in ALL CAPS.
+%   \item Figure captions should be \emph{below} the corresponding figure.
+%         In the \textsf{figure} environment, the |\caption| goes after
+%         the |\includegraphics| macro command.
+%   \item The bibliography is the last section/chapter of the thesis---unless
+          you are using the \emph{chapter-wise} bibliography.
+% \end{itemize}
+%
+% \subsection{Tips and suggestions}
+% \label{subsec:tips}
+% \begin{itemize}
+%    \item It is \emph{strongly} recommended that you compile your document with
+%          pdf\LaTeX. Compiling to dvi or postscript first may result in ``fuzzy'' fonts
+%          when viewing the document on your screen. Additionally, the benefits
+%          of |hyperref| and |pdflscape| are only available if you compile using
+%         pdf\LaTeX.
+%   \item Use the |\toprule|, |\midrule| and |\bottomrule| macro commands (from the
+%         \textsf{booktabs} package) in tables for generating the appropriate
+%          horizontal rules. Refrain from using vertical rules to separate columns in tables
+%          as much as possible.
+%   \item Use the \textsf{longtable} environment for handling very long
+%         tabular materials. Example:
+% \begin{verbatim}
+% \begin{longtable}{lc}
+% \caption[]{LONG TABLE CAPTION \label{tab:longtable} }
+% \toprule
+% Heading 1 & Heading 2 \\
+% \midrule
+% \endfirsthead
+% \caption[]{ \emph{Continued} } \\
+% \midrule
+% Heading 1 & Heading 2 \\
+% \midrule
+% \endhead
+% \endfoot
+% \bottomrule
+% \endlastfoot
+% % Now the tabular material %
+% Long & Table etc. \\
+% \end{longtable}
+% \end{verbatim}
+%   \item If a figure or table is very wide and will not fit on a page,
+%         use the \textsf{landscape} environment (from the included
+%         \textsf{lscape} package) to format them in \emph{landscape}
+%          mode. They will automatically appear on a separate page. If you
+%          use pdf\LaTeX\/ to compile your document, then the included
+%          \textsf{pdflscape} package will flip this page on the screen
+%         for easier reading.
+%   \item The \textsf{sidewaystable} environment (from the included
+%          \textsf{rotating} package) is incompatible with the current
+%         class and should be avoided.
+%   \item Usually the width of the figure and table captions is 90\% of the textwidth
+%         (i.e. |0.9\textwidth|). If needed, the width can be changed on a case-by-case
+%         basis by doing one of the following:
+%         \begin{itemize}
+%           \item Use a \textsf{minipage} environment of appropriate width and enclose
+%                 your tabular or figure float inside it, or
+%           \item set the |\capwidth| inside the \textsf{table} or the \textsf{figure}
+%                 environment, and |\LTcapwidth| \emph{outside} the \textsf{
+%                 longtable} environment, e.g.,\\[\baselineskip]
+% \begin{minipage}{0.5\textwidth}
+% \begin{verbatim}
+% \begin{table}[H]
+% \setlength{\capwidth}{0.8\textwidth}
+% \centering
+% \caption{TABLE CAP\label{tab:this}}
+% \begin{tabular}{lc}
+% ...
+% \end{tabular}
+% \end{table}
+% \end{verbatim}
+% \end{minipage}
+% \begin{minipage}{0.5\textwidth}
+% \begin{verbatim}
+% \setlength{\LTcapwidth}{6in}
+% \begin{longtable}{lccc}
+% ...
+% \end{\longtable}
+% \end{verbatim}
+% \end{minipage}
+%         \end{itemize}
+%   \item Use the \textsf{tabularx} environment for the actual formatting
+%         of the tables (within the \textsf{table} environment). It differs
+%         slightly from \textsf{tabular} environment and you should refer to
+%         their documentation in the |TEXMF| tree for more information.
+%   \item If you've used a \textsf{longtable} environment in your document,
+%         it might be necessary to compile the document multiple times so as to
+%          get proper alignment of columns. This is documented in the
+%          \textsf{longtable} manual.
+%   \item If you wish to use |\footnotes| in the \textsf{longtable} environment,
+%         please read its documentation. There are some handicaps present.
+%   \item To cite a website in your bibliography\footnote{More info at
+%         \url{http://www.tex.ac.uk/cgi-bin/texfaq2html?label=citeURL}}, use the
+%         following format in your |.bib| file:
+%  \begin{verbatim}
+%      @Misc{fairley2000,
+%      author =       "N. Fairley",
+%      title =        "Casa{XPS} {VAMAS} processing software",
+%      howpublished = "Website",
+%      note =         "\url{http://www.casaxps.com}",
+%      }
+%  \end{verbatim} When processed with the |nddiss2e.bst| citation style file
+%         this gives:\newline
+%         111. N. Fairley. CasaXPS VAMAS processing software. Website.
+%         \url{http://www.casaxps.com}.\newline
+% \end{itemize}
+%
+% \subsection{You found errors?}
+% If you find some errors in formatting of your document, most likely these are
+% NOT due to the \nddiss\/ class, but due to either wrongly used
+% commands/macros or conflicting commands/macros in a package that you might
+% have used ie.\/ a mistake from your side. Please verify that before
+% contacting anyone regarding the class file.
+%
+% Read the manuals for the packages that you might have used and find out if
+% they have macro commands that modify the page-layout, spacing etc.\/ or if
+% they conflict with already defined commands (e.g.\/ packages
+% \textsf{natbib} and
+% \textsf{cite} redefine the same command |\cite| in different ways).
+%
+% In the possible scenario that you
+% have found a significant error, please try to find out the source of the
+% error and, even better, a possible alternative, and please
+% report it to the Graduate School's reviewer(s). It would also be great, if
+% you try to find a solution for the problem and inform them of that as well.
+% Please also let them know if you find this documentation confusing or misleading
+% or if any mistakes are present.
+%
+% Your doing so will ensure that the reviewer(s) are aware of the problem and
+% its possible solutions and they can give better answers to the people who
+% might encounter similar problems. It will also help making the future
+% versions of the class file better.
 %
 % \section{Features}
 % \label{sec:features}
+%
 % A number of packages are required by default and must be present in your
 % \TeX\space search path (if you use a package manager such as MiKTeX or
 % TeXLive, it will take care of this for you). As far as possible, these have
@@ -362,15 +794,15 @@
 % Other packages may or may not be appropriate for use with the
 % \nddiss\space class when producing copies to be submitted to the
 % Graduate School. Please be careful when using packages that change the
-% default fonts, or the layout(s).
+% default fonts, or the page layout.
 %
 % In general, the official guidelines of the Graduate School are
 % followed to the maximum extent possible. This includes proper
 % formatting of the title page and the abstract page (from the
-% \textsf{ndthesis} package), numbering of the pages in the \textit{
-% frontmatter}, generation of properly formatted table of contents, list
-% of figures etc., as well as bibliography at the end. As per the guide,
-% number of different fonts and font sizes used in the thesis is kept to
+% \textsf{ndthesis} package), numbering of the pages in the \textit{frontmatter},
+% generation of properly formatted table of contents, list
+% of figures etc., as well as bibliography at the end.
+% Per the guide, the number of different fonts and font sizes used is kept to
 % a minimum. The contents, all lists and the bibliography are
 % single-spaced but the inter-line spacing for the rest of the document
 % is double.
@@ -380,9 +812,7 @@
 %
 % The \nddiss\space class also allows production of pdf documents with
 % pdf\LaTeX\space. As of Spring 2013, this is the preferred method of
-% compilation. In this case, the \textsf{hyperref}\footnote{Needs to have
-% been updated since 2010. Exact oldest verison number allowable unknown.}
-% and \textsf{pdflscape}
+% compilation. In this case, the \textsf{hyperref} and \textsf{pdflscape}
 % packages are also required. The \textsf{hyperref} package ensures
 % that the generated pdf document contains internal as well as external
 % links for citations and bookmarks. A document produced by this method
@@ -392,493 +822,13 @@
 % passed on, for advanced features refer to its documentation. The
 % \textsf{pdflscape} package flips pages with landscape orientation in the
 % pdf file for easier reading, but the location of the page numbers does not change.
-% Neither of these packages is part of the required \LaTeX\space distribution,
-% so you may need to download them. The \textsf{pdflscape} package is part of
-% the \textsf{oberdiek} bundle.
 %
-% Figures must be in pdf, jpeg, png, or gif format, not encapsualted
-% postscript (eps). An easy way to convert your \textit{eps} files to \textit{pdf}
-%	files is to use the utility |epstopdf| or |eps2pdf|, which should be
+% Figures must be in pdf, jpeg, png, or gif format, and not in encapsualted
+% postscript (eps). An easy way to convert \textit{eps} files to \textit{pdf}
+% files is to use the utility |epstopdf| or |eps2pdf|, which should be
 % available on your unix-like distribution already (should you have one). It is also
 % possible to convert your eps files to pdfs using an online conversion tool.
 % Searching for ``eps to pdf'' brought up several free options in Fall 2012.
-%
-% \section{Arrangement of contents}
-%
-% A dissertation or a thesis document must contain the following parts,
-% in the order listed. Only those explicitly marked as optional may be
-% omitted. Again, Sameer wishes to point out that the official guide must be
-% referred and its guidelines override the order listed here.
-%
-% \begin{enumerate}
-% \item Title Page
-% \item Copyright page
-% \item Abstract \emph{(optional for Master's thesis)}
-% \item Dedication \emph{(optional)}
-% \item Table of Contents
-% \item List of Figures
-% \item List of Tables
-% \item List of Symbols \emph{(optional)}
-% \item Preface \emph{(optional)}
-% \item Acknowledgments \emph{(optional)}
-% \item Text
-% \item Appendix (or Appendices) \emph{(optional)}
-% \item Bibliography (or References, or Works cited)
-% \end{enumerate}
-%
-% The macros and environments described below ease the formatting of these
-% parts.
-%
-% \subsection{Title page}
-% \label{subsec:titlepage}
-%
-% The title page is generated by the standard \LaTeX\space macro
-% |\maketitle| with no arguments. This macro has been modified for
-% providing a title page format required for dissertations/theses.
-%
-% Prior to invoking it in your document, you should declare:
-% \begin{itemize}
-% 	\item \DescribeMacro{\title\{\}} The title of the document, using the
-% 				|\title| macro. Note: title must be in ALL caps, e.g.
-% 				|\title{THIS IS A TITLE \||\  IN TWO LINES}|. You may use
-% 				linebreaks within the title, and the title may be up to four
-%					lines long. The spacing for titles of five or more lines
-%         may be off.
-% 	\item \DescribeMacro{\author\{\}} Your name (full and exactly as
-% 				registered with the Graduate School), using the
-% 				|\author| macro, e.g. |\author{Gary Graham Gordon-Graeme}|).
-% 	\item \DescribeMacro{\work\{\}} Whether the document is a
-% 				\emph{Thesis} or a \emph{Dissertation} as the argument of the
-%					|\work| macro, e.g. |\work{Dissertation}|).
-% 	\item \DescribeMacro{\degaward\{\}} The degree you're aiming for (in
-% 				full) with the |\degaward| macro, e.g.
-%					|\degaward{Doctor of Philosophy}| or \\
-%					|\degaward{Master of Science\\in\\Engineering}|.
-% 	\item \DescribeMacro{\advisor\{\}} The name of your advisor as argument to
-% 				the |\advisor| macro.
-% 	\item \DescribeMacro{\secondadvisor\{\}} The name of your second advisor,
-% 				if any, with the |\secondadvisor| macro\footnote{this macro is necessary
-% 				when the\textsf{twoadvisors} option is used while invoking \nddiss\space
-%					class}.
-% 	\item \DescribeMacro{\department\{\}} The name of the department in the
-% 				argument of the |\department| macro, e.g.
-%					|\department{Gnulogical Engineering}|).
-% 	\item \DescribeMacro{\degdate\{\}} The month and year of the defense of the
-% 				thesis with the |\degdate| e.g. |\degdate{June 2004}|). If you forget to
-% 				declare this, the current month/year combination will be automatically used.
-% \end{itemize}
-%
-% \DescribeMacro{\maketitle}
-% After defining the above macro arguments, use |\maketitle| to generate
-% a title page, which includes your entries.  All the above macros are
-% required and if missing, they may result in errors in the generation
-% of the title page.
-%
-% \subsection{Copyright page}
-% \DescribeMacro{\makecopyright}
-% \DescribeMacro{\makepublicdomain}
-% The |\makecopyright| macro should be invoked after |\maketitle| to
-% produce a copyright page. Alternatively, you can use
-% |\makepublicdomain| to produce a page with the message ``This document
-% is in the public domain.'' Note that the absence of the copyright page
-% does \emph{not} place your dissertaion in the public domain, you must
-% declare it as such explicitely.
-%
-% \DescribeMacro{\copyrightholder\{\}}
-% \DescribeMacro{\copyrightyear\{\}}
-% Prior to calling |\makecopyright|, you may specify a different name
-% for the copyright holder (the default is the name given through the
-% |\author| macro) and for the copyright year (the default being the
-% current year). You should do this with the |\copyrightholder|\marg{name}
-% and |\copyrightyear|\marg{year} macros.
-%
-% \subsection{Abstract page(s)}
-% \DescribeEnv{abstract}
-% The \textsf{abstract} environment has been modified from the default
-% in the \textsf{report} class to comply with the requirements
-% of the Graduate School. The abstract text should be placed between
-% |\begin{abstract}| and |\end{abstract}|.
-% If the abstract is longer than one page, the environment will place
-% the author's name is placed in the top-right header.
-%
-% \DescribeMacro{\abstractname\{\}}
-% You may use |\abstractname|\marg{text} to change the abstract caption
-% to |text|.
-% Default name: |Abstract|.
-%
-% \subsection{Dedication}
-% \DescribeEnv{dedication}
-% The format of dedication is essentially free, but you may want to use
-% the \textsf{dedication} environment for this purpose. This environment
-% will center the text of your dedication vertically on the page. The
-% dedication is optional.
-% \DescribeMacro{\dedicationame\{\}}
-% |\dedicationname|\marg{text} may be used to change the title for the
-% dedication page. Default name: |\mbox{}| i.e.\/ an empty title. If a
-% different title is desired, note that the Graduate School requires that
-% it be in all caps, and that ensuring that this is so is your responsibility.
-%
-% \subsection{Table of contents and Lists of Figures and Tables}
-% \DescribeMacro{\tableofcontents}
-% \DescribeMacro{\listoffigures}
-% \DescribeMacro{\listoftables}
-% Use the macros |\tableofcontents|,|\listoffigures| and |\listoftables|
-% in this order, to produce the required table of contents and list of
-% figures and tables. Note: the ``list of figures'' should precede the
-% ``list of tables'' as per the Graduate School guide, so make sure
-% you call the commands in the correct order!
-%
-% \DescribeMacro{\contentsname\{\}}
-% \DescribeMacro{\listfigurename\{\}}
-% \DescribeMacro{\listtablename\{\}}
-% The macros |\contentsname|, |\listfigurename| and |\listtablename| may
-% be used to change the caption for Table of Contents, List of Figures
-% and List of Tables, respectively. By default, they are named as |CONTENTS|,
-% |FIGURES| and |TABLES|. If different titles are desired, note that the
-% Graduate School requires that these be in all caps, and that ensuring that
-% this is so is your responsibility.
-%
-% \subsection{List of symbols}
-% \DescribeEnv{symbols}
-% The \textsf{symbols} environment is useful in
-% formatting the list of symbols/abbreviations used in your work. It
-% takes an optional argument specifying the desired format, e.g.
-% |\begin{symbols}[cl]| for first column centered and the next column
-% aligned left. By default, the first column will be right aligned and
-% the second column will be left aligned. You may use any of the standard
-% |tabular| column alignment options.
-% \DescribeMacro{\symbolsname\{\}} As earlier, the
-% caption for the list of symbols can be changed by using the
-% |\symbolsname| macro. Default name: |SYMBOLS|. Also as earlier, this
-% title must be capitalized, and it is your responsibility to do this.
-%
-% \DescribeMacro{\sym\{\}\{\}}
-% Another macro |\sym|\marg{symbol}\marg{definition} makes the task of
-% entering the symbols and their meanings in the \textsf{symbols}
-% environment easier. |\sym| takes two arguments - first, a math
-% ``object'' and second, assumed to be the plain text describing the
-% symbol. Any plain text in the first argument needs to be set with
-% |\mathrm{..}| and any math symbol in the second needs to placed in
-% |$..$|.  Example: |\sym{\beta_\mathrm{norm}}{Definition for $\beta$}|
-%
-% \subsection{Preface}
-% \DescribeEnv{preface}
-% \DescribeMacro{\prefacename\{\}}
-% An environment \textsf{preface} is provided for formatting the preface to the
-% document.  The name of this \emph{chapter} may be changed by |\prefacename|
-% macro; as usual, it must be in all caps, and doing this is your responsibility.
-% Default name: |PREFACE|.
-%
-% \subsection{Acknowledgments}
-% \DescribeEnv{acknowledgments}
-% \DescribeMacro{\acknowledgename\{\}}
-% The environment \textsf{acknowledgments} is used to format the
-% acknowledgment \emph{chapter}. As above |\acknowledgename| macro may be used
-% to change the title name; as usual, it must be in all caps, and doing this
-% is your responsibility. Default name: |ACKNOWLEDGMENTS|.
-%
-% \subsection{Text}
-% \DescribeMacro{\mainmatter}
-% Use the macro |\mainmatter| at the beginning of the text sections i.e.
-% all text matter should follow this macro as in the {\sffamily book}
-% class. The text is formatted in |\normalspacing| i.e. double-spacing.
-% The pages are numbered in |plain| pagestyle such that the page numbers
-% are centered in the bottom. The |chapter| titles can be multi-line,
-% and if so are formatted doubly spaced.
-%
-% \DescribeMacro{\unnumchapter\{\}}
-% Use the macro |\unnumchapter| to create to create unnumbered chapters that
-% appear in the TOC. Don't forget that chapter names should be in all caps!
-%
-% \subsection{Appendix}
-% \DescribeMacro{\appendix}
-% As in the \textsf{book} class, use the |\appendix| to mark the
-% end of the last chapter in the main section and the start of the
-% appendices. To begin an appendix, using a |\chapter|\marg{title}
-% macro. Appendices will be automatically ``numbered'' alphabetically.
-%
-% \subsection{Backmatter}
-% \DescribeMacro{\backmatter}
-% This macro separates the bibliography, index
-% and glossary from the main matter and any appendices.
-%
-% \subsection{Bibliography} \DescribeMacro{\bibliography}
-% You may use the |\bibliography|\marg{bibfile} macro to generate the
-% bibliography with \BibTeX\/. In order to use the
-% \BibTeX\/ path for generating the bibliography, you needs to have
-% all the bibliographic data in \BibTeX\/  files. You should
-% refer to \BibTeX\/ manual for details about making a |.bib| file
-% and format for the entries.
-%
-% \DescribeMacro{\bibname\{\}} The default name for this \emph{chapter} is
-% |BIBLIOGRAPHY|. You may change it by using the macro command
-% |\bibname|\marg{newbibname}. It must be in all caps, and it is your
-% responsibility to do this.
-%
-% \DescribeEnv{thebibliography}
-% Alternatively, you can also make your own bibliography by using
-% {\sffamily thebibliography} environment. In this case, you would have
-% to write the reference entries in the right format in your |.tex| source
-% file itself. If you are using the |textrefs| option, you'll need to
-% consult the \textsf{natbib} manual to ensure that you enter your entries in
-% the format required by the package.
-%
-% For citing references in the text, the package \textsf{natbib} is
-% included with options: \texttt{numbers,sort\&compress} (|numrefs| option) or
-% \texttt{authoryear,sort} (|textrefs| option). The package \textsf{natbib} is a
-% fantastic package that has numerous macros for \emph{citing} in different ways.
-% Sameer recommends reading its documentation.
-%
-% \textbf{Warning:} The packages \textsf{cite} and \textsf{citation} are
-% NOT compatible
-% with the \textsf{natbib} package, and they must not be used.
-%
-% \section{Note for the authors}
-% \label{sec:author}
-% As noted earlier, the dissertation author must make sure that the
-% following conditions are met in order to generate a dissertation
-% acceptable by the Graduate School:
-%
-% \begin{itemize}
-% 	\item List of Figures should be \emph{before} List of Tables, i.e. the
-% 				macro command |\listoffigures| comes before |\listoftables| in the
-% 				frontmatter.
-% 	\item Chapter titles need to be written in ALL CAPS.
-% 	\item Table caption must be \emph{above} the table, but the figure
-% 				caption should be \emph{below} it.
-% 				In case of the \textsf{table} environment, this can be achieved by
-% 				putting |\caption| before you include the table (e.g. in a \textsf{
-% 				tabular} environment). In the \textsf{figure} environment, |\caption|
-% 				goes after the |\includegraphics| macro command.
-% 	\item Table captions need to be in ALL CAPS as well.
-% 	\item Bibliography is the last section/chapter of the thesis.\footnote{Except
-%				 	if you are using \emph{chapter-wise} bibliography}
-% \end{itemize}
-%
-% \subsection{Chapter-wise bibliography}
-% It is now possible to obtain bibliography as a section in each chapter
-% (as is common in some departments esp.\/ humanities) with some minor code
-% implementation in the |.tex| files. To do this you have to load the
-% package \textsf{chapterbib} (without any options)
-% in the preamble of your main tex file and
-% redefine some commands as below -
-% \begin{verbatim}
-% %% Main source file %%
-% \documentclass[...]{nddiss2e}
-% \usepackage{chapterbib}
-% \renewcommand{\bibname}{Cited works}
-% \renewcommand{\bibsection}{\section{\bibname}}
-% ...
-% \begin{document}
-% \include{chptr1}
-% ...
-% \include{appndx}
-% \end{document}
-% \end{verbatim}
-%
-% In such a case, you must separate the chapters or sections in
-% which you want individual bibliographies in different files and \emph{include}
-% them in the main file as above. Each such |\include|d file must contain
-% its own |\bibliographystyle{nddiss2e}| and |\bibliography{...}| command at
-% an appropriate position. There should not be any bibliographic commands in
-% the main source file.
-%
-% After compiling the main tex file once (with |latex| or
-% |pdflatex|)\footnote{This creates |.aux| files which are needed by |bibtex|},
-% you would have to run |bibtex| on each of the separate files to obtain a |.bbl|
-% for each file. The remaining steps are the same as for a normal |.tex| file.
-%
-% You can find more details of this in % the \textsf{natbib} manual (|natbib.pdf|)
-% in the |TEXMF| tree.
-%
-% \subsection{Tips and suggestions}
-% \label{subsec:tips}
-% \begin{itemize}
-%		\item It is \emph{strongly} recommended that you compile your document with
-%					pdf\LaTeX. Compiling to dvi or ps first may result in ``fuzzy'' fonts
-%					when viewing the document on your screen. Additionally, the benefits
-%					of |hyperref| and |pdflscape| are only available if you compile using
-%         pdf\LaTeX.
-% 	\item Use the |\toprule|, |\midrule| and |\bottomrule| macro commands (from the
-% 				\textsf{booktabs} package) in the tables for generating the appropriate
-%					horizontal rules. Use of vertical rules to separate columns in tables, is
-%					in general, bad style and should be avoided as much as possible.
-% 	\item Use the \textsf{longtable} environment for handling very long
-% 				tabular materials. Again, use the vertical rules only if very necessary.
-% \begin{verbatim}
-% \begin{longtable}{lc}
-% \caption[]{LONG TABLE CAPTION \label{tab:longtable} }
-% \toprule
-% Heading 1 & Heading 2 \\
-% \midrule
-% \endfirsthead
-% \caption[]{ \emph{Continued} } \\
-% \midrule
-% Heading 1 & Heading 2 \\
-% \midrule
-% \endhead
-% \endfoot
-% \bottomrule
-% \endlastfoot
-% % Now the tabular material %
-% Long & Table etc. \\
-% \end{longtable}
-% \end{verbatim}
-% 	\item If a figure/table is very wide and will not fit normally,
-% 				use the \textsf{landscape} environment (from the included
-% 				\textsf{lscape} package) to format them in \emph{landscape}
-%					mode. They will automatically appear on a separate page. If you
-%					use pdf\LaTeX\/ to compile your document, then the included
-%					\textsf{pdflscape} package will flip this page on the screen
-%         for easier reading.
-% 				The \textsf{sidewaystable} environment (from the included
-%					\textsf{rotating} package) is incompatible with the current
-% 				class and must be avoided.
-% 	\item Usually the width of the figure/table captions is 90\% of the textwidth
-% 				(i.e. |0.9\textwidth|), but if needed can be changed as per the following:
-% 				\begin{itemize}
-% 					\item Use a \textsf{minipage} environment of appropriate width and enclose
-% 								your tabular or figure float inside it, or
-% 					\item set the |\capwidth| inside the \textsf{table} or the \textsf{figure}
-% 								environment, and |\LTcapwidth| \emph{outside} the \textsf{
-% 								longtable} environment, e.g.,\\[\baselineskip]
-% \begin{minipage}{0.5\textwidth}
-% \begin{verbatim}
-% \begin{table}[H]
-% \setlength{\capwidth}{0.8\textwidth}
-% \centering
-% \caption{TABLE CAP\label{tab:this}}
-% \begin{tabular}{lc}
-% ...
-% \end{tabular}
-% \end{table}
-% \end{verbatim}
-% \end{minipage}
-% \begin{minipage}{0.5\textwidth}
-% \begin{verbatim}
-% \setlength{\LTcapwidth}{6in}
-% \begin{longtable}{lccc}
-% ...
-% \end{\longtable}
-% \end{verbatim}
-% \end{minipage}
-% 				\end{itemize}
-% 	\item Use \textsf{tabularx} environment for the actual formatting
-% 				of the tables (within the \textsf{table} environment). It differs
-% 				slightly from \textsf{tabular} environment and you should refer to
-% 				their documentation in the |TEXMF| tree for more information.
-% 	\item If you've used a \textsf{longtable} environment in your document,
-% 				it might be necessary to compile the document multiple times so as to
-%					get proper alignment of columns. This is documented in the
-%					\textsf{longtable} manual.
-% 	\item If you wish to use |\footnotes| in the \textsf{longtable} environment,
-% 				please read its documentation. There are some handicaps present.
-% 	\item A new macro command |\subsubsection| (self-explanatory) has been defined.
-% 				It is numbered as |3.2.1.4| in the TOC\footnote{Megan thinks that
-%					this is a standard command in Spring 2013, but is leaving
-%         Sameer's original note here in case she is wrong}.
-% 	\item To cite a website in your bibliography\footnote{More info at
-% 				\url{http://www.tex.ac.uk/cgi-bin/texfaq2html?label=citeURL}}, use the
-% 				following format in your |.bib| file:
-%  \begin{verbatim}
-%      @Misc{fairley2000,
-%      author =       "N. Fairley",
-%      title =        "Casa{XPS} {VAMAS} processing software",
-%      howpublished = "Website",
-%      note =         "\url{http://www.casaxps.com}",
-%      }
-%  \end{verbatim} This when processed with the |nddiss2e.bst| citation style file
-% 				gives:\newline
-% 				111. N. Fairley. CasaXPS VAMAS processing software. Website.
-% 				\url{http://www.casaxps.com}.\newline
-% \end{itemize}
-%
-% \subsection{You found errors?}
-% If you find some errors in formatting of your document, most likely these are
-% NOT due to the \nddiss\/ class, but due to either wrongly used
-% commands/macros or conflicting commands/macros in a package that you might
-% have used ie.\/ a mistake from your side. Please verify that before
-% contacting anyone regarding the class file.
-%
-% Read the manuals for the packages that you might have used and find out if
-% they have macro commands that modify the page-layout, spacing etc.\/ or if
-% they conflict with already defined commands (e.g.\/ packages
-% \textsf{natbib} and
-% \textsf{cite} redefine the same command |\cite| in different ways). Sameer
-% would suggest that you \emph{read the manuals anyway}! It is a good practice.
-%
-% In the possible scenario that you
-% have found a significant error, please try to find out the source of the
-% error and, even better, a possible alternative, and please
-% report it to the Graduate School's reviewer(s). It would also be great, if
-% you try to find a solution for the problem and inform them of that as well.
-% Please also let them know if you find this documentation confusing or misleading
-% or if any mistakes are present.
-%
-% Your doing so will ensure that the reviwer(s) are aware of the problem and
-% its possible solutions and they can give better answers to the people who
-% might encounter similar problems. It will also help making the future
-% versions of the class file better.
-%
-% \section{Example}
-% Below is a basic |.tex| sample.
-% A file called |template.tex|\footnote{Most likely present in the same
-% directory as |nddiss2e.cls| e.g.\/ in |TEXMF/tex/latex/nddiss2e/|}
-% is generated from |nddiss2e.ins| which might serve as a guide for
-% your document. The |example| directory contains a mock thesis modified
-% from the \textsf{ndthesis} class file and should also be helpful.
-% \begin{verbatim}
-% \documentclass[numrefs,final]{nddiss2e}
-%
-% \begin{document}
-%
-% \frontmatter
-%
-% \title{}
-% \author{}
-% \work{Dissertation}
-% \degaward{Doctor of Philosophy}
-% \advisor{}
-% \department{}
-% \maketitle
-% \makepublicdomain
-%
-% \begin{abstract}
-% Abstract here
-% \end{abstract}
-% \renewcommand{\dedicationname}{\mbox{}}% Empty dedication title
-% \begin{dedication}
-% For Someone
-% \end{dedication}
-%
-% \tableofcontents
-% \listoffigures
-% \listoftables
-%
-% \begin{preface}
-% Preface here
-% \end{preface}
-% \begin{acknowledge}
-% Thanks to everyone
-% \end{acknowledge}
-% \begin{symbols}
-% \sym{a}{definition of a}
-% \end{symbol}
-%
-% \mainmatter
-%
-% \chapter{One} % Chapter 1
-% All the text ...
-%
-% \appendix
-% \chapter{Additional data} % Appendix A
-%
-% \backmatter
-% \bibliographystyle{nddiss2e}
-% \bibliography{bibdatabase}
-%
-% \end{document}
-% \end{verbatim}
 %
 %
 %
@@ -911,13 +861,13 @@
 %    \end{macrocode}
 % \fi
 %    \begin{macrocode}
-    [2013/04/16 v3.2013^^J%
+    [2013/04/16 v3.2013%
 %    \end{macrocode}
 % \iffalse
 %<*class>
 % \fi
 %    \begin{macrocode}
-     Notre Dame Dissertation document class by Sameer Vijay and updated by Megan Patnott^^J]
+     Notre Dame Dissertation document class by Sameer Vijay and updated by Megan Patnott]
 %
 %    \end{macrocode}
 % \begin{macro}{\dissfileversion}
@@ -936,7 +886,7 @@
 % \fi
 % \iffalse (Don't show this in the doc).
 %    \begin{macrocode}
-%<template>     Template file for NDdiss2e class by Sameer Vijay and updated by Megan Patnott^^J]
+%<template>     Template file for NDdiss2e class by Sameer Vijay and updated by Megan Patnott]
 %    \end{macrocode}
 % \fi
 % \iffalse
@@ -2329,18 +2279,19 @@
 
 \frontmatter         % All the items before Chapter 1 go in ``frontmatter''
 
-\title{ }            % TITLE OF WORK. It must be in all caps, and ensuring this is your
-										 % responsiblity.
-\author{ }           % Author's name
-\work{ }             % ``Dissertation'' or ``Thesis''
-\degaward{ }         % Degree you're aiming for. Should be one of the following options:
-										 % ``Doctor of Philosophy'' (do NOT include ``in Subject'')
-										 % ``Master of Science // in // Subject''
-\advisor{ }          % Advisor's name
- % \secondadvisor{ } % Second advisor, if used option ``twoadvisors''
-\department{ }       % Name of the department
+\title{ TITLE OF WORK } % It must be in all caps, and ensuring this is your responsiblity.
 
-\maketitle           % The title page is created now
+\author{ Jane Doe }      % Author's name
+\work{ Dissertation }    % ``Dissertation'' or ``Thesis''
+\degaward{ Doctor of Philosophy }  % Degree you're aiming for.
+                                   % Should be one of the following options:
+                                   % ``Doctor of Philosophy'' (do NOT include ``in Subject'')
+                                   % ``Master of Science \\ in \\ Subject''
+\advisor{ John Public }  % Advisor's name
+ % \secondadvisor{ }     % Second advisor, if used option ``twoadvisors''
+\department{ }           % Name of the department
+
+\maketitle               % The title page is created now
 
  % You must use either the \makecopyright option or the \makepublicdomain option.
  % \copyrightholder{ } % If you're not the copyright holder
@@ -2353,13 +2304,13 @@
  % doctoral dissertation.
  % \begin{abstract}
  % \end{abstract}
- %                         % Either place the text between begin/end, or
+ %                     % Either place the text between begin/end, or
  % \include{abstract}  % put it in a file to be included
 
  % Including a dedication is optional.
  % \renewcommand{\dedicationname}{\mbox{}} % Replace \mbox{} if you want
                                            % something else. It must be in
-                                           % all caps, and doing so is your
+                                           % ALL CAPS, and doing so is your
                                            % responsibility.
  % \begin{dedication}
  % \end{dedication}
@@ -2412,7 +2363,7 @@
 \appendix
 
  % If you have appendices, add them here.
- % Begin each one with \chapter{TITLE} as before- the \appendix command takes
+ % Begin each one with \chapter{TITLE} as before. The \appendix command takes
  % care of renaming chapter headings and creates a new page in the Table of
  % Contents for them.
  % \include{appendix-one}
