@@ -301,9 +301,8 @@
 % only sorts ``author-date'' style references.
 %
 % Since the same set of packages and
-% style files result in differing citation formats, it is \emph{strongly}
-% suggested that you
-% refer to the documentation |natnotes.dvi| in your |TEXMF| tree,
+% style files result in differing citation formats,
+% refer to the documentation for |natnotes.dvi| in your |TEXMF| tree,
 % to be aware of the
 % various ways in which you can make a citation in your text.
 %
@@ -336,7 +335,7 @@
 % Usually you would not need to use this option since the default layout of the
 % |bibliography| is acceptable.
 %
-% \section{Arrangement of contents}
+% \section{Arrangement of Contents}
 %
 % A dissertation or a thesis document contains the following parts,
 % in the order listed. Only those marked as optional may be omitted.
@@ -360,7 +359,7 @@
 % The macros and environments described below ease the formatting of these
 % parts.
 %
-% \subsection{Title page}
+% \subsection{Title Page}
 % \label{subsec:titlepage}
 %
 % \DescribeMacro{\maketitle}
@@ -397,7 +396,7 @@
 %         declare this, the current month/year will be used.
 % \end{itemize}
 %
-% \subsection{Copyright page}
+% \subsection{Copyright Page}
 % \DescribeMacro{\makecopyright}
 % \DescribeMacro{\copyrightholder\{\}}
 % \DescribeMacro{\copyrightyear\{\}}
@@ -416,7 +415,7 @@
 % does \emph{not} place your dissertaion in the public domain, you must
 % declare it as such explicitly.
 %
-% \subsection{Abstract page(s)}
+% \subsection{Abstract Page(s)}
 % \DescribeEnv{abstract}
 % The abstract text should be placed between
 % |\begin{abstract}| and |\end{abstract}|.
@@ -441,7 +440,7 @@
 % dedication page. Default name: |\mbox{}| i.e.\/ an empty title.
 % You probably don't need to change it. If you do, make sure it is ALL CAPS.
 %
-% \subsection{Table of contents and Lists of Figures and Tables}
+% \subsection{Table of Contents; Lists of Figures and Tables}
 % \DescribeMacro{\tableofcontents}
 % \DescribeMacro{\listoffigures}
 % \DescribeMacro{\listoftables}
@@ -458,7 +457,7 @@
 % You probably don't need to change them.
 % If you do, make sure the replacements are ALL CAPS.
 %
-% \subsection{List of symbols}
+% \subsection{List of Symbols}
 % \DescribeEnv{symbols}
 % The list of symbols is optional.
 % Use the \textsf{symbols} envrionment to format a list of
@@ -560,7 +559,7 @@
 % Default name: |BIBLIOGRAPHY|.
 % If you do change it, make sure the replacement is in ALL CAPS.
 %
-% \subsection{Chapter-wise bibliography}
+% \subsection{Chapter-wise Bibliography}
 % By default the bibliography appears at the end of your work and contains
 % all the references from the entire entity.
 % If you need to have a separate bibliography for each chapter,
@@ -596,7 +595,7 @@
 %
 % You can find more details of this in the \textsf{natbib} manual.
 %
-% \section{Note for the authors}
+% \section{Note For Authors}
 % \label{sec:author}
 % The dissertation author must make sure that the
 % following conditions are met in order to generate a dissertation
@@ -616,10 +615,10 @@
 %         In the \textsf{figure} environment, the |\caption| goes after
 %         the |\includegraphics| macro command.
 %   \item The bibliography is the last section/chapter of the thesis---unless
-          you are using the \emph{chapter-wise} bibliography.
+%         you are using the \emph{chapter-wise} bibliography.
 % \end{itemize}
 %
-% \subsection{Tips and suggestions}
+% \subsection{Tips and Suggestions}
 % \label{subsec:tips}
 % \begin{itemize}
 %    \item It is \emph{strongly} recommended that you compile your document with
@@ -718,33 +717,24 @@
 %         \url{http://www.casaxps.com}.\newline
 % \end{itemize}
 %
-% \subsection{You found errors?}
-% If you find some errors in formatting of your document, most likely these are
-% NOT due to the \nddiss\/ class, but due to either wrongly used
-% commands/macros or conflicting commands/macros in a package that you might
-% have used ie.\/ a mistake from your side. Please verify that before
-% contacting anyone regarding the class file.
+% \subsection{You Found Errors?}
+% Errors in a \LaTeX\/ document are to be expected.
+% If you have a problem that is that seems to be more than a typo or
+% unbalanced brace, it is possible that there is a conflict between
+% the packages you have included and those that \nddiss\/ uses.
+% If you find yourself in that situtation, there is a mailing list
+% for handling support issues with \nddiss\/. 
+% Look through the archive, and if there are no answers, please
+% send an email to \url{ND-LATEX-USERS@listserv.nd.edu} (registration required).
+% The more effort you spend in isolating the problem or in troubleshooting
+% will make it more likely that others can reproduce the problem and help
+% you solve it.
+% Also if you have a problem that you then solve, please also email the list.
+% Your doing so will help the next person to have that problem, and will
+% also make the maintainers aware of it, so future versions of the class file
+% can be better.
 %
-% Read the manuals for the packages that you might have used and find out if
-% they have macro commands that modify the page-layout, spacing etc.\/ or if
-% they conflict with already defined commands (e.g.\/ packages
-% \textsf{natbib} and
-% \textsf{cite} redefine the same command |\cite| in different ways).
-%
-% In the possible scenario that you
-% have found a significant error, please try to find out the source of the
-% error and, even better, a possible alternative, and please
-% report it to the Graduate School's reviewer(s). It would also be great, if
-% you try to find a solution for the problem and inform them of that as well.
-% Please also let them know if you find this documentation confusing or misleading
-% or if any mistakes are present.
-%
-% Your doing so will ensure that the reviewer(s) are aware of the problem and
-% its possible solutions and they can give better answers to the people who
-% might encounter similar problems. It will also help making the future
-% versions of the class file better.
-%
-% \section{Features}
+% \section{Other Packages Used}
 % \label{sec:features}
 %
 % A number of packages are required by default and must be present in your
@@ -861,13 +851,13 @@
 %    \end{macrocode}
 % \fi
 %    \begin{macrocode}
-    [2013/04/16 v3.2013%
+    [2016/10/16 v3.2016%
 %    \end{macrocode}
 % \iffalse
 %<*class>
 % \fi
 %    \begin{macrocode}
-     Notre Dame Dissertation document class by Sameer Vijay and updated by Megan Patnott]
+     Notre Dame Dissertation document class]
 %
 %    \end{macrocode}
 % \begin{macro}{\dissfileversion}
@@ -875,8 +865,8 @@
 % The |\dissfileversion| and |\dissfiledate| macros contain the version and the date
 % of the release.
 %    \begin{macrocode}
-\providecommand{\dissfileversion}{3.2013}
-\providecommand{\dissfiledate}{2013/04/16}
+\providecommand{\dissfileversion}{3.2016}
+\providecommand{\dissfiledate}{2016/10/16}
 %
 %    \end{macrocode}
 % \end{macro}
@@ -886,7 +876,7 @@
 % \fi
 % \iffalse (Don't show this in the doc).
 %    \begin{macrocode}
-%<template>     Template file for NDdiss2e class by Sameer Vijay and updated by Megan Patnott]
+%<template>     Template file for NDdiss2e class]
 %    \end{macrocode}
 % \fi
 % \iffalse
@@ -1313,8 +1303,8 @@
     \normalsize\normalfont
     \nddiss\ documentation can be found at these locations:
   \begin{center}
-    \url{http://www.gsu.nd.edu}\\
-    \url{http://graduateschool.nd.edu}
+    \url{http://graduateschool.nd.edu} \\
+    \url{https://ctan.org/pkg/nddiss}
   \end{center}
 
 \vfill
@@ -2242,8 +2232,7 @@
     \centering \itshape This document was prepared \& typeset with
     \upshape\ifpdf pdf\LaTeX\else\LaTeXe\fi\itshape , and
     formatted with \upshape\nddiss\xspace\itshape classfile
-    (v\dissfileversion [\dissfiledate]) provided by Sameer Vijay and
-    updated by Megan Patnott.
+    (v\dissfileversion [\dissfiledate])
     \end{minipage} }
     \clearpage}
 \else\relax\fi
@@ -2277,9 +2266,9 @@
                      %           is identical to sort when used with textrefs)
 \begin{document}
 
-\frontmatter         % All the items before Chapter 1 go in ``frontmatter''
+\frontmatter             % All the items before Chapter 1 go in ``frontmatter''
 
-\title{ TITLE OF WORK } % It must be in all caps, and ensuring this is your responsiblity.
+\title{ TITLE OF WORK }  % It must be in all caps, and ensuring this is your responsiblity.
 
 \author{ Jane Doe }      % Author's name
 \work{ Dissertation }    % ``Dissertation'' or ``Thesis''
@@ -2294,18 +2283,18 @@
 \maketitle               % The title page is created now
 
  % You must use either the \makecopyright option or the \makepublicdomain option.
- % \copyrightholder{ } % If you're not the copyright holder
- % \copyrightyear{ }   % If the copyright is not for the current year
- % \makecopyright      % If not making your work public domain
-                       % uncomment out \makecopyright
- % \makepublicdomain   % Uncomment this to make your work public domain
+ % \copyrightholder{ }   % If you're not the copyright holder
+ % \copyrightyear{ }     % If the copyright is not for the current year
+ % \makecopyright        % If not making your work public domain
+                         % uncomment out \makecopyright
+ % \makepublicdomain     % Uncomment this to make your work public domain
 
  % Including an abstract is optional for a master's thesis, and required for a
  % doctoral dissertation.
  % \begin{abstract}
  % \end{abstract}
- %                     % Either place the text between begin/end, or
- % \include{abstract}  % put it in a file to be included
+ %                       % Either place the text between begin/end, or
+ % \include{abstract}    % put it in a file to be included
 
  % Including a dedication is optional.
  % \renewcommand{\dedicationname}{\mbox{}} % Replace \mbox{} if you want
