@@ -13,7 +13,7 @@
 % \fi
 %
 %
-%  \CheckSum{1411}
+%  \CheckSum{1418}
 %  \CharacterTable
 %   {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %    Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -1587,8 +1587,10 @@
 %    \begin{macrocode}
 \newcommand{\@copyrightyear}{\year}
 \newcommand{\@copyrightholder}{\@author}
+\newcommand{\@copyrightlicense}{All Rights Reserved}
 \newcommand{\copyrightyear}[1]{\renewcommand{\@copyrightyear}{#1}}
 \newcommand{\copyrightholder}[1]{\renewcommand{\@copyrightholder}{#1}}
+\newcommand{\copyrightlicense}[1]{\renewcommand{\@copyrightlicense}{#1}}
 %
 %    \end{macrocode}
 % \end{macro}
@@ -1604,7 +1606,7 @@
     \copyright\space Copyright by \\
     \@copyrightholder \\
     \@copyrightyear\\
-    All Rights Reserved \\[10mm]
+    \@copyrightlicense \\[10mm]
     \end{copyrightpage}
   \fi
 }%
