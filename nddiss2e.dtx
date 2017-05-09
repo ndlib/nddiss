@@ -13,7 +13,7 @@
 % \fi
 %
 %
-%  \CheckSum{1427}
+%  \CheckSum{1432}
 %  \CharacterTable
 %   {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %    Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -61,8 +61,8 @@
 \DeclareRobustCommand{\nddiss}{%
          \textsf{{\scshape nd}diss}\kern-0.03em%
          2$_\mathsf{\textstyle\varepsilon}$}
-\providecommand{\dissfileversion}{3.2016}
-\providecommand{\dissfiledate}{2016-10-16}
+\providecommand{\dissfileversion}{3.2017.1}
+\providecommand{\dissfiledate}{2017-05-09}
 \DisableCrossrefs
 \CodelineNumbered
 \RecordChanges
@@ -1111,6 +1111,12 @@
 %    \begin{macrocode}
 \RequirePackage{ifthen,exscale}
 \RequirePackage{ifpdf}
+\ifpdf\else
+  \ClassError{nddiss2e}{%
+      PDF Output is required to support the PDF/A format.
+  }{DVI output is not supported. Use pdflatex to generate the dissertation.}
+\fi
+\RequirePackage[a-2b]{pdfx}
 \RequirePackage{longtable}
 \RequirePackage{xspace}
 \RequirePackage{indentfirst}
@@ -1183,7 +1189,8 @@
 \RequirePackage[doublespacing]{setspace}[2000/12/01]
 \ifpdf
   \RequirePackage{pdflscape}
-  \RequirePackage[pdftex,
+  % cannot use RequirePackage since pdfx also includes hyperref
+  \hypersetup{pdftex,
             plainpages=false,
             pdfpagelabels,
             bookmarks=true,%
@@ -1192,7 +1199,7 @@
             breaklinks=true,%
             bookmarkstype=toc,%
             colorlinks=false,%
-            pdfpagemode=UseOutlines]{hyperref}
+            pdfpagemode=UseOutlines}
 \fi
 }
 %

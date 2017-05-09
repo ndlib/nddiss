@@ -15,6 +15,7 @@ nddiss/*
 *.out
 *.swp
 *.toc
+*.xmpi
 template.tex
 nddiss2e.cls
 nddiss2e.pdf
