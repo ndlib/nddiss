@@ -41,8 +41,8 @@ nddiss2e.pdf: nddiss2e.dtx
 	latex $<
 	pdflatex $<
 
-nddiss2e.cls template.tex: nddiss2e.ins
-	latex $<
+nddiss2e.cls template.tex: nddiss2e.ins nddiss2e.dtx
+	latex nddiss2e.ins
 
 dist: AdvDistribution.zip StandDistribution.zip ctan.zip
 
