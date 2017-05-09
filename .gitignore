@@ -13,6 +13,7 @@ nddiss/*
 *.log
 *.lot
 *.out
+*.swp
 *.toc
 template.tex
 nddiss2e.cls
