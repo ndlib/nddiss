@@ -9,9 +9,14 @@ nddiss/*
 *.glo
 *.gls
 *.ilg
+*.lof
 *.log
+*.lot
 *.out
-*.pdf
 *.toc
 template.tex
 nddiss2e.cls
+nddiss2e.pdf
+template.pdf
+example/example.pdf
+*.DS_Store

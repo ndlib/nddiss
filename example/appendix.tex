@@ -1,0 +1,124 @@
+%
+% Modified by Sameer Vijay
+% Last Change: Wed Jul 27 2005 13:00 CEST
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Sample Notre Dame Thesis/Dissertation
+% Using Donald Peterson's ndthesis classfile
+%
+% Written by Jeff Squyres and Don Peterson
+%
+% Provided by the Information Technology Committee of
+%   the Graduate Student Union
+%   http://www.gsu.nd.edu/
+%
+% Nothing in this document is serious except the format.  :-)
+%
+% If you have any suggestions, comments, questions, please send e-mail
+% to: ndthesis@gsu.nd.edu
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Appendix
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{GNU GENERALISMS}
+
+\section{Definitions}
+
+Several definitions are presented in Table~\ref{tbl:defs} to show both
+how to do rotated, line-spanning tables, as well as to define some
+commonly used Gnu terms.
+
+\begin{landscape}
+\begin{table}
+\centering
+\caption{COMMONLY USED Gnu TERMS \label{tbl:defs}}
+\begin{tabular}{lp{5in}}
+\toprule
+Term & \multicolumn{1}{c}{Definition} \\
+\midrule
+Gnu & Small furry animal that is related to the squirrel 
+(although they won't admit it). \\
+LoG & Abbreviation for the ``Leader of Gnus''.  See
+Chapter~\ref{chap:golfing}. \\
+Twizzlers & Red, twisty candy that is among the most favorite of Gnu
+foods.  Gnus frequently appear overly cute and friendly to humans
+bearing twizzler packages.  This is known as ``trolling for twizzlers''
+among the Gnus. \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{landscape}
+
+Finally, Table~\ref{tbl:rotated-rankings} shows the top ten Gnus from
+Table~\ref{tbl:votes} ranked in order by their aggregate score (along
+with some of the raters' comments).  This follows a long-standing Gnu
+tradition of self-improvement through public announcement of score
+(which some associate with military
+origins~\citep{galmira98:_gnus_milit}).  Indeed, this very table has
+been observed in the Gnu lodge where it was posted for peer review
+\citep{gairley2000}.
+
+
+\begin{landscape}
+% set the caption width to be somewhat short since our table is narrow
+% Notice the special commands that we use here to get the right line in the
+% table.  Using \hrule is *not* the Right Thing to do here -- use
+% \cmidrule.  We use the LaTeX \newcommand simply for convenience.
+%
+% The longtable package does some nasty voodoo to make \hline work OK.
+% So on with the goods
+\setlength\LTcapwidth{4.5in}
+\begin{longtable}{lcp{4.5in}}
+% Note that after the caption line we remove 2em worth of space but in the
+% longtable of Chapter 2 we only remove 1em.  This is because a normal 
+% \toprule has no space above it, but here we are using cmidrule which does 
+% have padding above which we must account for.
+  \caption{TOP TEN Gnus FROM TABLE~\protect\ref{tbl:votes} WITH REVIEWER
+    COMMENTS. Gnus ARE LISTED BELOW IN ALPHABETIC ORDER. \label{tbl:rotated-rankings} }\\
+  \toprule
+  Candidate & Aggregate score & \multicolumn{1}{c}{Reviewer Comments}\\
+  \midrule
+\endfirsthead
+  \caption[]{{\em Continued}} \\  % Just like in Chp. 2
+  \midrule
+  Candidate & Aggregate score & \multicolumn{1}{c}{Reviewer Comments}\\
+  \midrule
+\endhead
+\endfoot
+  \bottomrule
+\endlastfoot
+George & 7.6 & George is an excellent candidate for the LoG.
+  Slightly low C, but hopefully, this 7.6 will be high enough! \\
+Glen & 7.2 & A little weak on AM and Fr, but good scores overall.  One
+  or two more years of experience should be enough. \\
+Goldie & 7.0 & Dismal score in Fr; suspect it had something to do with
+  strenuous weight loss program this past year. \\
+Gillian & 6.9 & Excellent C, but a little shabby on the Fu.  Suggest
+  more roughage. \\
+Gibby & 6.9 & Reasonable scores, but need to work on Fr.  Gibby is
+  definitely not a morning Gnu. \\ 
+Genaveve & 6.5 & Very low Fr; perhaps more coffee?  Suggest practicing
+  ``cute faces'' in the mirror several hours per day.  \\
+Giovani & 6.2 & Very low Fr; suspect hanging out with Genaveve too
+  much. \\
+Gina & 6.2 & Mediochre Fu, somewhat low AM.  Perhaps a future in
+  marketing or advertising? \\
+Garrick & 6.2 & Fairly low AM.  Fu could be better as well; buy a
+  comb.  And a mirror.  Immediately.  \\
+Gardenia & 6.0 & Dismal AM; very low Fu.  Seems to care more about
+  meeting agendas than personal appearance. \\
+\end{longtable}
+\end{landscape}
+
+
+% % uncomment the following lines,
+% if using chapter-wise bibliography
+%
+% \bibliographystyle{ndnatbib}
+% \bibliography{example}
