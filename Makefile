@@ -30,15 +30,19 @@ all: nddiss2e.cls nddiss2e.pdf
 clean:
 	rm -rf $(addprefix nddiss2e.,aux glo gls idx ilg ind out toc)
 	rm -rf AdvDistribution StandDistribution nddiss
+	rm -rf AdvDistribution.zip StandDistribution.zip nddiss.zip
+	rm -rf pdfa.xmpi
+	rm -rf $(addprefix template.,aux lof log lot out pdf toc)
 
 real-clean: clean
 	rm -rf $(addprefix nddiss2e.,cls dvi log pdf)
+	rm -rf template.tex
 
 nddiss2e.pdf: nddiss2e.dtx
-	latex $<
-	latex $<
+	pdflatex $<
+	pdflatex $<
 	makeindex -s gglo.ist -o nddiss2e.gls nddiss2e.glo
-	latex $<
+	pdflatex $<
 	pdflatex $<
 
 nddiss2e.cls template.tex: nddiss2e.ins nddiss2e.dtx

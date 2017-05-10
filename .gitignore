@@ -17,8 +17,6 @@ nddiss/*
 *.toc
 *.xmpi
 template.tex
-nddiss2e.cls
-nddiss2e.pdf
 template.pdf
 example/example.pdf
 *.DS_Store

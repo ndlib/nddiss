@@ -4,9 +4,6 @@ nddiss
 `nddiss` is a LaTeX package providing a document class for formatting doctoral
 dissertations submitted to the University of Notre Dame's Graduate School.
 
-The original version, created by Sameer Vijay, follows the Spring 2004 formatting guidelines.
-Later, Megan Patnott updated it to follow the Spring 2013 guidelines.
-
 Copies of this package can be found in many places:
 
  * CTAN: https://ctan.org/pkg/nddiss
@@ -19,78 +16,41 @@ Please send any improvements, suggestions, or bug reports to
  * Don Brower, dbrower@nd.edu
 
 
+# Usage
+
+Easiest way to begin is to start with either the file `example/example.tex` or the template `template.tex`.
+The [manual](nddiss2e.pdf) has a lot more information.
+
+The [example](example) directory contains a sample thesis demonstrating the usage of this package.
+
+[comment]: # (The files are the same as in the `sample_ndthesis.tar.gz` distribution by Jeff Squyeres)
+[comment]: # (and D. A. Peterson, but modified for the nddiss2e class.)
+
+
 # Installation
 
-This class file can be used by students with their
-own TeX installation, and as such does not need to be
-installed in a central file location. One can install it
-in a local TEXMF tree on a Unix home dir, Windows MikTeX
-installation, or a TexLive installation. It must be in a
-path searchable by LaTeX. Alternatively, one can simply put
-the class file in the same folder/directory as one's dissertation.
+The easiest way to install this package is to copy the `nddiss2e.cls` and
+`nddiss2e.bst` files into the same directory as your LaTeX source file.
 
-# Generating the Class File
-
-In what follows, note that `$` is not part of the commands.
-
-To obtain the nddiss2e class file, process the `nddiss2e.ins` through LaTeX.
-In the terminal (the Command Prompt or Run window, on a Windows system) run the command
-
-    $ latex nddiss2e.ins
-
-Note that you need to be in the same folder as `nddiss2e.ins` or use its complete pathname.
-To move to "Folder" in your documents on a Windows system type
-
-    $ cd Documents\Folder
-
-at the prompt after opening the command prompt window.
-
-This will create 2 files - nddiss2e.cls (the classfile) and template.tex (a template file)
-
-To obtain the documentation for the nddiss2e class, it is important that you have the file ltxdoc.cfg in the same directory as nddiss2e.dtx.
-Use the following commands to build the file:
-
-    $ latex nddiss2e.dtx
-    $ latex nddiss2e.dtx
-    $ makeindex -s gglo.ist -o nddiss2e.gls nddiss2e.glo
-    $ makeindex -s gglo.ist -o nddiss2e.ind nddiss2e.idx
-    $ latex nddiss2e.dtx
-
-This will create a dvi file (nddiss2e.dvi) which is the documentation for the nddiss2e classfile.
-If you have pdfTeX installed as well, you can now use the following command to generate a pdf documentation.
-
-    $ pdflatex nddiss2e.dtx
-
-Alternatively, one can use the included `process.sh' shell script to carry out all of Sameer's recommended steps.
-First run
-
-    $ chmod 755 process.sh
-
-to change the permissions, then run
-
-    $ sh process.sh
-
-Note that this will (probably) not work on a Windows system.
+Beware! If seems `nddiss2e` is already installed on your machine, it is
+probably an outdated version from 2005. Please use the current version.
 
 
-# TEXMF TREE
+# This Repository
 
-As mentioned earlier, it is possible to install this class in a
-local TEXMF tree. For e.g. in a Unix environment, it can be
-installed in `~/texmf/tex/latex/nddiss2e/`. The file nddiss2e.bst
-can be installed in `~/texmf/bibtex/bst/base/`.
-Make sure to run `cd ~/texmf; mktexlsr` as well to generate index of the local TEXMF tree.
+The `Makefile` contains all the logic to process the master source file, `nddiss2e.dtx`.
+The `nddiss2e.cls`, `nddiss2e.pdf`, and `template.tex` files are generated from the `dtx` file.
+Run `make` to regenerate everything.
+These derivatives are checked into the repo to make it easier for people to access and download them.
 
-Similarly, other classes and packages can be also installed in the local TEXMF tree.
 
-# Example Thesis
+# Authors
 
-The directory `ExampleDistribution` contains a sample thesis for the purpose of demonstrating
-the usage and output of the various parameters.
-The files are the same as in the `sample_ndthesis.tar.gz` distribution by Jeff Squyeres
-and D. A. Peterson, but modified for the nddiss2e class.
+The original version, created by Sameer Vijay, follows the Spring 2004 formatting guidelines.
+Later, Megan Patnott updated it to follow the Spring 2013 guidelines.
 
-Thanks to D. A. Peterson and others.
+This is based off of the style file created by D. A. Peterson, Jeff Squyeres, and others.
+
 
 # License
 
