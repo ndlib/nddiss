@@ -745,7 +745,7 @@
     #1{\MakeTextUppercase{#2} }\\[\single@skip]
     \MakeTextUppercase{#3}\par
     \else%
-    #1{\MakeTextUppercase{#2} } (CONTINUED)\par
+    #1{\MakeTextUppercase{#2 (continued)} }\par
     \fi
   \global\@ltfirstcaptionfalse
   \endgraf\vskip\belowtableskip}%
