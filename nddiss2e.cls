@@ -109,24 +109,26 @@
 \ProcessOptions\relax
 \LoadClass{book}
 \RequirePackage{ifthen,exscale}
-\RequirePackage{ifpdf}
-\ifpdf\else
+\RequirePackage{ifpdf,ifluatex,ifxetex}
+\ifpdf\else\ifxetex\else\ifluatex\else
   \ClassError{nddiss2e}{%
       PDF Output is required to support the PDF/A format.
   }{DVI output is not supported. Use pdflatex to generate the dissertation.}
-\fi
+\fi\fi\fi
 \RequirePackage[a-2b]{pdfx}
 \RequirePackage{longtable}
+\RequirePackage{threeparttable}
+\RequirePackage[flushleft]{threeparttablex}
 \RequirePackage{xspace}
 \RequirePackage{indentfirst}
 \RequirePackage{tabularx}
 \RequirePackage{enumerate}
 \RequirePackage{latexsym}
-\ifdiss@final\relax\else\RequirePackage{showkeys}\fi
+\RequirePackage{textcase}
 \ifpdf
-  \RequirePackage[pdftex]{epsfig}
-  \RequirePackage[pdftex]{color}
-  \RequirePackage[pdftex]{graphicx}
+  \RequirePackage{epsfig}
+  \RequirePackage{color}
+  \RequirePackage{graphicx}
   \AtBeginDocument{
   \pdfadjustspacing=1
   }
@@ -141,7 +143,7 @@
   \RequirePackage[authoryear]{natbib}
 \fi
 \AtBeginDocument{
-\RequirePackage{amsmath,amssymb}
+\RequirePackage{amsmath}
 \RequirePackage{float}
 \RequirePackage{lscape}
 \RequirePackage{booktabs}
@@ -151,7 +153,7 @@
 \ifpdf
   \RequirePackage{pdflscape}
   % cannot use RequirePackage since pdfx also includes hyperref
-  \hypersetup{pdftex,
+  \hypersetup{
             plainpages=false,
             pdfpagelabels,
             bookmarks=true,%
@@ -163,6 +165,7 @@
             pdfpagemode=UseOutlines}
 \fi
 }
+\RequirePackage{metalogo}
 \AtBeginDocument{
 \pagestyle{plain}
 \normalspacing
@@ -218,7 +221,7 @@
   \thispagestyle{empty}
   \null\vspace*{\single@skip}
   \begin{center}
-    This \@work\space \\ entitled \\ \@title \\
+    This \@work\space \\ entitled \\ \MakeTextUppercase{\@title} \\
         typeset with \nddiss\ v%
       \dissfileversion\ (\dissfiledate) %
       on \today\space for\\
@@ -242,10 +245,6 @@
    this \nddiss\space class file.
    \end{minipage}
    \end{center}
-
-   \noindent It is YOUR responsibility to ensure that the Chapter titles
-   and Table caption titles are put in CAPS LETTERS. This classfile does
-   {\em NOT\space} do that! \\
 
   \noindent\itshape This page can be disabled by
   specifying the ``{\upshape\ttfamily noinfo}'' option to the class invocation.
@@ -303,7 +302,7 @@
    \skip1=1.6\double@skip
  \else\relax
  \fi
- \setbox0=\vbox{\@title}
+ \setbox0=\vbox{\MakeTextUppercase{\@title}}
  \ifdim \ht0 > 3\double@skip
    \advance \skip1 -.75\double@skip
  \else
@@ -347,7 +346,7 @@
   \fi
   \null\vspace*{\skip4}
   \begin{center}%
-    \@title \par%
+    \MakeTextUppercase{\@title} \par%
     \vskip\skip1%
     A \@work \par%
     \vskip\skip1%
@@ -414,19 +413,19 @@
 }%
 \providecommand{\abstractname}{Abstract}
 \providecommand{\dedicationname}{\mbox{}}
-\providecommand{\prefacename}{PREFACE}
-\providecommand{\acknowledgename}{ACKNOWLEDGMENTS}
-\providecommand{\symbolsname}{SYMBOLS}
-\renewcommand{\tablename}{TABLE}
+\providecommand{\prefacename}{Preface}
+\providecommand{\acknowledgename}{Acknowledgments}
+\providecommand{\symbolsname}{Symbols}
+\renewcommand{\tablename}{Table}
 \renewcommand{\figurename}{Figure}
-\renewcommand{\partname}{PART}
-\renewcommand{\chaptername}{CHAPTER}
-\renewcommand{\appendixname}{APPENDIX}
-\renewcommand{\contentsname}{CONTENTS}
-\renewcommand{\listfigurename}{FIGURES}
-\renewcommand{\listtablename}{TABLES}
-\renewcommand{\bibname}{BIBLIOGRAPHY}
-\renewcommand{\indexname}{INDEX}
+\renewcommand{\partname}{Part}
+\renewcommand{\chaptername}{Chapter}
+\renewcommand{\appendixname}{Appendix}
+\renewcommand{\contentsname}{Contents}
+\renewcommand{\listfigurename}{Figures}
+\renewcommand{\listtablename}{Tables}
+\renewcommand{\bibname}{Bibliography}
+\renewcommand{\indexname}{Index}
 \newenvironment{abstract}{%
   \ifpdf
      \pdfbookmark[0]{\abstractname}{abstract}%abstract.0
@@ -441,7 +440,7 @@
   \begin{center}
   \vspace*{36pt}
   {\normalsize\mdseries \normalspacing
-     \@title \\[3.5ex]
+     \MakeTextUppercase{\@title} \\[3.5ex]
      \normalsize\abstractname \\ by \\ \@author\space}%
    \@endparpenalty \@M
    \end{center}\par}%
@@ -506,7 +505,7 @@
   \ifnum \c@secnumdepth >\m@ne
   \if@mainmatter
     \refstepcounter{chapter}%
-    \typeout{\@chapapp\space\thechapter.}%
+    \typeout{\MakeTextUppercase{\@chapapp\space\thechapter.}}%
     \addcontentsline{toc}{chapter}%
       {{\@chapapp\ \thechapter: #1}}%
     \else
@@ -518,7 +517,7 @@
   \chaptermark{#1}%
   \addtocontents{lof}{\protect\addvspace{10\p@}}%
   \addtocontents{lot}{\protect\addvspace{10\p@}}%
-  \@makechapterhead{#2}%
+  \@makechapterhead{\MakeTextUppercase{#2}}%
   \@afterheading }%
 \def\@part[#1]#2{%
   \ifnum \c@secnumdepth >-2\relax
@@ -536,7 +535,7 @@
      \par
      \vskip 20\p@
    \fi
-   \normalsize\mdseries #2\par}%
+  \normalsize\mdseries \MakeTextUppercase{#2}\par}%
   \@endpart}
 \def\@spart#1{%
     {\centering
@@ -551,7 +550,7 @@
       \normalfont\normalsize%
       \if@mainmatter
         \ifcentered@chaptitle\center\else\relax\fi%
-        \@chapapp{} \thechapter\par\nobreak
+        \MakeTextUppercase{\@chapapp{} \thechapter}\par\nobreak
       \fi
     \fi
     \interlinepenalty\@M
@@ -565,7 +564,7 @@
      \normalfont\normalsize%
      \interlinepenalty\@M
      \ifcentered@chaptitle\center\else\relax\fi
-     \mdseries{#1}\par\nobreak
+     \mdseries{\MakeTextUppercase{#1}}\par\nobreak
      \vskip 30\p@
   }}
 \renewcommand\section{\suppressfloats[t]%
@@ -679,6 +678,11 @@
    \setlength{\belowcaptionskip}{\belowtableskip}
    \singlespacing
    \renewcommand{\arraystretch}{\double@baselinestretch}
+   \let\scaption\caption%
+   \renewcommand*{\caption}[2][\shortcaption]{%
+     \def\shortcaption{##2}%
+     \scaption[\shortcaption]{\MakeTextUppercase{##2}}%
+   }%
    \let\@makecaption\@maketablecaption
    \@float{table}}%
    {%
@@ -688,11 +692,13 @@
 \long\def\@maketablecaption#1#2{
   \vskip\abovecaptionskip
   \begin{center}
-    \parbox{\capwidth}{
-    \centering\normalspacing
-    {#1}\\[\single@skip]
-    {#2}%\par
-  \vskip\belowcaptionskip }%
+    \makebox[\linewidth]{
+      \parbox{\capwidth}{
+      \centering\normalspacing
+      \MakeTextUppercase{#1}\\[\single@skip]
+      {#2}%\par
+    \vskip\belowcaptionskip }%
+    }%
   \end{center}
 }
 \renewcommand\longtable{%
@@ -736,10 +742,10 @@
   \vskip\abovetableskip%
     \centering\normalspacing
     \if@ltfirstcaption
-    #1{#2 }\\[\single@skip]
-    {#3}\par
+    #1{\MakeTextUppercase{#2} }\\[\single@skip]
+    \MakeTextUppercase{#3}\par
     \else%
-    #1{#2 } (CONTINUED)\par
+    #1{\MakeTextUppercase{#2} } (CONTINUED)\par
     \fi
   \global\@ltfirstcaptionfalse
   \endgraf\vskip\belowtableskip}%
@@ -789,7 +795,17 @@
     \framebox[0.85\textwidth]{
     \begin{minipage}{0.80\textwidth}\footnotesize%
     \centering \itshape This document was prepared \& typeset with
-    \upshape\ifpdf pdf\LaTeX\else\LaTeXe\fi\itshape , and
+    \upshape
+    \ifluatex
+      \LuaLaTeX
+    \else\ifxetex
+      \XeLaTeX
+    \else\ifpdf
+      pdf\LaTeX
+    \else
+      \LaTeXe
+    \fi\fi\fi
+    \itshape , and
     formatted with \upshape\nddiss\xspace\itshape classfile
     (v\dissfileversion [\dissfiledate])
     \end{minipage} }

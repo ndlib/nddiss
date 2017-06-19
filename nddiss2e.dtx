@@ -13,7 +13,7 @@
 % \fi
 %
 %
-%  \CheckSum{1432}
+%  \CheckSum{1471}
 %  \CharacterTable
 %   {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %    Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -166,7 +166,7 @@
 %
 % \frontmatter
 %
-% \title{TITLE IN ALL CAPS}
+% \title{Title in Title Caps}
 % \author{Your Name}
 % \work{Dissertation}
 % \degaward{Doctor of Philosophy}
@@ -204,11 +204,11 @@
 %
 % \mainmatter
 %
-% \chapter{A NEW DAWN} % Chapter 1
+% \chapter{A New Dawn} % Chapter 1
 % All the text ...
 %
 % \appendix
-% \chapter{ADDITIONAL DATA} % Appendix A
+% \chapter{Additional Data} % Appendix A
 %
 % \backmatter
 % \bibliographystyle{nddiss2e}
@@ -371,10 +371,8 @@
 % commands before invoking |\maketitle|.
 % \begin{itemize}
 %   \item \DescribeMacro{\title\{\}} The title of the document, using the
-%         |\title| macro. The title must be in ALL caps, e.g.
-%         |\title{THIS IS A TITLE \||\  IN TWO LINES}|. You may use
-%         linebreaks within the title, and the title may be up to four
-%         lines long.
+%         |\title| macro.  You may use linebreaks within the title,
+%         and the title may be up to four lines long.
 %   \item \DescribeMacro{\author\{\}} Give your name in full and exactly as
 %         registered with the Graduate School, using the
 %         |\author| macro, e.g. |\author{Gary Graham Gordon-Graeme}|).
@@ -439,7 +437,7 @@
 % \DescribeMacro{\dedicationame\{\}}
 % You may use |\dedicationname|\marg{text} to change the title for the
 % dedication page. Default name: |\mbox{}| i.e.\/ an empty title.
-% You probably don't need to change it. If you do, make sure it is ALL CAPS.
+% You probably don't need to change it.
 %
 % \subsection{Table of Contents; Lists of Figures and Tables}
 % \DescribeMacro{\tableofcontents}
@@ -456,7 +454,6 @@
 % to change the titles for these sections.
 % By default they are |CONTENTS|, |FIGURES|, and |TABLES|.
 % You probably don't need to change them.
-% If you do, make sure the replacements are ALL CAPS.
 %
 % \subsection{List of Symbols}
 % \DescribeEnv{symbols}
@@ -482,7 +479,6 @@
 % \DescribeMacro{\symbolsname\{\}}
 % You may use |\symbolsname{}| to change the title of the symbols section.
 % Default name: |SYMBOLS|.
-% You probably don't need to change it. If you do, make sure the replacement is ALL CAPS.
 %
 % \subsection{Preface}
 % \DescribeEnv{preface}
@@ -491,7 +487,6 @@
 % \DescribeMacro{\prefacename\{\}}
 % You may use |\prefacename| to change the name of this section.
 % Default name: |PREFACE|.
-% You probably don't need to change it. If you do, make sure the replacement is ALL CAPS.
 %
 % \subsection{Acknowledgments}
 % \DescribeEnv{acknowledgments}
@@ -502,7 +497,6 @@
 % \DescribeMacro{\acknowledgename\{\}}
 % You may use |\acknowledgename| to change the name of this section.
 % Default name: |ACKNOWLEDGMENTS|.
-% You probably don't need to change it. If you do, make sure the replacement is ALL CAPS.
 %
 % \subsection{Text}
 % \DescribeMacro{\mainmatter}
@@ -513,8 +507,6 @@
 % The pages are numbered in |plain| pagestyle such that the page numbers
 % are centered in the bottom. The |chapter| titles can be multi-line,
 % and if so are formatted doubly spaced.
-%
-% Chapter names should be in ALL CAPS.
 %
 % \DescribeMacro{\unnumchapter\{\}}
 % Use the macro |\unnumchapter| to create to create unnumbered chapters that
@@ -558,7 +550,6 @@
 % \DescribeMacro{\bibname\{\}}
 % You may use |\bibname|\marg{newbibname} to change the name of this section.
 % Default name: |BIBLIOGRAPHY|.
-% If you do change it, make sure the replacement is in ALL CAPS.
 %
 % \subsection{Chapter-wise Bibliography}
 % By default the bibliography appears at the end of your work and contains
@@ -606,12 +597,10 @@
 %   \item The List of Figures must be \emph{before} the List of Tables, i.e. the
 %         macro command |\listoffigures| comes before |\listoftables| in the
 %         frontmatter.
-%   \item Chapter titles need to be written in ALL CAPS.
 %   \item Table captions must be \emph{above} the corresponding table,
 %         In case of the \textsf{table} environment, this can be achieved by
 %         putting |\caption| before you include the table (e.g. in a \textsf{
 %         tabular} environment).
-%   \item Table captions need to be in ALL CAPS.
 %   \item Figure captions should be \emph{below} the corresponding figure.
 %         In the \textsf{figure} environment, the |\caption| goes after
 %         the |\includegraphics| macro command.
@@ -746,6 +735,8 @@
 % \textsf{ifthen},
 % \textsf{exscale},
 % \textsf{ifpdf},
+% \textsf{ifluatex},
+% \textsf{ifxetex},
 % \textsf{xspace},
 % \textsf{longtable},
 % \textsf{indentfirst},
@@ -759,7 +750,6 @@
 % \textsf{url},
 % \textsf{setspace}\footnote{v6.7[2000/12/01] or above},
 % \textsf{amsmath},
-% \textsf{amssymb},
 % \textsf{float},
 % \textsf{lscape},
 % \textsf{rotating},
@@ -1044,31 +1034,35 @@
 %
 %    \end{macrocode}
 % At this stage, the packages \textsf{ifthen}, \textsf{exscale},
-% \textsf{ifpdf}, \textsf{longtable}, \textsf{xspace}, \textsf{
-% indentfirst}, \textsf{tabularx}, \textsf{enumerate} and \textsf{
-% latexsym} are loaded. It is important to load these in a specific order so as
+% \textsf{ifpdf}, \textsf{ifluatex}, \textsf{ifxetex},
+% \textsf{longtable}, \textsf{xspace}, \textsf{ indentfirst},
+% \textsf{tabularx}, \textsf{enumerate} and \textsf{ latexsym} are
+% loaded. It is important to load these in a specific order so as
 % not to cause conflicts in definitions of certain macros.
 %    \begin{macrocode}
 \RequirePackage{ifthen,exscale}
-\RequirePackage{ifpdf}
-\ifpdf\else
+\RequirePackage{ifpdf,ifluatex,ifxetex}
+\ifpdf\else\ifxetex\else\ifluatex\else
   \ClassError{nddiss2e}{%
       PDF Output is required to support the PDF/A format.
   }{DVI output is not supported. Use pdflatex to generate the dissertation.}
-\fi
+\fi\fi\fi
 \RequirePackage[a-2b]{pdfx}
 \RequirePackage{longtable}
+\RequirePackage{threeparttable}
+\RequirePackage[flushleft]{threeparttablex}
 \RequirePackage{xspace}
 \RequirePackage{indentfirst}
 \RequirePackage{tabularx}
 \RequirePackage{enumerate}
 \RequirePackage{latexsym}
+\RequirePackage{textcase}
 %
 %    \end{macrocode}
 % If the |\diss@final| is set false (when using |draft| or |review| option) then
 % the {\sffamily showkeys} package is also loaded.
 %    \begin{macrocode}
-\ifdiss@final\relax\else\RequirePackage{showkeys}\fi
+% \ifdiss@final\relax\else\RequirePackage{showkeys}\fi
 %
 %    \end{macrocode}
 % Depending in whether you are using pdf\LaTeX\space or plain \LaTeX\space,
@@ -1076,9 +1070,9 @@
 % with respective options.
 %    \begin{macrocode}
 \ifpdf
-  \RequirePackage[pdftex]{epsfig}
-  \RequirePackage[pdftex]{color}
-  \RequirePackage[pdftex]{graphicx}
+  \RequirePackage{epsfig}
+  \RequirePackage{color}
+  \RequirePackage{graphicx}
   \AtBeginDocument{
   \pdfadjustspacing=1
   }
@@ -1107,7 +1101,7 @@
   \RequirePackage[authoryear]{natbib}
 \fi
 %    \end{macrocode}
-% Additionally, the packages \textsf{amsmath}, \textsf{amssymb},
+% Additionally, the packages \textsf{amsmath},
 % \textsf{float}, \textsf{lscape}, \textsf{booktabs}, \textsf{
 % rotating}, \textsf{url} and \textsf{setspace} are loaded when (pdf)\LaTeX\space
 % processes |\begin{document}|. Again, the order of these packages is
@@ -1120,7 +1114,7 @@
 % Using this package will flip landscape pages on the screen so that it's easier to read.
 %    \begin{macrocode}
 \AtBeginDocument{
-\RequirePackage{amsmath,amssymb}
+\RequirePackage{amsmath}
 \RequirePackage{float}
 \RequirePackage{lscape}
 \RequirePackage{booktabs}
@@ -1130,7 +1124,7 @@
 \ifpdf
   \RequirePackage{pdflscape}
   % cannot use RequirePackage since pdfx also includes hyperref
-  \hypersetup{pdftex,
+  \hypersetup{
             plainpages=false,
             pdfpagelabels,
             bookmarks=true,%
@@ -1142,6 +1136,7 @@
             pdfpagemode=UseOutlines}
 \fi
 }
+\RequirePackage{metalogo}
 %
 %    \end{macrocode}
 % Set the |\pagestyle| for the document to |plain| here
@@ -1269,7 +1264,7 @@
   \thispagestyle{empty}
   \null\vspace*{\single@skip}
   \begin{center}
-    This \@work\space \\ entitled \\ \@title \\
+    This \@work\space \\ entitled \\ \MakeTextUppercase{\@title} \\
         typeset with \nddiss\ v%
       \dissfileversion\ (\dissfiledate) %
       on \today\space for\\
@@ -1293,10 +1288,6 @@
    this \nddiss\space class file.
    \end{minipage}
    \end{center}
-
-   \noindent It is YOUR responsibility to ensure that the Chapter titles
-   and Table caption titles are put in CAPS LETTERS. This classfile does
-   {\em NOT\space} do that! \\
 
   \noindent\itshape This page can be disabled by
   specifying the ``{\upshape\ttfamily noinfo}'' option to the class invocation.
@@ -1391,7 +1382,7 @@
 % The 2012 formatting guidelines require the title to be 2'' from the top of page.
 % If it's more than one line long, we need to adjust the internal spacing:
 %    \begin{macrocode}
- \setbox0=\vbox{\@title}
+ \setbox0=\vbox{\MakeTextUppercase{\@title}}
  \ifdim \ht0 > 3\double@skip
    \advance \skip1 -.75\double@skip
  \else
@@ -1453,7 +1444,7 @@
 %    \begin{macrocode}
   \null\vspace*{\skip4}
   \begin{center}%
-    \@title \par%
+    \MakeTextUppercase{\@title} \par%
     \vskip\skip1%
 %
 %    \end{macrocode}
@@ -1584,19 +1575,19 @@
 %    \begin{macrocode}
 \providecommand{\abstractname}{Abstract}
 \providecommand{\dedicationname}{\mbox{}}
-\providecommand{\prefacename}{PREFACE}
-\providecommand{\acknowledgename}{ACKNOWLEDGMENTS}
-\providecommand{\symbolsname}{SYMBOLS}
-\renewcommand{\tablename}{TABLE}
+\providecommand{\prefacename}{Preface}
+\providecommand{\acknowledgename}{Acknowledgments}
+\providecommand{\symbolsname}{Symbols}
+\renewcommand{\tablename}{Table}
 \renewcommand{\figurename}{Figure}
-\renewcommand{\partname}{PART}
-\renewcommand{\chaptername}{CHAPTER}
-\renewcommand{\appendixname}{APPENDIX}
-\renewcommand{\contentsname}{CONTENTS}
-\renewcommand{\listfigurename}{FIGURES}
-\renewcommand{\listtablename}{TABLES}
-\renewcommand{\bibname}{BIBLIOGRAPHY}
-\renewcommand{\indexname}{INDEX}
+\renewcommand{\partname}{Part}
+\renewcommand{\chaptername}{Chapter}
+\renewcommand{\appendixname}{Appendix}
+\renewcommand{\contentsname}{Contents}
+\renewcommand{\listfigurename}{Figures}
+\renewcommand{\listtablename}{Tables}
+\renewcommand{\bibname}{Bibliography}
+\renewcommand{\indexname}{Index}
 %
 %    \end{macrocode}
 % \begin{environment}{abstract}
@@ -1625,7 +1616,7 @@
   \begin{center}
   \vspace*{36pt}
   {\normalsize\mdseries \normalspacing
-     \@title \\[3.5ex]
+     \MakeTextUppercase{\@title} \\[3.5ex]
      \normalsize\abstractname \\ by \\ \@author\space}%
    \@endparpenalty \@M
    \end{center}\par}%
@@ -1758,7 +1749,7 @@
   \ifnum \c@secnumdepth >\m@ne
   \if@mainmatter
     \refstepcounter{chapter}%
-    \typeout{\@chapapp\space\thechapter.}%
+    \typeout{\MakeTextUppercase{\@chapapp\space\thechapter.}}%
     \addcontentsline{toc}{chapter}%
       {{\@chapapp\ \thechapter: #1}}%
     \else
@@ -1770,7 +1761,7 @@
   \chaptermark{#1}%
   \addtocontents{lof}{\protect\addvspace{10\p@}}%
   \addtocontents{lot}{\protect\addvspace{10\p@}}%
-  \@makechapterhead{#2}%
+  \@makechapterhead{\MakeTextUppercase{#2}}%
   \@afterheading }%
 %
 %    \end{macrocode}
@@ -1794,7 +1785,7 @@
      \par
      \vskip 20\p@
    \fi
-   \normalsize\mdseries #2\par}%
+  \normalsize\mdseries \MakeTextUppercase{#2}\par}%
   \@endpart}
 \def\@spart#1{%
     {\centering
@@ -1821,7 +1812,7 @@
       \normalfont\normalsize%
       \if@mainmatter
         \ifcentered@chaptitle\center\else\relax\fi%
-        \@chapapp{} \thechapter\par\nobreak
+        \MakeTextUppercase{\@chapapp{} \thechapter}\par\nobreak
       \fi
     \fi
     \interlinepenalty\@M
@@ -1845,7 +1836,7 @@
      \normalfont\normalsize%
      \interlinepenalty\@M
      \ifcentered@chaptitle\center\else\relax\fi
-     \mdseries{#1}\par\nobreak
+     \mdseries{\MakeTextUppercase{#1}}\par\nobreak
      \vskip 30\p@
   }}
 %
@@ -2061,6 +2052,11 @@
    \setlength{\belowcaptionskip}{\belowtableskip}
    \singlespacing
    \renewcommand{\arraystretch}{\double@baselinestretch}
+   \let\scaption\caption%
+   \renewcommand*{\caption}[2][\shortcaption]{%
+     \def\shortcaption{##2}%
+     \scaption[\shortcaption]{\MakeTextUppercase{##2}}%
+   }%
    \let\@makecaption\@maketablecaption
    \@float{table}}%
    {%
@@ -2078,11 +2074,13 @@
 \long\def\@maketablecaption#1#2{
   \vskip\abovecaptionskip
   \begin{center}
-    \parbox{\capwidth}{
-    \centering\normalspacing
-    {#1}\\[\single@skip]
-    {#2}%\par
-  \vskip\belowcaptionskip }%
+    \makebox[\linewidth]{
+      \parbox{\capwidth}{
+      \centering\normalspacing
+      \MakeTextUppercase{#1}\\[\single@skip]
+      {#2}%\par
+    \vskip\belowcaptionskip }%
+    }%
   \end{center}
 }
 %
@@ -2149,10 +2147,10 @@
   \vskip\abovetableskip%
     \centering\normalspacing
     \if@ltfirstcaption
-    #1{#2 }\\[\single@skip]
-    {#3}\par
+    #1{\MakeTextUppercase{#2} }\\[\single@skip]
+    \MakeTextUppercase{#3}\par
     \else%
-    #1{#2 } (CONTINUED)\par
+    #1{\MakeTextUppercase{#2} } (CONTINUED)\par
     \fi
   \global\@ltfirstcaptionfalse
   \endgraf\vskip\belowtableskip}%
@@ -2247,7 +2245,17 @@
     \framebox[0.85\textwidth]{
     \begin{minipage}{0.80\textwidth}\footnotesize%
     \centering \itshape This document was prepared \& typeset with
-    \upshape\ifpdf pdf\LaTeX\else\LaTeXe\fi\itshape , and
+    \upshape
+    \ifluatex
+      \LuaLaTeX
+    \else\ifxetex
+      \XeLaTeX
+    \else\ifpdf
+      pdf\LaTeX
+    \else
+      \LaTeXe
+    \fi\fi\fi
+    \itshape , and
     formatted with \upshape\nddiss\xspace\itshape classfile
     (v\dissfileversion [\dissfiledate])
     \end{minipage} }
@@ -2285,7 +2293,7 @@
 
 \frontmatter             % All the items before Chapter 1 go in ``frontmatter''
 
-\title{ TITLE OF WORK }  % It must be in all caps, and ensuring this is your responsiblity.
+\title{ Title of Work }  % Title
 
 \author{ Jane Doe }      % Author's name
 \work{ Dissertation }    % ``Dissertation'' or ``Thesis''
@@ -2315,9 +2323,7 @@
 
  % Including a dedication is optional.
  % \renewcommand{\dedicationname}{\mbox{}} % Replace \mbox{} if you want
-                                           % something else. It must be in
-                                           % ALL CAPS, and doing so is your
-                                           % responsibility.
+                                           % something else.
  % \begin{dedication}
  % \end{dedication}
  %                       % Use one of the two choices to add dedication text
@@ -2330,9 +2336,6 @@
  % Including a list of symbols is optional.
  %% \renewcommand{\symbolsname}{newsymname} % Replace ``newsymname'' with
                                             % the name you want, and uncomment
-                                            % The name must be in all caps,
-                                            % and ensuring this is your
-                                            % responsibility
  % \begin{symbols}
  % \end{symbols}
  %                       % Use one of the two choices to add symbols text
@@ -2341,8 +2344,6 @@
  % Including a preface is optional.
  %% \renewcommand{\prefacename}{ } % If you want another Preface name, add
                                    % something else, and uncomment.
-                                   % The name must be in all caps, and
-                                   % ensuring this is your responsibility.
  % \begin{preface}
  % \end{preface}
  %                       % Use one of the two choices to add preface text
@@ -2352,8 +2353,6 @@
  % tell from the information available in Spring 2013.
  %% \renewcommand{\acknowledgename}{ } % If you want another Acknowledgement name
                                        % add something else, and uncomment
-                                       % The name must be in all caps, and
-                                       % ensuring this is your responsiblity.
  % \begin{acknowledge}
  % \end{acknowledge}
  %                       % Use one of the two choices to add acknowledge text
@@ -2362,8 +2361,7 @@
 \mainmatter
  % Place the text body here.
  % \include{chapter-one}
- % Begin each chapter with \chapter{TITLE}. Chapter titles must be in all caps
- % and ensuring that they are is your responsibility.
+ % Begin each chapter with \chapter{Title}.
 
 % Appendices are optional.
 \appendix
