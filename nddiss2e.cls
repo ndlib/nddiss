@@ -387,7 +387,7 @@
   \null\vfil
   \begin{center}\normalspacing}%
 { \end{center}\vfil\null \clearpage }
-\newcommand{\@copyrightyear}{\year}
+\newcommand{\@copyrightyear}{\the\year}
 \newcommand{\@copyrightholder}{\@author}
 \newcommand{\@copyrightlicense}{All Rights Reserved}
 \newcommand{\copyrightyear}[1]{\renewcommand{\@copyrightyear}{#1}}
