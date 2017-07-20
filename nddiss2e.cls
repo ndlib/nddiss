@@ -108,13 +108,13 @@
     {UnknownOption `\CurrentOption'} }%
 \ProcessOptions\relax
 \LoadClass{book}
-\RequirePackage{ifthen,exscale}
+\RequirePackage{ifthen,exscale,etoolbox}
 \RequirePackage{ifpdf,ifluatex,ifxetex}
-\ifpdf\else\ifxetex\else\ifluatex\else
+\ifboolexpr{bool{pdf} or bool{xetex} or bool{luatex}}{}{%
   \ClassError{nddiss2e}{%
       PDF Output is required to support the PDF/A format.
   }{DVI output is not supported. Use pdflatex to generate the dissertation.}
-\fi\fi\fi
+}
 \RequirePackage[a-2b]{pdfx}
 \RequirePackage{longtable}
 \RequirePackage{threeparttable}
@@ -125,18 +125,18 @@
 \RequirePackage{enumerate}
 \RequirePackage{latexsym}
 \RequirePackage{textcase}
-\ifpdf
+\ifboolexpr{bool{pdf} or bool{xetex} or bool{luatex}}{%
   \RequirePackage{epsfig}
   \RequirePackage{color}
   \RequirePackage{graphicx}
   \AtBeginDocument{
   \pdfadjustspacing=1
   }
-\else
+}{%
   \RequirePackage[dvips]{epsfig}
   \RequirePackage[dvips]{color}
   \RequirePackage[dvips]{graphicx}
-\fi
+}
 \ifnum@refs
   \RequirePackage[numbers]{natbib}
 \else
@@ -145,13 +145,22 @@
 \AtBeginDocument{
 \RequirePackage{amsmath}
 \RequirePackage{float}
-\RequirePackage{lscape}
 \RequirePackage{booktabs}
 \RequirePackage{rotating}
 \RequirePackage{url}
 \RequirePackage[doublespacing]{setspace}[2000/12/01]
-\ifpdf
-  \RequirePackage{pdflscape}
+\ifboolexpr{bool{pdf} or bool{xetex} or bool{luatex}}{%
+  \ifluatex
+    \RequirePackage[luatex]{pdflscape}
+  \else
+    \ifxetex
+      \RequirePackage[xetex]{pdflscape}
+    \else
+      \ifpdf
+        \RequirePackage{pdflscape}
+      \fi
+    \fi
+  \fi
   % cannot use RequirePackage since pdfx also includes hyperref
   \hypersetup{
             plainpages=false,
@@ -163,7 +172,7 @@
             bookmarkstype=toc,%
             colorlinks=false,%
             pdfpagemode=UseOutlines}
-\fi
+}{}
 }
 \RequirePackage{metalogo}
 \AtBeginDocument{
@@ -427,9 +436,9 @@
 \renewcommand{\bibname}{Bibliography}
 \renewcommand{\indexname}{Index}
 \newenvironment{abstract}{%
-  \ifpdf
+  \ifboolexpr{bool{pdf} or bool{xetex} or bool{luatex}}{%
      \pdfbookmark[0]{\abstractname}{abstract}%abstract.0
-  \fi
+  }{}
   \typeout{Abstract page(s)}
   \renewcommand{\@oddfoot}{\@empty}
   \renewcommand{\@evenfoot}{\@empty}
@@ -456,9 +465,9 @@
 \renewcommand\tableofcontents{%
   \ifdiss@dedication\relax\else\setcounter{page}{2}\fi
   \chapter*{\contentsname}%
-  \ifpdf
+  \ifboolexpr{bool{pdf} or bool{xetex} or bool{luatex}}{%
       \pdfbookmark[0]{\contentsname}{contents}%contents.0
-  \fi
+  }{}
   \singlespacing
   \@starttoc{toc}%
   \normalspacing
