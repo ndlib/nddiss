@@ -82,10 +82,11 @@
 
 \frontmatter % All the items before the first chapter go in ``frontmatter''
 
-% Your title must be in all caps, and you must do this manually!
-% Titles may be 1-4 lines long. If your title is longer than 4 lines, the class file
-% may have difficulty formatting the title page.
-\title{GNUS AND YOU \\ A BRIEF \\ ON ALL AND EVERYTHING \\ ABOUT GNUS IN OUR SOCIETY}
+% Titles may be 1-4 lines long. If your title is longer than 4 lines,
+% the class file may have difficulty formatting the title page.
+% Line-breaks in the title have to be protected with `\protect`.
+\title{Gnus and you \protect\\ a Brief \protect\\ on all and
+Everything \protect\\ About Gnus in our Society}
 \author{Gerald G. Gnastich}
 \work{Dissertation} % or \work{Thesis}
 %\degaward{Doctor of Philosophy} % or 
@@ -210,13 +211,13 @@
 \mainmatter
 % Place the text body here.
 %\include{chapter-one}
-%Begin each chapter with \chapter{TITLE}. Chapter titles must be in all caps
-%and ensuring that they are is your responsibility.
+%Begin each chapter with \chapter{Title}. Both the thesis title and
+%chapter titles should match in style.
 
 %
 % An unnumbered chapter (features)
 %
-\unnumchapter{FEATURES OF FORMATTING IN THIS EXAMPLE FILE}
+\unnumchapter{Features of Formatting in This Example File}
 % The \unnumchapter command allows you to include an unnumbered chapter as part of
 % the main text before Chapter 1. It will appear in your table of contents, and you
 % should have at most one such chapter (although nothing in the class file will
@@ -228,18 +229,14 @@ various features with the formatting that conforms to the Graduate school
 guidelines --- whether obtained due to the use of \nddiss\/ class file or just
 plain good practice.
 \begin{itemize}
-\item An important thing you might notice is that the title of this chapter 
-is not in all CAPS. This is because although \verb+\MakeTextUpperCase{}+
-(the most sophisticated uppercasing command that Megan is aware of)
-does know not to uppercase math formulas, these may not be the only symbols
-that should not be capitalized (Sameer's example was elemental symbols). Also, the
-combination of \verb+\MakeTextUpperCase+, the \verb+center+ environment, and \verb+\\+
-makes \LaTeX really mad, for mysterious reasons (any two of the three are okay, but
-all three together are a problem).
-\item If you're looking at a pdf document, the pdf bookmarks (left column) link
-to all major textual sections including abstract, toc, lof, lot and
-bibliography. Not the dedication, though, because its title might be empty and
-that was causing issues for some people.
+\item An important note on line-breaks via \verb+\\+ in titles: the
+  titles of the thesis as well as chapters and table captions use
+  \verb+\MakeTextUppercase{}+ from the \verb+textcase+ package.  Due
+  to the nature of the \verb+center+ environment, any line-breaks
+  introduced in titles and captions should be protected, as in
+  \verb+\protect\\+.
+  To preserve the case in titles and captions, use, e.g.,
+  \verb+\NoCaseChange{Gnus}+.
 \item In the \emph{dedication}, the title name has been modified. So, you know
 how to and that it can be done.
 \item The entries in the \emph{List of figures} and \emph{List of Tables} are
