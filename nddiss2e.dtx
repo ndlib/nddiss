@@ -2056,13 +2056,14 @@
 % the entry itself is single-spaced. Similar to that in
 % |\@makefigurecaption|, a |\vskip| is added to each entry in the |.lot| file.
 %    \begin{macrocode}
-\renewenvironment{table}{%
+\renewenvironment{table}[1][tbp]{%
    \setlength{\abovecaptionskip}{\abovetableskip}
    \setlength{\belowcaptionskip}{\belowtableskip}
-   \singlespacing
    \renewcommand{\arraystretch}{\double@baselinestretch}
    \let\@makecaption\@maketablecaption
-   \@float{table}}%
+   \@float{table}[#1]%
+   \singlespacing%
+   }%
    {%
    \addtocontents{lot}{ {\vskip 0.4em} }%
    \end@float%

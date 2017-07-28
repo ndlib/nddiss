@@ -674,13 +674,14 @@
   \vskip\belowcaptionskip\normalspacing }%
   \end{center}
 }%
-\renewenvironment{table}{%
+\renewenvironment{table}[1][tbp]{%
    \setlength{\abovecaptionskip}{\abovetableskip}
    \setlength{\belowcaptionskip}{\belowtableskip}
-   \singlespacing
    \renewcommand{\arraystretch}{\double@baselinestretch}
    \let\@makecaption\@maketablecaption
-   \@float{table}}%
+   \@float{table}[#1]%
+   \singlespacing%
+   }%
    {%
    \addtocontents{lot}{ {\vskip 0.4em} }%
    \end@float%
