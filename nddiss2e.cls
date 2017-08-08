@@ -141,9 +141,7 @@
   \RequirePackage[authoryear]{natbib}
 \fi
 \AtBeginDocument{
-\RequirePackage{amsmath,amssymb}
-\RequirePackage{float}
-\RequirePackage{lscape}
+\RequirePackage{amsmath}
 \RequirePackage{booktabs}
 \RequirePackage{rotating}
 \RequirePackage{url}

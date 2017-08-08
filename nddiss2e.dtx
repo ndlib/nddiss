@@ -13,7 +13,7 @@
 % \fi
 %
 %
-%  \CheckSum{1432}
+%  \CheckSum{1430}
 %  \CharacterTable
 %   {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %    Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -759,8 +759,6 @@
 % \textsf{url},
 % \textsf{setspace}\footnote{v6.7[2000/12/01] or above},
 % \textsf{amsmath},
-% \textsf{amssymb},
-% \textsf{float},
 % \textsf{lscape},
 % \textsf{rotating},
 % \textsf{booktabs}, and
@@ -771,7 +769,6 @@
 % \textsf{ifpdf},
 % \textsf{longtable},
 % \textsf{natbib},
-% \textsf{float},
 % \textsf{booktabs},
 % \textsf{rotating},
 % \textsf{url}, and
@@ -1107,22 +1104,20 @@
   \RequirePackage[authoryear]{natbib}
 \fi
 %    \end{macrocode}
-% Additionally, the packages \textsf{amsmath}, \textsf{amssymb},
-% \textsf{float}, \textsf{lscape}, \textsf{booktabs}, \textsf{
-% rotating}, \textsf{url} and \textsf{setspace} are loaded when (pdf)\LaTeX\space
-% processes |\begin{document}|. Again, the order of these packages is
-% important. Additionaly when using pdf\LaTeX\space, the package
-% \textsf{hyperref} (for internal/external links in the document)
-% is also loaded. The options for this package have been tested to produce
-% a document which can be printed on laser printers without any problems
-% because of colored link boxes.
-% Megan added required package pdflscape, which is part of the oberdiek bundle in MiKTeX and TeXLive.
-% Using this package will flip landscape pages on the screen so that it's easier to read.
+% Additionally, the packages \textsf{amsmath}, \textsf{booktabs},
+% \textsf{rotating}, \textsf{url} and \textsf{setspace} are loaded
+% when (pdf)\LaTeX\space processes |\begin{document}|. Again, the
+% order of these packages is important. Additionaly when using
+% pdf\LaTeX\space, the package \textsf{hyperref} (for
+% internal/external links in the document) is also loaded. The options
+% for this package have been tested to produce a document which can be
+% printed on laser printers without any problems because of colored
+% link boxes.  Megan added required package pdflscape, which is part
+% of the oberdiek bundle in MiKTeX and TeXLive.  Using this package
+% will flip landscape pages on the screen so that it's easier to read.
 %    \begin{macrocode}
 \AtBeginDocument{
-\RequirePackage{amsmath,amssymb}
-\RequirePackage{float}
-\RequirePackage{lscape}
+\RequirePackage{amsmath}
 \RequirePackage{booktabs}
 \RequirePackage{rotating}
 \RequirePackage{url}
