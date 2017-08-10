@@ -181,12 +181,14 @@
 \typeout{Pagestyle and spacing normal}
 }
 \newcommand{\normalspacing}{\doublespacing}
-\newcommand\single@baselinestretch{1.0}
-\newcommand\double@baselinestretch{1.66}
+\newcommand\single@baselinestretch{0.979}
+\newcommand\double@baselinestretch{1.625}
+\newlength{\usedtextsize}
+\setlength{\usedtextsize}{\f@size pt}
 \newlength{\single@skip}
-\setlength{\single@skip}{\single@baselinestretch em}
+\setlength{\single@skip}{\single@baselinestretch \usedtextsize}
 \newlength{\double@skip}
-\setlength{\double@skip}{\double@baselinestretch em}
+\setlength{\double@skip}{\double@baselinestretch \usedtextsize}
 \setlength{\footnotesep}{\double@skip}
 \setlength{\hoffset}{0pt}
 \setlength{\voffset}{0pt}
