@@ -130,7 +130,7 @@
   \RequirePackage{color}
   \RequirePackage{graphicx}
   \AtBeginDocument{
-  \pdfadjustspacing=1
+  \ifpdf\pdfadjustspacing=1\fi
   }
 }{%
   \RequirePackage[dvips]{epsfig}
