@@ -13,7 +13,7 @@
 % \fi
 %
 %
-%  \CheckSum{1468}
+%  \CheckSum{1475}
 %  \CharacterTable
 %   {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %    Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -1161,12 +1161,14 @@
 % Here, define some spacing macros for page layout and doublespacing.
 %    \begin{macrocode}
 \newcommand{\normalspacing}{\doublespacing}
-\newcommand\single@baselinestretch{1.0}
-\newcommand\double@baselinestretch{1.66}
+\newcommand\single@baselinestretch{0.979}
+\newcommand\double@baselinestretch{1.625}
+\newlength{\usedtextsize}
+\setlength{\usedtextsize}{\f@size pt}
 \newlength{\single@skip}
-\setlength{\single@skip}{\single@baselinestretch em}
+\setlength{\single@skip}{\single@baselinestretch \usedtextsize}
 \newlength{\double@skip}
-\setlength{\double@skip}{\double@baselinestretch em}
+\setlength{\double@skip}{\double@baselinestretch \usedtextsize}
 \setlength{\footnotesep}{\double@skip}
 %
 %    \end{macrocode}
