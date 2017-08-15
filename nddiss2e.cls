@@ -689,8 +689,12 @@
    \setlength{\belowcaptionskip}{\belowtableskip}
    \renewcommand{\arraystretch}{\double@baselinestretch}
    \let\scaption\caption%
-   \renewcommand*{\caption}[2][\shortcaption]{%
-     \def\shortcaption{##2}%
+   \renewcommand*{\caption}[2][]{%
+     \ifthenelse{\equal{##1}{}}{%
+       \def\shortcaption{##2}%
+     }{%
+       \def\shortcaption{##1}%
+     }%
      \scaption[\shortcaption]{\MakeTextUppercase{##2}}%
    }%
    \let\@makecaption\@maketablecaption
