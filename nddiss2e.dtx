@@ -13,7 +13,7 @@
 % \fi
 %
 %
-%  \CheckSum{1475}
+%  \CheckSum{1478}
 %  \CharacterTable
 %   {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %    Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -2063,8 +2063,12 @@
    \setlength{\belowcaptionskip}{\belowtableskip}
    \renewcommand{\arraystretch}{\double@baselinestretch}
    \let\scaption\caption%
-   \renewcommand*{\caption}[2][\shortcaption]{%
-     \def\shortcaption{##2}%
+   \renewcommand*{\caption}[2][]{%
+     \ifthenelse{\equal{##1}{}}{%
+       \def\shortcaption{##2}%
+     }{%
+       \def\shortcaption{##1}%
+     }%
      \scaption[\shortcaption]{\MakeTextUppercase{##2}}%
    }%
    \let\@makecaption\@maketablecaption
