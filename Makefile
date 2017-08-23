@@ -23,9 +23,12 @@ ctan_files:=nddiss2e.dtx \
 	process.sh
 
 
-.PHONY: clean real-clean dist ctan
+.PHONY: all clean real-clean dist ctan
+.SUFFIXES:
 
 all: nddiss2e.cls nddiss2e.pdf
+dist: AdvDistribution.zip StandDistribution.zip ctan.zip
+ctan: ctan.zip
 
 clean:
 	rm -rf $(addprefix nddiss2e.,aux glo gls idx ilg ind out toc)
@@ -47,10 +50,6 @@ nddiss2e.pdf: nddiss2e.dtx
 
 nddiss2e.cls template.tex: nddiss2e.ins nddiss2e.dtx
 	latex nddiss2e.ins
-
-dist: AdvDistribution.zip StandDistribution.zip ctan.zip
-
-ctan: ctan.zip
 
 AdvDistribution.zip: ${adv_files}
 	mkdir -p AdvDistribution

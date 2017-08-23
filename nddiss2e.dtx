@@ -49,6 +49,7 @@
 % \changes{v3.2013}{2013/4/20}{Some bug fixes, minor changes in documentation, and addition of support for parts. - MP}
 % \changes{v3.2016}{2016/10/16}{Fix natbib/showkeys ordering bug}
 % \changes{v3.2017.1}{2017/05/09}{Display (CONTINUED) on multipage long table captions}
+% \changes{v3.2017.2}{2017/08/23}{Add LuaLaTeX support. Allow non-capitalized titles.}
 % \renewcommand{\generalname}{Update}
 %
 % \iffalse (Don't show this in the doc).
@@ -61,7 +62,7 @@
 \DeclareRobustCommand{\nddiss}{%
          \textsf{{\scshape nd}diss}\kern-0.03em%
          2$_\mathsf{\textstyle\varepsilon}$}
-\providecommand{\dissfileversion}{3.2017.1}
+\providecommand{\dissfileversion}{3.2017.2}
 \providecommand{\dissfiledate}{2017-05-09}
 \DisableCrossrefs
 \CodelineNumbered
@@ -856,7 +857,7 @@
 % The |\dissfileversion| and |\dissfiledate| macros contain the version and the date
 % of the release.
 %    \begin{macrocode}
-\providecommand{\dissfileversion}{3.2017.1}
+\providecommand{\dissfileversion}{3.2017.2}
 \providecommand{\dissfiledate}{2017/05/09}
 %
 %    \end{macrocode}

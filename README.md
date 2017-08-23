@@ -49,7 +49,7 @@ These derivatives are checked into the repo to make it easier for people to acce
 The original version, created by Sameer Vijay, follows the Spring 2004 formatting guidelines.
 Later, Megan Patnott updated it to follow the Spring 2013 guidelines.
 
-This is based off of the style file created by D. A. Peterson, Jeff Squyeres, and others.
+This class is based off of an older style file created by D. A. Peterson, Jeff Squyeres, and others.
 
 
 # License

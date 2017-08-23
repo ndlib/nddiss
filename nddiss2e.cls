@@ -36,7 +36,7 @@
 \ProvidesClass{nddiss2e}
     [2016/10/16 v3.2016%
      Notre Dame Dissertation document class]
-\providecommand{\dissfileversion}{3.2017.1}
+\providecommand{\dissfileversion}{3.2017.2}
 \providecommand{\dissfiledate}{2017/05/09}
 \newif\ifdiss@draft             \diss@drafttrue
 \newif\ifdiss@review            \diss@reviewfalse
