@@ -13,7 +13,7 @@
 % \fi
 %
 %
-%  \CheckSum{1478}
+%  \CheckSum{1491}
 %  \CharacterTable
 %   {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %    Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -884,6 +884,7 @@
 \newif\ifadvisors@two           \advisors@twofalse
 \newif\ifdiss@dedication        \diss@dedicationfalse
 \newif\ifnum@refs               \num@refstrue
+\newif\ifnatbib@refs            \natbib@refstrue
 \newif\ifcentered@chaptitle     \centered@chaptitletrue
 \newif\if@ltfirstcaption
 %
@@ -927,6 +928,8 @@
   \typeout{NUMBERED REFERENCES}\num@refstrue}
 \DeclareOption{textrefs}{
   \typeout{TEXTUAL REFERENCES}\num@refsfalse}
+\DeclareOption{nonatbib}{
+  \typeout{NO NATBIB}\natbib@refsfalse}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -1048,6 +1051,7 @@
       PDF Output is required to support the PDF/A format.
   }{DVI output is not supported. Use pdflatex to generate the dissertation.}
 }
+\RequirePackage[hyphens]{url}
 \RequirePackage[a-2b]{pdfx}
 \RequirePackage{longtable}
 \RequirePackage{threeparttable}
@@ -1096,10 +1100,12 @@
 % colon, respectively.
 %
 %    \begin{macrocode}
-\ifnum@refs
-  \RequirePackage[numbers]{natbib}
-\else
-  \RequirePackage[authoryear]{natbib}
+\ifnatbib@refs
+  \ifnum@refs
+    \RequirePackage[numbers]{natbib}
+  \else
+    \RequirePackage[authoryear]{natbib}
+  \fi
 \fi
 %    \end{macrocode}
 % Additionally, the packages \textsf{amsmath}, \textsf{float}, \textsf{booktabs},
@@ -2229,10 +2235,12 @@
 % By redefining |\bibsection| macro, add the |\bibname| to the table of
 % contents and as a chapter heading for the bibliography.
 %    \begin{macrocode}
-\renewcommand{\bibsection}{
-  \chapter*{\bibname}%
-  \addcontentsline{toc}{chapter}{\bibname}%
-}%
+\ifnatbib@refs
+  \renewcommand{\bibsection}{
+    \chapter*{\bibname}%
+    \addcontentsline{toc}{chapter}{\bibname}%
+  }%
+\fi
 %
 %    \end{macrocode}
 % \end{macro}
@@ -2243,9 +2251,11 @@
 % to number the bibliographic entries as |1. xxxx| instead of the default
 % |[1] xxxx|.
 %    \begin{macrocode}
-\renewcommand{\bibfont}{\singlespacing}
-\ifnum@refs
-  \renewcommand{\@biblabel}[1]{\hfill#1.\hfill}
+\ifnatbib@refs
+  \renewcommand{\bibfont}{\singlespacing}
+  \ifnum@refs
+    \renewcommand{\@biblabel}[1]{\hfill#1.\hfill}
+  \fi
 \fi
 %
 %    \end{macrocode}

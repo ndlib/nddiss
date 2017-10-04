@@ -45,6 +45,7 @@
 \newif\ifadvisors@two           \advisors@twofalse
 \newif\ifdiss@dedication        \diss@dedicationfalse
 \newif\ifnum@refs               \num@refstrue
+\newif\ifnatbib@refs            \natbib@refstrue
 \newif\ifcentered@chaptitle     \centered@chaptitletrue
 \newif\if@ltfirstcaption
 \DeclareOption{draft}{
@@ -65,6 +66,8 @@
   \typeout{NUMBERED REFERENCES}\num@refstrue}
 \DeclareOption{textrefs}{
   \typeout{TEXTUAL REFERENCES}\num@refsfalse}
+\DeclareOption{nonatbib}{
+  \typeout{NO NATBIB}\natbib@refsfalse}
 \DeclareOption{nocenter}{\centered@chaptitlefalse}
 \DeclareOption{openbib}{%
    \PassOptionsToPackage{openbib}{natbib}
@@ -115,6 +118,7 @@
       PDF Output is required to support the PDF/A format.
   }{DVI output is not supported. Use pdflatex to generate the dissertation.}
 }
+\RequirePackage[hyphens]{url}
 \RequirePackage[a-2b]{pdfx}
 \RequirePackage{longtable}
 \RequirePackage{threeparttable}
@@ -137,10 +141,12 @@
   \RequirePackage[dvips]{color}
   \RequirePackage[dvips]{graphicx}
 }
-\ifnum@refs
-  \RequirePackage[numbers]{natbib}
-\else
-  \RequirePackage[authoryear]{natbib}
+\ifnatbib@refs
+  \ifnum@refs
+    \RequirePackage[numbers]{natbib}
+  \else
+    \RequirePackage[authoryear]{natbib}
+  \fi
 \fi
 \AtBeginDocument{
 \RequirePackage{amsmath}
@@ -796,13 +802,17 @@
         \let\@evenfoot\@oddfoot
     }%
 \fi
-\renewcommand{\bibsection}{
-  \chapter*{\bibname}%
-  \addcontentsline{toc}{chapter}{\bibname}%
-}%
-\renewcommand{\bibfont}{\singlespacing}
-\ifnum@refs
-  \renewcommand{\@biblabel}[1]{\hfill#1.\hfill}
+\ifnatbib@refs
+  \renewcommand{\bibsection}{
+    \chapter*{\bibname}%
+    \addcontentsline{toc}{chapter}{\bibname}%
+  }%
+\fi
+\ifnatbib@refs
+  \renewcommand{\bibfont}{\singlespacing}
+  \ifnum@refs
+    \renewcommand{\@biblabel}[1]{\hfill#1.\hfill}
+  \fi
 \fi
 \ifdiss@final
 \AtEndDocument{
