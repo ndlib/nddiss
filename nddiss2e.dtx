@@ -278,6 +278,11 @@
 % recommended that you only use this option when making the final
 % submission to the Graduate School.
 %
+% \DescribeMacro{nonatbib}
+% With this option, |nddiss2e| will not load the \textsf{natbib}
+% package and allow to use a different bibliography package, e.g.,
+% \textsf{biblatex} instead.
+%
 % \DescribeMacro{numrefs}
 % \DescribeMacro{textrefs}
 % These options determine how citations are displayed in the text.
@@ -526,7 +531,8 @@
 % The |\backmatter| macro separates the bibliography, index
 % and glossary from the main matter and any appendices.
 %
-% \subsection{Bibliography} \DescribeMacro{\bibliography}
+% \subsection{Bibliography}
+% \DescribeMacro{\bibliography}
 % If you are using \BibTeX\/ (and why would you not want to use \BibTeX?),
 % use the |\bibliography|\marg{bibfile} macro to generate the
 % bibliography. You should refer to \BibTeX\/ manual for details about making a |.bib| file
@@ -535,7 +541,7 @@
 % For citing references in the text, the package \textsf{natbib} is
 % included with either the settings \texttt{numbers,sort\&compress} (|numrefs| option) or
 % \texttt{authoryear,sort} (|textrefs| option). The package \textsf{natbib} is a
-% fantastic package that has numerous macros for \emph{citing} in different ways.
+% package that has numerous macros for \emph{citing} in different ways.
 %
 % \textbf{Warning:} The packages \textsf{cite} and \textsf{citation} are
 % NOT compatible
