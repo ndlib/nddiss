@@ -13,7 +13,7 @@
 % \fi
 %
 %
-%  \CheckSum{1478}
+%  \CheckSum{1491}
 %  \CharacterTable
 %   {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %    Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -278,6 +278,11 @@
 % recommended that you only use this option when making the final
 % submission to the Graduate School.
 %
+% \DescribeMacro{nonatbib}
+% With this option, |nddiss2e| will not load the \textsf{natbib}
+% package and allow to use a different bibliography package, e.g.,
+% \textsf{biblatex} instead.
+%
 % \DescribeMacro{numrefs}
 % \DescribeMacro{textrefs}
 % These options determine how citations are displayed in the text.
@@ -526,7 +531,8 @@
 % The |\backmatter| macro separates the bibliography, index
 % and glossary from the main matter and any appendices.
 %
-% \subsection{Bibliography} \DescribeMacro{\bibliography}
+% \subsection{Bibliography}
+% \DescribeMacro{\bibliography}
 % If you are using \BibTeX\/ (and why would you not want to use \BibTeX?),
 % use the |\bibliography|\marg{bibfile} macro to generate the
 % bibliography. You should refer to \BibTeX\/ manual for details about making a |.bib| file
@@ -535,7 +541,7 @@
 % For citing references in the text, the package \textsf{natbib} is
 % included with either the settings \texttt{numbers,sort\&compress} (|numrefs| option) or
 % \texttt{authoryear,sort} (|textrefs| option). The package \textsf{natbib} is a
-% fantastic package that has numerous macros for \emph{citing} in different ways.
+% package that has numerous macros for \emph{citing} in different ways.
 %
 % \textbf{Warning:} The packages \textsf{cite} and \textsf{citation} are
 % NOT compatible
@@ -884,6 +890,7 @@
 \newif\ifadvisors@two           \advisors@twofalse
 \newif\ifdiss@dedication        \diss@dedicationfalse
 \newif\ifnum@refs               \num@refstrue
+\newif\ifnatbib@refs            \natbib@refstrue
 \newif\ifcentered@chaptitle     \centered@chaptitletrue
 \newif\if@ltfirstcaption
 %
@@ -927,6 +934,8 @@
   \typeout{NUMBERED REFERENCES}\num@refstrue}
 \DeclareOption{textrefs}{
   \typeout{TEXTUAL REFERENCES}\num@refsfalse}
+\DeclareOption{nonatbib}{
+  \typeout{NO NATBIB}\natbib@refsfalse}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -1048,6 +1057,7 @@
       PDF Output is required to support the PDF/A format.
   }{DVI output is not supported. Use pdflatex to generate the dissertation.}
 }
+\RequirePackage[hyphens]{url}
 \RequirePackage[a-2b]{pdfx}
 \RequirePackage{longtable}
 \RequirePackage{threeparttable}
@@ -1096,10 +1106,12 @@
 % colon, respectively.
 %
 %    \begin{macrocode}
-\ifnum@refs
-  \RequirePackage[numbers]{natbib}
-\else
-  \RequirePackage[authoryear]{natbib}
+\ifnatbib@refs
+  \ifnum@refs
+    \RequirePackage[numbers]{natbib}
+  \else
+    \RequirePackage[authoryear]{natbib}
+  \fi
 \fi
 %    \end{macrocode}
 % Additionally, the packages \textsf{amsmath}, \textsf{float}, \textsf{booktabs},
@@ -2229,10 +2241,12 @@
 % By redefining |\bibsection| macro, add the |\bibname| to the table of
 % contents and as a chapter heading for the bibliography.
 %    \begin{macrocode}
-\renewcommand{\bibsection}{
-  \chapter*{\bibname}%
-  \addcontentsline{toc}{chapter}{\bibname}%
-}%
+\ifnatbib@refs
+  \renewcommand{\bibsection}{
+    \chapter*{\bibname}%
+    \addcontentsline{toc}{chapter}{\bibname}%
+  }%
+\fi
 %
 %    \end{macrocode}
 % \end{macro}
@@ -2243,9 +2257,11 @@
 % to number the bibliographic entries as |1. xxxx| instead of the default
 % |[1] xxxx|.
 %    \begin{macrocode}
-\renewcommand{\bibfont}{\singlespacing}
-\ifnum@refs
-  \renewcommand{\@biblabel}[1]{\hfill#1.\hfill}
+\ifnatbib@refs
+  \renewcommand{\bibfont}{\singlespacing}
+  \ifnum@refs
+    \renewcommand{\@biblabel}[1]{\hfill#1.\hfill}
+  \fi
 \fi
 %
 %    \end{macrocode}
