@@ -656,6 +656,20 @@
 %          use pdf\LaTeX\/ to compile your document, then the included
 %          \textsf{pdflscape} package will flip this page on the screen
 %         for easier reading.
+%
+%         If the positioning of the \textsf{landscape} environment is
+%         inconvenient and leads to half-empty pages, the
+%         \textsf{afterpage} command, made available by the package
+%         with the same name, allows the text to flow around the
+%         \textsf{landscape} environment better:
+% \begin{verbatim}
+% \afterpage{%
+%   \begin{landscape}
+%     \centering
+%     \input{my_landscape_table}
+%   \end{landscape}
+% }
+% \end{verbatim}
 %   \item The \textsf{sidewaystable} environment (from the included
 %          \textsf{rotating} package) is incompatible with the current
 %         class and should be avoided.
