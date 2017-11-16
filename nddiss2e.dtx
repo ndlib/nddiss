@@ -13,7 +13,7 @@
 % \fi
 %
 %
-%  \CheckSum{1491}
+%  \CheckSum{1475}
 %  \CharacterTable
 %   {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %    Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -628,6 +628,8 @@
 %         \textsf{booktabs} package) in tables for generating the appropriate
 %          horizontal rules. Refrain from using vertical rules to separate columns in tables
 %          as much as possible.
+%   \item Use the \textsf{threeparttable} environment for tables with
+%         tablenotes.
 %   \item Use the \textsf{longtable} environment for handling very long
 %         tabular materials. Example:
 % \begin{verbatim}
@@ -755,7 +757,6 @@
 % \textsf{epsfig},
 % \textsf{color},
 % \textsf{graphicx},
-% \textsf{url},
 % \textsf{setspace}\footnote{v6.7[2000/12/01] or above},
 % \textsf{amsmath},
 % \textsf{float},
@@ -770,8 +771,7 @@
 % \textsf{longtable},
 % \textsf{natbib},
 % \textsf{booktabs},
-% \textsf{rotating},
-% \textsf{url}, and
+% \textsf{rotating}, and
 % \textsf{setspace}
 % are not part of the \LaTeX\space required distribution, so you may need
 % to download them. They are all available through both MiKTeX and TeXLive;
@@ -1050,22 +1050,25 @@
 % latexsym} are loaded. It is important to load these in a specific
 % order so as not to cause conflicts in definitions of certain macros.
 %    \begin{macrocode}
-\RequirePackage{ifthen,exscale,etoolbox}
+\RequirePackage{ifthen,exscale,etoolbox,xpatch}
 \RequirePackage{ifpdf,ifluatex,ifxetex}
-\ifboolexpr{bool{pdf} or bool{xetex} or bool{luatex}}{}{%
-  \ClassError{nddiss2e}{%
-      PDF Output is required to support the PDF/A format.
-  }{DVI output is not supported. Use pdflatex to generate the dissertation.}
-}
-\RequirePackage[hyphens]{url}
-\RequirePackage[a-2b]{pdfx}
+\RequirePackage[
+  plainpages=false,
+  pdfpagelabels,
+  bookmarks=true,%
+  bookmarksnumbered=true,%
+  linktocpage=true,%
+  breaklinks=true,%
+  bookmarkstype=toc,%
+  colorlinks=false,%
+  pdfpagemode=UseOutlines]{hyperref}
 \RequirePackage{longtable}
-\RequirePackage{threeparttable}
+\RequirePackage[flushleft]{threeparttable}
 \RequirePackage[flushleft]{threeparttablex}
 \RequirePackage{xspace}
 \RequirePackage{indentfirst}
 \RequirePackage{tabularx}
-\RequirePackage{enumerate}
+\RequirePackage{enumitem}
 \RequirePackage{latexsym}
 \RequirePackage{textcase}
 %
@@ -1145,17 +1148,6 @@
       \fi
     \fi
   \fi
-  % cannot use RequirePackage since pdfx also includes hyperref
-  \hypersetup{
-            plainpages=false,
-            pdfpagelabels,
-            bookmarks=true,%
-            bookmarksnumbered=true,%
-            linktocpage=true,%
-            breaklinks=true,%
-            bookmarkstype=toc,%
-            colorlinks=false,%
-            pdfpagemode=UseOutlines}
 }{}
 }
 \RequirePackage{metalogo}
@@ -1966,47 +1958,15 @@
 %
 %    \end{macrocode}
 % \end{environment}
-% \begin{environment}{itemize}
-% Redefine the |itemize| environment so that each item is
-% single-spaced, but with a line of space between each item.
+% Have singlespaced items in lists.
 %    \begin{macrocode}
-\let\realitemize\itemize
-\let\endrealitemize\enditemize
-\renewenvironment{itemize}
-          {\realitemize
-            \singlespacing}
-          {\endrealitemize
-            \doublespacing}
+\AtBeginEnvironment{itemize}{\par\singlespacing}
+\AtBeginEnvironment{enumerate}{\par\singlespacing}
+\AtBeginEnvironment{description}{\par\singlespacing}
+\AtBeginEnvironment{tablenotes}{\footnotesize}
+\xpatchcmd{\TPTdoTablenotes}{\itemsep\z@}{\itemsep10pt}{}{}
+\xpatchcmd{\TPTdoTablenotes}{\itemindent\z@}{\itemindent18pt}{}{}
 %    \end{macrocode}
-% \end{environment}{itemize}
-% \begin{environment}{enumerate}
-% Redefine the |enumerate| environment so that each item is
-% single-spaced, but with a line of space between each item.
-% Note we need the optional argument in order to be compatible
-% with the |enumerate| package
-%    \begin{macrocode}
-\let\realenumerate\enumerate
-\let\endrealenumerate\endenumerate
-\renewenvironment{enumerate}[1][1.]
-          {\realenumerate[#1]
-            \singlespacing}
-          {\endrealenumerate
-            \doublespacing}
-%    \end{macrocode}
-% \end{environment}{enumerate}
-% \begin{environment}{description}
-% Redefine the |description| environment so that each item is
-% single-spaced, but with a line of space between each item.
-%    \begin{macrocode}
-\let\realdescription\description
-\let\endrealdescription\enddescription
-\renewenvironment{description}
-          {\realdescription
-            \singlespacing}
-          {\endrealdescription
-            \doublespacing}
-%    \end{macrocode}
-% \end{environment}{description}
 % Set some lengths that are used in the |table| and the |figure|
 % environments. Note that we set the caption width (|\capwidth|)
 % to be 90\% of the |\textwidth|.

@@ -111,22 +111,25 @@
     {UnknownOption `\CurrentOption'} }%
 \ProcessOptions\relax
 \LoadClass{book}
-\RequirePackage{ifthen,exscale,etoolbox}
+\RequirePackage{ifthen,exscale,etoolbox,xpatch}
 \RequirePackage{ifpdf,ifluatex,ifxetex}
-\ifboolexpr{bool{pdf} or bool{xetex} or bool{luatex}}{}{%
-  \ClassError{nddiss2e}{%
-      PDF Output is required to support the PDF/A format.
-  }{DVI output is not supported. Use pdflatex to generate the dissertation.}
-}
-\RequirePackage[hyphens]{url}
-\RequirePackage[a-2b]{pdfx}
+\RequirePackage[
+  plainpages=false,
+  pdfpagelabels,
+  bookmarks=true,%
+  bookmarksnumbered=true,%
+  linktocpage=true,%
+  breaklinks=true,%
+  bookmarkstype=toc,%
+  colorlinks=false,%
+  pdfpagemode=UseOutlines]{hyperref}
 \RequirePackage{longtable}
-\RequirePackage{threeparttable}
+\RequirePackage[flushleft]{threeparttable}
 \RequirePackage[flushleft]{threeparttablex}
 \RequirePackage{xspace}
 \RequirePackage{indentfirst}
 \RequirePackage{tabularx}
-\RequirePackage{enumerate}
+\RequirePackage{enumitem}
 \RequirePackage{latexsym}
 \RequirePackage{textcase}
 \ifboolexpr{bool{pdf} or bool{xetex} or bool{luatex}}{%
@@ -167,17 +170,6 @@
       \fi
     \fi
   \fi
-  % cannot use RequirePackage since pdfx also includes hyperref
-  \hypersetup{
-            plainpages=false,
-            pdfpagelabels,
-            bookmarks=true,%
-            bookmarksnumbered=true,%
-            linktocpage=true,%
-            breaklinks=true,%
-            bookmarkstype=toc,%
-            colorlinks=false,%
-            pdfpagemode=UseOutlines}
 }{}
 }
 \RequirePackage{metalogo}
@@ -640,27 +632,12 @@
                  \singlespacing
                \item\relax}
                {\endlist}
-\let\realitemize\itemize
-\let\endrealitemize\enditemize
-\renewenvironment{itemize}
-          {\realitemize
-            \singlespacing}
-          {\endrealitemize
-            \doublespacing}
-\let\realenumerate\enumerate
-\let\endrealenumerate\endenumerate
-\renewenvironment{enumerate}[1][1.]
-          {\realenumerate[#1]
-            \singlespacing}
-          {\endrealenumerate
-            \doublespacing}
-\let\realdescription\description
-\let\endrealdescription\enddescription
-\renewenvironment{description}
-          {\realdescription
-            \singlespacing}
-          {\endrealdescription
-            \doublespacing}
+\AtBeginEnvironment{itemize}{\par\singlespacing}
+\AtBeginEnvironment{enumerate}{\par\singlespacing}
+\AtBeginEnvironment{description}{\par\singlespacing}
+\AtBeginEnvironment{tablenotes}{\footnotesize}
+\xpatchcmd{\TPTdoTablenotes}{\itemsep\z@}{\itemsep10pt}{}{}
+\xpatchcmd{\TPTdoTablenotes}{\itemindent\z@}{\itemindent18pt}{}{}
 \setlength\abovecaptionskip{20\p@}
 \newlength\capwidth
 \setlength{\capwidth}{0.90\textwidth}
