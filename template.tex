@@ -1,0 +1,149 @@
+%%
+%% This is file `template.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% nddiss2e.dtx  (with options: `template')
+%% 
+%% This is a generated file.
+%% 
+%%  Copyright (C) 2004-2005 Sameer Vijay
+%% 
+%%  This file may be distributed and/or modified under the
+%%  conditions of the LaTeX Project Public License, either
+%%  version 1.2 of this license or (at your option) any later
+%%  version. The latest version of this license is in
+%%     http://www.latex-project.org/lppl.txt
+%% 
+%% 
+%% ==============================================================
+%% 
+%% Notre Dame's Dissertation document class by Sameer Vijay
+%% that adheres to the University of Notre Dame guidelines
+%% published in Spring 2004.
+%% 
+%% Please send any improvements/suggestions to :
+%%     Shari Hill, Graduate Reviewer.
+%%     shill2@nd.edu
+%% 
+%% For documentation on how to use nddiss2e class, process the
+%% file nddiss2e.dtx through LaTeX.
+%% 
+%% ==============================================================
+%% 
+\ProvidesFile{template.tex}
+    [2016/10/16 v3.2016%
+     Template file for NDdiss2e class]
+\documentclass[draft]{nddiss2e}
+                     % One of the options draft, review, final must be chosen.
+                     % One of the options textrefs or numrefs should be chosen
+                     % to specify if you want numerical or ``author-date''
+                     % style citations.
+                     % Other available options are:
+                     % 10pt/11pt/12pt (available with draft only)
+                     % twoadvisors
+                     % noinfo (should be used when you compile the final time
+                     %         for formal submission)
+                     % sort (sorts multiple citations in the order that they're
+                     %       listed in the bibliography)
+                     % compress (compresses numerical citations, e.g. [1,2,3]
+                     %           becomes [1-3]; has no effect when used with
+                     %           the textrefs option)
+                     % sort&compress (sorts and compresses numerical citations;
+                     %           is identical to sort when used with textrefs)
+\begin{document}
+
+\frontmatter             % All the items before Chapter 1 go in ``frontmatter''
+
+\title{ Title of Work }  % Title
+
+\author{ Jane Doe }      % Author's name
+\work{ Dissertation }    % ``Dissertation'' or ``Thesis''
+\degaward{ Doctor of Philosophy }  % Degree you're aiming for.
+                                   % Should be one of the following options:
+                                   % ``Doctor of Philosophy'' (do NOT include ``in Subject'')
+                                   % ``Master of Science \\ in \\ Subject''
+\advisor{ John Public }  % Advisor's name
+ % \secondadvisor{ }     % Second advisor, if used option ``twoadvisors''
+\department{ }           % Name of the department
+
+\maketitle               % The title page is created now
+
+ % You must use either the \makecopyright option or the \makepublicdomain option.
+ % \copyrightholder{ }   % If you're not the copyright holder
+ % \copyrightyear{ }     % If the copyright is not for the current year
+ % \makecopyright        % If not making your work public domain
+                         % uncomment out \makecopyright
+ % \makepublicdomain     % Uncomment this to make your work public domain
+
+ % Including an abstract is optional for a master's thesis, and required for a
+ % doctoral dissertation.
+ % \begin{abstract}
+ % \end{abstract}
+ %                       % Either place the text between begin/end, or
+ % \include{abstract}    % put it in a file to be included
+
+ % Including a dedication is optional.
+ % \renewcommand{\dedicationname}{\mbox{}} % Replace \mbox{} if you want
+                                           % something else.
+ % \begin{dedication}
+ % \end{dedication}
+ %                       % Use one of the two choices to add dedication text
+ % \include{dedication}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+ % Including a list of symbols is optional.
+ %% \renewcommand{\symbolsname}{newsymname} % Replace ``newsymname'' with
+                                            % the name you want, and uncomment
+ % \begin{symbols}
+ % \end{symbols}
+ %                       % Use one of the two choices to add symbols text
+ % \include{symbols}
+
+ % Including a preface is optional.
+ %% \renewcommand{\prefacename}{ } % If you want another Preface name, add
+                                   % something else, and uncomment.
+ % \begin{preface}
+ % \end{preface}
+ %                       % Use one of the two choices to add preface text
+ % \include{preface}
+
+ % Including an acknowledgements section may or may not be optional. It's hard to
+ % tell from the information available in Spring 2013.
+ %% \renewcommand{\acknowledgename}{ } % If you want another Acknowledgement name
+                                       % add something else, and uncomment
+ % \begin{acknowledge}
+ % \end{acknowledge}
+ %                       % Use one of the two choices to add acknowledge text
+ % \include{acknowledgement}
+
+\mainmatter
+ % Place the text body here.
+ % \include{chapter-one}
+ % Begin each chapter with \chapter{Title}.
+
+\appendix
+
+ % If you have appendices, add them here.
+ % Begin each one with \chapter{TITLE} as before. The \appendix command takes
+ % care of renaming chapter headings and creates a new page in the Table of
+ % Contents for them.
+ % \include{appendix-one}
+
+\backmatter              % Place for bibliography and index
+
+
+\bibliographystyle{nddiss2e}
+ \bibliography{ }           % input the bib-database file name
+
+
+\end{document}
+
+%%
+\endinput
+%%
+%% End of file `template.tex'.
