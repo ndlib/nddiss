@@ -477,16 +477,22 @@
     \addcontentsline{toc}{chapter}{\listfigurename}%
     \typeout{List of figures - \listfigurename}
     \singlespacing
+    \let\oldnumberline\numberline%
+    \renewcommand{\numberline}{\figurename~\oldnumberline}%
     \@starttoc{lof}%
     \normalspacing
+    \let\numberline\oldnumberline
 }
 \renewcommand\listoftables{%
     \chapter*{\listtablename}%
     \addcontentsline{toc}{chapter}{\listtablename}%
     \typeout{List of tables - \listtablename}
     \singlespacing
+    \let\oldnumberline\numberline%
+    \renewcommand{\numberline}{\MakeTextUppercase{\tablename}~\oldnumberline}%
     \@starttoc{lot}%
     \normalspacing
+    \let\numberline\oldnumberline%
 }
 \newenvironment{preface}{%
   \typeout{Preface page}

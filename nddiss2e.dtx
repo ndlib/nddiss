@@ -13,7 +13,7 @@
 % \fi
 %
 %
-%  \CheckSum{1475}
+%  \CheckSum{1495}
 %  \CharacterTable
 %   {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %    Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -1702,8 +1702,11 @@
     \addcontentsline{toc}{chapter}{\listfigurename}%
     \typeout{List of figures - \listfigurename}
     \singlespacing
+    \let\oldnumberline\numberline%
+    \renewcommand{\numberline}{\figurename~\oldnumberline}%
     \@starttoc{lof}%
     \normalspacing
+    \let\numberline\oldnumberline
 }
 %
 \renewcommand\listoftables{%
@@ -1711,8 +1714,11 @@
     \addcontentsline{toc}{chapter}{\listtablename}%
     \typeout{List of tables - \listtablename}
     \singlespacing
+    \let\oldnumberline\numberline%
+    \renewcommand{\numberline}{\tablename~\oldnumberline}%
     \@starttoc{lot}%
     \normalspacing
+    \let\numberline\oldnumberline%
 }
 %
 %    \end{macrocode}
