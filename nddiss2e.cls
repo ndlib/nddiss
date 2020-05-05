@@ -540,7 +540,7 @@
    \interlinepenalty \@M
    \normalfont
    \ifnum \c@secnumdepth >-2\relax
-     \normalsize\mdseries \partname\nobreakspace\thepart
+     \normalsize\mdseries \MakeTextUppercase{\partname}\nobreakspace\thepart
      \par
      \vskip 20\p@
    \fi
