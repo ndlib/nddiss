@@ -531,7 +531,7 @@
 \def\@part[#1]#2{%
   \ifnum \c@secnumdepth >-2\relax
     \refstepcounter{part}%
-    \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+    \addcontentsline{toc}{part}{\partname\ \thepart:\hspace{1em}#1}%
   \else
     \addcontentsline{toc}{part}{#1}%
   \fi
