@@ -292,7 +292,9 @@
 % file\footnote{|nddiss2e.bst| is a slight modificiation of |abbrvnat.bst|
 % in the \textsf{natbib} package; |nddiss2enoarticletitles.bst| is
 % essentially the same as |nddiss2e|, but does not display the titles of
-% journal articles, as this is the standard in some fields}.
+% journal articles, as this is the standard in some fields;
+% |nddiss2enosort.bst| is essentially the same as |nddiss2e|, but sorts by
+% order of appearance in text instead of author name.}.
 % The |textrefs| option changes the citation style to be similar to
 % ``author-date'' style with the same files.
 %
@@ -2386,6 +2388,9 @@
 % include the titles of journal articles in bibliography entires.
 % If you do not want the titles of journal articles to appear, use the
 % ``nddiss2enoarticletitles'' bibliography style.
+% If you do not want the citations sorted by author name, use the
+% ``nddiss2enosort`` bibliography style to sort by order of appearance in text.
+% It is recommended to use the ``notoccite`` package with this style.
 
 \bibliographystyle{nddiss2e}
  \bibliography{ }           % input the bib-database file name
