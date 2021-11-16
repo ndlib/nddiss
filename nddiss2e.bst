@@ -6,7 +6,7 @@
 %% File: `abbrvnat.bst'
 %% A modification of `abbrv.bst' for use with natbib package 
 %%
-%% Copyright 1993-2005 Patrick W Daly
+%% Copyright 1993-2007 Patrick W Daly
 %% Max-Planck-Institut f\"ur Sonnensystemforschung
 %% Max-Planck-Str. 2
 %% D-37191 Katlenburg-Lindau
@@ -19,7 +19,7 @@
 %% version 1 of the License, or any later version.
 %%
  % Version and source file information:
- % \ProvidesFile{natbst.mbs}[2005/01/07 1.8 (PWD)]
+ % \ProvidesFile{natbst.mbs}[2007/11/26 1.93 (PWD)]
  %
  % BibTeX `plainnat' family
  %   version 0.99b for BibTeX versions 0.99a or later,
@@ -646,9 +646,9 @@ FUNCTION {format.article.crossref}
         { "In \emph{" journal * "}" * }
       if$
     }
-    { "In " key * }
+    { "In " }
   if$
-  " \citep{" * crossref * "}" *
+  " \citet{" * crossref * "}" *
 }
 
 FUNCTION {format.book.crossref}
@@ -672,12 +672,12 @@ FUNCTION {format.book.crossref}
             { "\emph{" * series * "}" * }
           if$
         }
-        { key * }
+        'skip$
       if$
     }
     'skip$
   if$
-  ", \citet{" * crossref * "}" *
+  " \citet{" * crossref * "}" *
 }
 
 FUNCTION {format.incoll.inproc.crossref}
@@ -693,7 +693,7 @@ FUNCTION {format.incoll.inproc.crossref}
             { "In \emph{" booktitle * "}" * }
           if$
         }
-        { "In " key * }
+        { "In " }
       if$
     }
     { "In " }
@@ -1007,10 +1007,10 @@ FUNCTION {unpublished}
   author format.key output
   new.block
   format.title "title" output.check
-  format.url output
   new.block
   note "note" output.check
   format.date output
+  format.url output
   fin.entry
 }
 
@@ -1334,6 +1334,10 @@ FUNCTION {presort}
       if$
     }
   if$
+  "    "
+  *
+  year field.or.null sortify
+  *
   "    "
   *
   cite$
