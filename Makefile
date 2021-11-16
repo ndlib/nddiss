@@ -4,6 +4,7 @@ adv_files:=ltxdoc.cfg\
 	nddiss2e.dtx \
 	nddiss2e.ins \
 	nddiss2enoarticletitles.bst \
+	nddiss2enosort.bst \
 	process.sh \
 	README.md
 
@@ -11,6 +12,7 @@ std_files:=nddiss2e.bst \
 	nddiss2e.cls \
 	nddiss2e.pdf \
 	nddiss2enoarticletitles.bst \
+	nddiss2enosort.bst \
 	template.tex
 
 ctan_files:=nddiss2e.dtx \
