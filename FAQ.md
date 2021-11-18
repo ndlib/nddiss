@@ -51,13 +51,14 @@ Use the longtable envrionment. The class defines its own that conforms to the Gr
 
 ## I was told my table and figure captions are messed up.
 
-Usually this is because you are using a package that conflicts with the style. The main offenders is the `caption` pacakge, but there can be others.
+Usually this is because you are using a package that conflicts with the style. The main offenders is the `caption` package, but there can be others.
 
 (The nddiss2e style is pretty old, and could be updated to use the many packages that have been developed over the last 20 years. If you have the time and ability, I would love to accept updates for it.)
 
 ## How do I get my citations to be numbered in the order they are cited?
 
 By default the bibliography is sorted by auther last name so it is easier for others to scan your bibliography.
-But you can sort the bibliography by the order you first used each citation using the command `\bibliographystyle{unsrt}`.
+But you can sort the bibliography by the order you first used each citation using the command `\bibliographystyle{nddiss2enosort}`.
 Doing this will have the first citation you use to have number 1, and so on.
+It is recommended to use the `notoccite` package to start the numbering after the frontmatter sections.
 
