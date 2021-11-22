@@ -662,7 +662,7 @@
   \vskip\abovecaptionskip
   \begin{center}
   \parbox{\capwidth}{
-    \centering\singlespacing
+    \singlespacing
     {#1}. {#2}%\par
   \vskip\belowcaptionskip\normalspacing }%
   \end{center}
