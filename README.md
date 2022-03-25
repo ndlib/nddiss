@@ -43,7 +43,7 @@ The `handout` directory is a single-page getting started guide.
 
 # Other Resources
 
-The Notre Dame Graduate school has [formatting resources and the current standard](http://graduateschool.nd.edu/resources-for-current-students/dt/dt-resources/).
+The Notre Dame Graduate school has [formatting resources and the current standard](https://graduateschool.nd.edu/policies-forms/doctoral-dissertations-masters-theses/author-resources/).
 
 
 # Authors and History
