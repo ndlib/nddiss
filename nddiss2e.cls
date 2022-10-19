@@ -132,6 +132,11 @@
 \RequirePackage{enumitem}
 \RequirePackage{latexsym}
 \RequirePackage{textcase}
+\ifboolexpr{bool{luatex}}{%
+  \ifcsdef{pdfadjustspacing}{}{%
+    \let\pdfadjustspacing \adjustspacing
+  }
+}{}
 \ifboolexpr{bool{pdf} or bool{xetex} or bool{luatex}}{%
   \RequirePackage{epsfig}
   \RequirePackage{color}
@@ -662,7 +667,7 @@
   \vskip\abovecaptionskip
   \begin{center}
   \parbox{\capwidth}{
-    \singlespacing
+    \centering\singlespacing
     {#1}. {#2}%\par
   \vskip\belowcaptionskip\normalspacing }%
   \end{center}
