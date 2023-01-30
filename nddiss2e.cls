@@ -47,6 +47,7 @@
 \newif\ifnum@refs               \num@refstrue
 \newif\ifnatbib@refs            \natbib@refstrue
 \newif\ifcentered@chaptitle     \centered@chaptitletrue
+\newif\ifline@numbers           \line@numbersfalse
 \newif\if@ltfirstcaption
 \DeclareOption{draft}{
     \setlength\overfullrule{5pt}
@@ -107,6 +108,24 @@
 \DeclareOption{noinfo}{\info@pagefalse}
 \DeclareOption{twoside}{\typeout{TWO SIDED DOCUMENT}%
   \PassOptionsToClass{twoside}{book} }%
+\DeclareOption{showframe}{%
+  \ifdiss@review%
+    \PassOptionsToPackage{showframe}{geometry}%
+  \else%
+    \OptionNotUsed
+    \ClassWarningNoLine{nddiss2e}%
+      {Frame only shown in review mode; not showing frame}
+  \fi
+}
+\DeclareOption{linenumbers}{%
+  \ifdiss@final%
+    \OptionNotUsed%
+    \ClassWarningNoLine{nddiss2e}%
+      {Line numbers are disabled in final mode.}%
+  \else%
+    \typeout{LINE NUMBERS}\line@numberstrue%
+  \fi
+}
 \DeclareOption*{\ClassWarning{nddiss2e}%
     {UnknownOption `\CurrentOption'} }%
 \ProcessOptions\relax
@@ -123,6 +142,7 @@
   bookmarkstype=toc,%
   colorlinks=false,%
   pdfpagemode=UseOutlines]{hyperref}
+\RequirePackage[pass]{geometry}
 \RequirePackage{longtable}
 \RequirePackage[flushleft]{threeparttable}
 \RequirePackage[flushleft]{threeparttablex}
@@ -178,6 +198,59 @@
 }{}
 }
 \RequirePackage{metalogo}
+\ifline@numbers
+  \AtBeginDocument{%
+    \RequirePackage{lineno}%
+    \@ifpackagelater{lineno}{2022/07/30}
+      {}%
+      {%
+        \newcommand*\linenoamsmath@patch[1]{%
+          \cspreto{#1}{\linenomath}%
+          \cspreto{#1*}{\linenomath}%
+          \csappto{end#1}{\endlinenomath}%
+          \csappto{end#1*}{\endlinenomath}%
+        }
+        \newcount\linenoamsmath@ams@eqpen
+        \cspreto{math@cr@}{\global\@eqpen\numexpr\@eqpen+\linenoamsmath@ams@eqpen\relax}
+        \newcommand*\linenoamsmath@patch@ams[1]{%
+          \cspreto{#1}{%
+            \linenomath%
+            \postdisplaypenalty=0%
+            \global\linenoamsmath@ams@eqpen\interdisplaylinepenalty%
+          }%
+          \cspreto{#1*}{%
+            \linenomath%
+            \postdisplaypenalty=0%
+            \global\linenoamsmath@ams@eqpen\interdisplaylinepenalty%
+          }%
+          \csappto{end#1}{%
+            \global\linenoamsmath@ams@eqpen\z@%
+            \endlinenomath%
+          }%
+          \csappto{end#1*}{%
+            \global\linenoamsmath@ams@eqpen\z@%
+            \endlinenomath%
+          }%
+        }
+        \linenoamsmath@patch{equation}
+        \linenoamsmath@patch@ams{multline}
+        \linenoamsmath@patch@ams{gather}
+        \linenoamsmath@patch@ams{align}
+        \linenoamsmath@patch@ams{alignat}
+        \linenoamsmath@patch@ams{flalign}
+        \let\linenoamsmath@ams@mmeasure\mmeasure@
+        \def\mmeasure@#1{%
+          \global\linenoamsmath@ams@eqpen\z@%
+          \begingroup%
+          \interdisplaylinepenalty=0%
+          \linenoamsmath@ams@mmeasure{#1\\}%
+          \endgroup%
+          \global\linenoamsmath@ams@eqpen\interdisplaylinepenalty%
+        }
+      }%
+    \linenumbers%
+  }
+\fi
 \AtBeginDocument{
 \pagestyle{plain}
 \normalspacing
