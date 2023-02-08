@@ -281,6 +281,11 @@
 \vfill
 \normalfont\normalsize\normalspacing\eject}
 \renewcommand{\maketitle}{
+  \hypersetup{
+      pdftitle={\@title},
+      pdfauthor={\@author},
+      pdfsubject={\@department}
+  }
   \ifinfo@page\@infopage\else\relax\fi%
   \clearemptydoublepage
   \normalfont\normalsize\normalspacing

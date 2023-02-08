@@ -13,7 +13,7 @@
 % \fi
 %
 %
-%  \CheckSum{1483}
+%  \CheckSum{1487}
 %  \CharacterTable
 %   {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %    Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -739,7 +739,7 @@
 % unbalanced brace, it is possible that there is a conflict between
 % the packages you have included and those that \nddiss\/ uses.
 % If you find yourself in that situtation, there is a mailing list
-% for handling support issues with \nddiss\/. 
+% for handling support issues with \nddiss\/.
 % Look through the archive, and if there are no answers, please
 % send an email to \url{ND-LATEX-USERS@listserv.nd.edu} (registration required).
 % The more effort you spend in isolating the problem or in troubleshooting
@@ -1350,10 +1350,15 @@
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\maketitle}
-% Redefine the macro |\maketitle| to produce the information page as well as
-% the actual title page of the dissertation.
+% Redefine the macro |\maketitle| to set PDF metadata and produce the
+% information page as well as the actual title page of the dissertation.
 %    \begin{macrocode}
 \renewcommand{\maketitle}{
+  \hypersetup{
+      pdftitle={\@title},
+      pdfauthor={\@author},
+      pdfsubject={\@department}
+  }
   \ifinfo@page\@infopage\else\relax\fi%
   \clearemptydoublepage
   \normalfont\normalsize\normalspacing
