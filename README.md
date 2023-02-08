@@ -13,7 +13,6 @@ This package belongs to the Notre Dame community.
 Please feel free to send improvements, suggestions, or bug reports to
 
  * Shari Hill Sweet, shill2@nd.edu
- * Don Brower, dbrower@nd.edu
 
 
 # Usage
@@ -50,6 +49,7 @@ The Notre Dame Graduate school has [formatting resources and the current standar
 
 This class file was created by Sameer Vijay, following the Spring 2004 Graduate School formatting guidelines.
 Later Megan Patnott updated it to follow the Spring 2013 guidelines.
+Don Brower maintained it from 2014 to 2021.
 
 The class is based off of an older style file created by D. A. Peterson, Jeff Squyres, and others.
 The example files are from the `sample_ndthesis.tar.gz` by Jeff Squyres and D. A. Peterson, suitably modified for the nddiss2e class.
