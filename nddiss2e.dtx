@@ -13,7 +13,7 @@
 % \fi
 %
 %
-%  \CheckSum{1478}
+%  \CheckSum{1483}
 %  \CharacterTable
 %   {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %    Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -1099,6 +1099,11 @@
 % \textsf{epsfig}, \textsf{color} and \textsf{graphicx} are loaded
 % with respective options.
 %    \begin{macrocode}
+\ifboolexpr{bool{luatex}}{%
+  \ifcsdef{pdfadjustspacing}{}{%
+    \let\pdfadjustspacing \adjustspacing
+  }
+}{}
 \ifboolexpr{bool{pdf} or bool{xetex} or bool{luatex}}{%
   \RequirePackage{epsfig}
   \RequirePackage{color}
