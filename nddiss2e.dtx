@@ -1307,7 +1307,8 @@
 % didn't look like they were.  So these length values are set to what geometry
 % said they should be to get a 1.5 in left margin and 1 in margins on all other
 % sides (we'll use vspace commands later to get the 2 in top margin on pages
-% where that's needed).
+% where that's needed). Note that \texttt{\textbackslash{}evensidemargin} is
+% only used if the \texttt{twoside} class option is enabled.
 %    \begin{macrocode}
 \setlength{\hoffset}{0pt}
 \setlength{\voffset}{0pt}
@@ -1318,7 +1319,7 @@
 \setlength{\textheight}{648pt}
 \setlength{\textwidth}{432pt}
 \setlength{\oddsidemargin}{36pt}
-\setlength{\evensidemargin}{36pt}
+\setlength{\evensidemargin}{1.755pt}
 \setlength{\footskip}{30pt}
 %
 \setlength{\floatsep}{30pt}

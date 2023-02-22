@@ -275,7 +275,7 @@
 \setlength{\textheight}{648pt}
 \setlength{\textwidth}{432pt}
 \setlength{\oddsidemargin}{36pt}
-\setlength{\evensidemargin}{36pt}
+\setlength{\evensidemargin}{1.755pt}
 \setlength{\footskip}{30pt}
 \setlength{\floatsep}{30pt}
 \setlength{\intextsep}{50pt}
