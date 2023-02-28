@@ -13,7 +13,7 @@
 % \fi
 %
 %
-%  \CheckSum{1578}
+%  \CheckSum{1589}
 %  \CharacterTable
 %   {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %    Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -172,7 +172,7 @@
 % \work{Dissertation}
 % \degaward{Doctor of Philosophy}
 % \advisor{}
-% \department{}
+% \program{}
 % \maketitle
 % \makepublicdomain % There is also a copyright option
 %
@@ -406,8 +406,8 @@
 %   \item \DescribeMacro{\secondadvisor\{\}} Give the name of your second advisor,
 %         if any, with the |\secondadvisor| macro. You also need to pass in the
 %         |twoadvisors| option in the |\documentclass| declaration.
-%   \item \DescribeMacro{\department\{\}} Give the name of your department with the
-%         |\department| macro, e.g. |\department{Gnulogical Engineering}|).
+%   \item \DescribeMacro{\program\{\}} Give the name of your department with the
+%         |\program| macro, e.g. |\program{Gnulogical Engineering}|).
 %   \item \DescribeMacro{\degdate\{\}} The month and year of the defense of the
 %         thesis with the |\degdate| e.g. |\degdate{June 2004}|). If you forget to
 %         declare this, the current month/year will be used.
@@ -1343,7 +1343,7 @@
 % \begin{macro}{\degaward}
 % \begin{macro}{\advisor}
 % \begin{macro}{\secondadvisor}
-% \begin{macro}{\department}
+% \begin{macro}{\program}
 % \begin{macro}{\degdate}
 % \iffalse (does not appear in documentation)
 % In 2005 the Graduate School wanted us to list our degrees after our names.
@@ -1361,7 +1361,10 @@
 \ifadvisors@two
     \newcommand{\secondadvisor}[1]{\def\@secondadvisor{#1}}
 \fi
-\newcommand{\department}[1]{\def\@department{#1}}
+\newcommand{\department}[1]{\ClassWarning{nddiss2e}%
+  {The \protect\department\space macro is deprecated. Use \protect\program\space instead.}%
+  \def\@program{#1}}
+\newcommand{\program}[1]{\def\@program{#1}}
 \newcommand{\degdate}[1]{\def\@degdate{#1}}
   \degdate{\ifcase\month\or
     January\or February\or March\or April\or May\or June\or
@@ -1387,7 +1390,7 @@
   \degaward{}
   \advisor{}
   \ifadvisors@two \secondadvisor{} \fi
-  \department{}
+  \program{}
 %
 %    \end{macrocode}
 % \begin{macro}{\@infopage}
@@ -1459,7 +1462,7 @@
   \hypersetup{
       pdftitle={\@title},
       pdfauthor={\@author},
-      pdfsubject={\@department}
+      pdfsubject={\@program}
   }
   \ifinfo@page\@infopage\else\relax\fi%
   \clearemptydoublepage
@@ -1487,10 +1490,10 @@
   {The \protect\advisor\space macro is undefined.\MessageBreak
         The title page may be incorrectly formatted.}%
   {Spepcify \protect\advisor\space It is who signs your walking papers!}}{\relax}
-\ifthenelse{\equal{\@department}{}}{\ClassError{nddiss2e}%
-  {The \protect\department\space macro is undefined.\MessageBreak
+\ifthenelse{\equal{\@program}{}}{\ClassError{nddiss2e}%
+  {The \protect\program\space macro is undefined.\MessageBreak
         The title page may be incorrectly formatted.}%
-  {Specify which \protect\department\space is awarding your degree?}}{\relax}
+  {Specify which \protect\program\space is awarding your degree?}}{\relax}
 \ifadvisors@two
   \ifthenelse{\equal{\@secondadvisor}{}}{\ClassError{nddiss2e}%
   {The \protect\secondadvisor\space macro is undefined.\MessageBreak
@@ -1641,7 +1644,7 @@
 % that these are at the page bottom.
 %    \begin{macrocode}
   \vskip\skip1%
-  Graduate Program in \@department \\%
+  Graduate Program in \@program \\%
   Notre Dame, Indiana \\
   \@degdate
   \end{center}
@@ -2424,7 +2427,7 @@
                                    % ``Master of Science \\ in \\ Subject''
 \advisor{ John Public }  % Advisor's name
  % \secondadvisor{ }     % Second advisor, if used option ``twoadvisors''
-\department{ }           % Name of the department
+\program{ }              % Name of the graduate program
 
 \maketitle               % The title page is created now
 
