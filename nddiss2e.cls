@@ -291,7 +291,10 @@
 \ifadvisors@two
     \newcommand{\secondadvisor}[1]{\def\@secondadvisor{#1}}
 \fi
-\newcommand{\department}[1]{\def\@department{#1}}
+\newcommand{\department}[1]{\ClassWarning{nddiss2e}%
+  {The \protect\department\space macro is deprecated. Use \protect\program\space instead.}%
+  \def\@program{#1}}
+\newcommand{\program}[1]{\def\@program{#1}}
 \newcommand{\degdate}[1]{\def\@degdate{#1}}
   \degdate{\ifcase\month\or
     January\or February\or March\or April\or May\or June\or
@@ -303,7 +306,7 @@
   \degaward{}
   \advisor{}
   \ifadvisors@two \secondadvisor{} \fi
-  \department{}
+  \program{}
 \DeclareRobustCommand{\@infopage}{
   \thispagestyle{empty}
   \null\vspace*{\single@skip}
@@ -357,7 +360,7 @@
   \hypersetup{
       pdftitle={\@title},
       pdfauthor={\@author},
-      pdfsubject={\@department}
+      pdfsubject={\@program}
   }
   \ifinfo@page\@infopage\else\relax\fi%
   \clearemptydoublepage
@@ -376,10 +379,10 @@
   {The \protect\advisor\space macro is undefined.\MessageBreak
         The title page may be incorrectly formatted.}%
   {Spepcify \protect\advisor\space It is who signs your walking papers!}}{\relax}
-\ifthenelse{\equal{\@department}{}}{\ClassError{nddiss2e}%
-  {The \protect\department\space macro is undefined.\MessageBreak
+\ifthenelse{\equal{\@program}{}}{\ClassError{nddiss2e}%
+  {The \protect\program\space macro is undefined.\MessageBreak
         The title page may be incorrectly formatted.}%
-  {Specify which \protect\department\space is awarding your degree?}}{\relax}
+  {Specify which \protect\program\space is awarding your degree?}}{\relax}
 \ifadvisors@two
   \ifthenelse{\equal{\@secondadvisor}{}}{\ClassError{nddiss2e}%
   {The \protect\secondadvisor\space macro is undefined.\MessageBreak
@@ -466,7 +469,7 @@
         \hspace*{2.75in}\@secondadvisor, Co-Director\\
 \fi
   \vskip\skip1%
-  Graduate Program in \@department \\%
+  Graduate Program in \@program \\%
   Notre Dame, Indiana \\
   \@degdate
   \end{center}
