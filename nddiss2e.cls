@@ -181,7 +181,7 @@
 \RequirePackage{float}
 \RequirePackage{booktabs}
 \RequirePackage{rotating}
-\RequirePackage{url}
+\RequirePackage{xurl}
 \RequirePackage[doublespacing]{setspace}[2000/12/01]
 \ifboolexpr{bool{pdf} or bool{xetex} or bool{luatex}}{%
   \ifluatex
