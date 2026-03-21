@@ -13,7 +13,7 @@
 % \fi
 %
 %
-%  \CheckSum{1589}
+%  \CheckSum{1646}
 %  \CharacterTable
 %   {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %    Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -683,9 +683,6 @@
 %   \end{landscape}
 % }
 % \end{verbatim}
-%   \item The \textsf{sidewaystable} environment (from the included
-%          \textsf{rotating} package) is incompatible with the current
-%         class and should be avoided.
 %   \item Usually the width of the figure and table captions is 90\% of the textwidth
 %         (i.e. |0.9\textwidth|). If needed, the width can be changed on a case-by-case
 %         basis by doing one of the following:
@@ -2278,6 +2275,53 @@
 %
 %    \end{macrocode}
 % \end{macro}
+% \begin{environment}{sidewaysfigure}
+% Adjust |sidewaysfigure| from the |rotating| package to use the nddiss redefined label macros.
+%    \begin{macrocode}
+\AtBeginDocument{
+  \renewenvironment{sidewaysfigure}[1][tbp]{%
+    \setlength{\abovecaptionskip}{\abovefigureskip}
+    \setlength{\belowcaptionskip}{\belowfigureskip}
+    \setlength{\capwidth}{0.90\textheight}
+    \let\@makecaption\@makefigurecaption
+    \@rotfloat{figure}[#1]%
+  }{%
+    \addtocontents{lof}{ {\vskip 0.4em} }%
+    \end@rotfloat
+  }
+}
+%    \end{macrocode}
+% \end{environment}
+% \begin{environment}{sidewaystable}
+% Adjust |sidewaystable| from the |rotating| package to use the nddiss redefined label macros.
+% For this we need to hook into the previously defined sidewaystable envrionment.
+%    \begin{macrocode}
+\AtBeginDocument{
+  \let\orig@sidewaystable\sidewaystable
+  \let\endorig@sidewaystable\endsidewaystable
+  \renewenvironment{sidewaystable}[1][tbp]{%
+    \setlength{\abovecaptionskip}{\abovetableskip}
+    \setlength{\belowcaptionskip}{\belowtableskip}
+    \renewcommand{\arraystretch}{\double@baselinestretch}
+    \let\scaption\caption
+    \renewcommand*{\caption}[2][]{%
+      \ifthenelse{\equal{##1}{}}{%
+        \def\shortcaption{##2}%
+      }{%
+        \def\shortcaption{##1}%
+      }%
+      \scaption[\shortcaption]{\MakeTextUppercase{##2}}%
+    }%
+    \let\@makecaption\@maketablecaption
+    \orig@sidewaystable[#1]%
+    \singlespacing%
+  }{%
+    \addtocontents{lot}{ {\vskip 0.4em} }%
+    \endorig@sidewaystable
+  }
+}
+%    \end{macrocode}
+% \end{environment}
 % \begin{macro}{\timenow}
 % This macro is used in making the |\draftheader| and |\reviewheader| below. It
 % outputs time in |HH:MM| format.
