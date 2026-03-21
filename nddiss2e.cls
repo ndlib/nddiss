@@ -835,6 +835,42 @@
   \global\@ltfirstcaptionfalse
   \endgraf\vskip\belowtableskip}%
   \hss}}}
+\AtBeginDocument{
+  \renewenvironment{sidewaysfigure}[1][tbp]{%
+    \setlength{\abovecaptionskip}{\abovefigureskip}
+    \setlength{\belowcaptionskip}{\belowfigureskip}
+    \setlength{\capwidth}{0.90\textheight}
+    \let\@makecaption\@makefigurecaption
+    \@rotfloat{figure}[#1]%
+  }{%
+    \addtocontents{lof}{ {\vskip 0.4em} }%
+    \end@rotfloat
+  }
+}
+\AtBeginDocument{
+  \let\orig@sidewaystable\sidewaystable
+  \let\endorig@sidewaystable\endsidewaystable
+  \renewenvironment{sidewaystable}[1][tbp]{%
+    \setlength{\abovecaptionskip}{\abovetableskip}
+    \setlength{\belowcaptionskip}{\belowtableskip}
+    \renewcommand{\arraystretch}{\double@baselinestretch}
+    \let\scaption\caption
+    \renewcommand*{\caption}[2][]{%
+      \ifthenelse{\equal{##1}{}}{%
+        \def\shortcaption{##2}%
+      }{%
+        \def\shortcaption{##1}%
+      }%
+      \scaption[\shortcaption]{\MakeTextUppercase{##2}}%
+    }%
+    \let\@makecaption\@maketablecaption
+    \orig@sidewaystable[#1]%
+    \singlespacing%
+  }{%
+    \addtocontents{lot}{ {\vskip 0.4em} }%
+    \endorig@sidewaystable
+  }
+}
 \newcommand\timenow{%
   \@tempcnta=\time \divide\@tempcnta by 60 \number\@tempcnta:\multiply
   \@tempcnta by 60 \@tempcntb=\time \advance\@tempcntb by -\@tempcnta
